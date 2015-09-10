@@ -42,7 +42,7 @@ HEADERS  += GUIs/widget.h \
             ImageProcessingMethods/IgssItkImageConverter.h \
     SystemDataWare/CenterLinePoint.h
 
-
+#win32:
 unix:INCLUDEPATH += $$PWD/../../../../../usr/local/include/vtk-6.2
 unix:DEPENDPATH += $$PWD/../../../../../usr/local/include/vtk-6.2
 
