@@ -1,5 +1,4 @@
-igss
---(Image Guide Surgery System)
+IGSS-Image Guide Surgery System
 
 Team leader: Shoujun ZHOU
 Project Manager : Cheng WANG
