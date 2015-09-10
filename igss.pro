@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-QMAKE_CXXFLAGS += -Wno-deprecated
+unix:QMAKE_CXXFLAGS += -Wno-deprecated
 
 TARGET = igss
 TEMPLATE = app
@@ -42,7 +42,7 @@ HEADERS  += GUIs/widget.h \
             ImageProcessingMethods/IgssItkImageConverter.h \
     SystemDataWare/CenterLinePoint.h
 
-#win32:
+win32:INCLUDEPATH += "C:\Program Files\VTK\include\vtk-6.2"
 unix:INCLUDEPATH += $$PWD/../../../../../usr/local/include/vtk-6.2
 unix:DEPENDPATH += $$PWD/../../../../../usr/local/include/vtk-6.2
 
