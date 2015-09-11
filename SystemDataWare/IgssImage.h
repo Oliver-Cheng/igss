@@ -24,6 +24,9 @@ public:
     void setValueByIndex(int index, unsigned short value);
 
     QString getRawFileName();
+    long getLengthOfDataset();
+    unsigned short getValueByIndex(long i);
+
 
 private:
     int NDims;
@@ -41,6 +44,7 @@ private:
     QString ElementDataFile;
 
     unsigned short *values;
+    long length ;
 
 };
 

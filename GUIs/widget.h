@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <MHDFileReader.h>
 #include <IgssImage.h>
-
+#include <vtkSmartPointer.h>
 class Widget : public QWidget
 {
     Q_OBJECT
@@ -17,7 +17,10 @@ public:
 private:
     QString mhdImagePath;
     IgssImage* mraImage;
+    IgssImage* igssImage;
     MHDFileReader* mhdFileReader;
+    vtkSmartPointer<vtkImageData>vtkImage;
+    IgssVtkImageConverter* igssVtkImageConverter;
 };
 
 #endif // WIDGET_H
