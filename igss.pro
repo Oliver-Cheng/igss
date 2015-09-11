@@ -21,6 +21,8 @@ INCLUDEPATH += Dispatchers
 
 INCLUDEPATH += DiskImageReaderFactory
 
+INCLUDEPATH += ImageProcessingMethods
+
 SOURCES +=  main.cpp\
             GUIs/widget.cpp \
             DiskImageReaderFactory/MHDFileReader.cpp \
@@ -30,7 +32,7 @@ SOURCES +=  main.cpp\
             SystemDataWare/IgssImage.cpp \
             ImageProcessingMethods/IgssVtkImageConverter.cpp \
             ImageProcessingMethods/IgssItkImageConverter.cpp \
-    SystemDataWare/CenterLinePoint.cpp
+            SystemDataWare/CenterLinePoint.cpp
 
 HEADERS  += GUIs/widget.h \
             DiskImageReaderFactory/MHDFileReader.h \
@@ -40,7 +42,7 @@ HEADERS  += GUIs/widget.h \
             SystemDataWare/IgssImage.h \
             ImageProcessingMethods/IgssVtkImageConverter.h \
             ImageProcessingMethods/IgssItkImageConverter.h \
-    SystemDataWare/CenterLinePoint.h
+            SystemDataWare/CenterLinePoint.h
 
 win32:INCLUDEPATH += "C:\Program Files\VTK\include\vtk-6.2"
 unix:INCLUDEPATH += $$PWD/../../../../../usr/local/include/vtk-6.2

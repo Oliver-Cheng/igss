@@ -16,7 +16,7 @@ public:
     void setRawFileName(QString rawFileName);
 
     void getDimensionSize(int *dims);
-    void getElementSpacing(float *spaces);
+    void getElementSpacing(double *spaces);
     int getNumberOfDimension();
     int getElementByteOrderMSB();
 
@@ -31,7 +31,7 @@ public:
 private:
     int NDims;
     int DimSize[3];
-    float ElementSpacing[3];
+    double ElementSpacing[3];
     float Position[3];
     int Orientation[9];
     int CenterOfRotation[3];
