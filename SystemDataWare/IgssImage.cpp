@@ -147,3 +147,17 @@ void IgssImage::setValueByIndex(int index, unsigned short value){
     values[index] = value;
 }
 
+//!------------------------------------------------------------------------------
+//! \brief IgssImage::getValueByIndex
+//! \param i
+//! \return
+//!
+unsigned short IgssImage::getValueByIndex(long i)
+{
+    return this->values[i];
+}
+
+long IgssImage::getLengthOfDataset()
+{
+    return this->length;
+}
