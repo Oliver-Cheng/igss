@@ -5,14 +5,19 @@
 #include <MHDFileReader.h>
 #include <IgssImage.h>
 #include <vtkSmartPointer.h>
+#include "IgssVtkImageConverter.h"
+
 class Widget : public QWidget
 {
     Q_OBJECT
 
 public:
     Widget(QWidget *parent = 0);
+#ifdef win32
     ~Widget();
+#endif
     void readImageFileFrom(QString path);
+    void readImageFromVtkConvert();
 
 private:
     QString mhdImagePath;

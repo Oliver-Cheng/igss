@@ -1,20 +1,28 @@
 #include "widget.h"
 #include "vtkImageData.h"
 
-Widget::Widget(QWidget *parent) : QWidget(parent){
-    readImageFileFrom("/home/vincent/Documents/CanalyserWorkspace/PatientsDataware/Lan_Xiuying__1990_09_03/mra_tridimensionel__image/Lan_Xiuying.mhd");
+
+Widget::Widget(QWidget *parent): QWidget(parent){
+
+    readImageFileFrom("/home/bigboom/Documents/CanalyserWorkspace/PatientsDataware/He_Shiyu__1990_09_03/mra_tridimensionel__image/He_Shiyu.mhd");
+
+    vtkSmartPointer<vtkImageData> input = vtkSmartPointer<vtkImageData>::New();
+
+    IgssVtkImageConverter *c = new IgssVtkImageConverter();
+    c->IgssToVtk(mraImage, input);
     readImageFromVtkConvert();
 }
 
-Widget::~Widget(){
-
-}
-
+//!
+//! \brief Widget::readImageFileFrom
+//! \param path
+//!
 void Widget::readImageFileFrom(QString path){
     mhdImagePath = path;
     mraImage = new IgssImage();
     mhdFileReader = new MHDFileReader();
-    mhdFileReader->doParseMHDFile(mhdImagePath, mraImage);
+    mhdFileReader->doParseMHDFile(mhdImagePath ,mraImage);
+
 
 }
 //!
@@ -34,5 +42,5 @@ void Widget::readImageFromVtkConvert()
         *ptr++ = i;
     }
     igssVtkImageConverter = new IgssVtkImageConverter();
-    igssVtkImageConverter->vtkImageToIgss(vtkImage,igssImage);
+    igssVtkImageConverter->VtkToIgss(vtkImage,igssImage);
 }

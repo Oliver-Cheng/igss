@@ -90,7 +90,7 @@ void IgssImage::getDimensionSize(int *dims){
 //! \brief MraImage::getElementSpacing
 //! \param spaces
 //!
-void IgssImage::getElementSpacing(float *spaces){
+void IgssImage::getElementSpacing(double *spaces){
     spaces[0] = this->ElementSpacing[0];
     spaces[1] = this->ElementSpacing[1];
     spaces[2] = this->ElementSpacing[2];
