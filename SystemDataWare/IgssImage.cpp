@@ -90,7 +90,7 @@ void IgssImage::getDimensionSize(int *dims){
 //! \brief MraImage::getElementSpacing
 //! \param spaces
 //!
-void IgssImage::getElementSpacing(float *spaces){
+void IgssImage::getElementSpacing(double *spaces){
     spaces[0] = this->ElementSpacing[0];
     spaces[1] = this->ElementSpacing[1];
     spaces[2] = this->ElementSpacing[2];
@@ -147,3 +147,17 @@ void IgssImage::setValueByIndex(int index, unsigned short value){
     values[index] = value;
 }
 
+//!------------------------------------------------------------------------------
+//! \brief IgssImage::getValueByIndex
+//! \param i
+//! \return
+//!
+unsigned short IgssImage::getValueByIndex(long i)
+{
+    return this->values[i];
+}
+
+long IgssImage::getLengthOfDataset()
+{
+    return this->length;
+}

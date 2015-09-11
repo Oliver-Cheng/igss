@@ -1,7 +1,6 @@
 #include "DataSetOfPatient.h"
 
-DataSetOfPatient::DataSetOfPatient()
-{
+DataSetOfPatient::DataSetOfPatient(){
 
 }
 

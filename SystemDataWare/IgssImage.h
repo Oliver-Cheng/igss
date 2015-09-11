@@ -16,7 +16,7 @@ public:
     void setRawFileName(QString rawFileName);
 
     void getDimensionSize(int *dims);
-    void getElementSpacing(float *spaces);
+    void getElementSpacing(double *spaces);
     int getNumberOfDimension();
     int getElementByteOrderMSB();
 
@@ -24,11 +24,14 @@ public:
     void setValueByIndex(int index, unsigned short value);
 
     QString getRawFileName();
+    long getLengthOfDataset();
+    unsigned short getValueByIndex(long i);
+
 
 private:
     int NDims;
     int DimSize[3];
-    float ElementSpacing[3];
+    double ElementSpacing[3];
     float Position[3];
     int Orientation[9];
     int CenterOfRotation[3];
@@ -41,6 +44,7 @@ private:
     QString ElementDataFile;
 
     unsigned short *values;
+    long length ;
 
 };
 

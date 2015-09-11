@@ -1,4 +1,6 @@
-#include "widget.h"
+#include "IgssMainWindow.h"
+#include "SystemDispatcher.h"
+#include "SystemDataBase.h"
 #include <QApplication>
 #include <QProcess>
 #include <QString>
@@ -23,6 +25,12 @@ QString get_username(){
     return "unknown";
 }
 
+//!
+//! \brief main
+//! \param argc
+//! \param argv
+//! \return
+//!
 int main(int argc, char *argv[]){
 
     QApplication a(argc, argv);
@@ -66,8 +74,15 @@ int main(int argc, char *argv[]){
         path.mkdir(image_center_path);
     }
 
-    Widget w;
-    w.show();
+    SystemDataBase* database = new SystemDataBase();
+    database->setPaths(workspace_path, patients_path, metadata_path, image_center_path);
+
+    SystemDispatcher* dispatcher = new SystemDispatcher(database);
+
+
+    // Interface humain machine
+    IgssMainWindow* igssMainWindow =  new IgssMainWindow(dispatcher);
+    igssMainWindow->show();
 
     return a.exec();
 }
