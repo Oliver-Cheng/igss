@@ -15,6 +15,9 @@ public:
     QString getMetaData();
     QString getImageCenterPath();
 
+    void find();
+
+
 private:
     Patients* patients;
     SystemMetaData* metaData;

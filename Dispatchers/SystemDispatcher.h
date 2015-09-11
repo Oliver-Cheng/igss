@@ -7,6 +7,7 @@ class SystemDispatcher
 {
 public:
     SystemDispatcher(SystemDataBase* database);
+    void findPatientExisted();
 
 private:
     SystemDataBase* database;
