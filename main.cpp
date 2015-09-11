@@ -25,6 +25,12 @@ QString get_username(){
     return "unknown";
 }
 
+//!
+//! \brief main
+//! \param argc
+//! \param argv
+//! \return
+//!
 int main(int argc, char *argv[]){
 
     QApplication a(argc, argv);
