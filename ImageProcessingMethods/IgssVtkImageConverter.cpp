@@ -21,7 +21,6 @@ void IgssVtkImageConverter::IgssToVtk(IgssImage* input, vtkSmartPointer<vtkImage
     input->getDimensionSize(indims);
     input->getElementSpacing(inspaces);
 
-
     numvoxels = indims[0]*indims[1]*indims[2];//the number of the whole voxels
 
     output->SetDimensions(indims[0],indims[1],indims[2]);

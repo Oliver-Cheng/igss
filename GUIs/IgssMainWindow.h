@@ -6,13 +6,14 @@
 #include <IgssImage.h>
 #include <vtkSmartPointer.h>
 #include "IgssVtkImageConverter.h"
+#include "SystemDispatcher.h"
 
-class Widget : public QWidget
+class IgssMainWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    Widget(QWidget *parent = 0);
+    IgssMainWindow(SystemDispatcher* dispatcher);
 #ifdef win32
     ~Widget();
 #endif
@@ -20,6 +21,8 @@ public:
     void readImageFromVtkConvert();
 
 private:
+    SystemDispatcher* dispatcher;
+
     QString mhdImagePath;
     IgssImage* mraImage;
     IgssImage* igssImage;

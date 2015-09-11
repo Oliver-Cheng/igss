@@ -1,7 +1,6 @@
 #include "SystemDispatcher.h"
 
-SystemDispatcher::SystemDispatcher()
-{
-
+SystemDispatcher::SystemDispatcher(SystemDataBase* database){
+    this->database = database;
 }
 
