@@ -6,7 +6,7 @@ IgssMainWindow::IgssMainWindow(SystemDispatcher* dispatcher): QWidget(){
 
     this->dispatcher = dispatcher;
 
-    readImageFileFrom("/home/vincent/Documents/CanalyserWorkspace/PatientsDataware/He_Shiyu__1990_09_03/mra_tridimensionel__image/He_Shiyu.mhd");
+    readImageFileFrom("C://Users//duyue//Documents//CanalyserWorkspace//PatientsDataware//Wang_Dechun__1990_09_04//mra_tridimensionel__image//Wang_Dechun.mhd");
 
     vtkSmartPointer<vtkImageData> input = vtkSmartPointer<vtkImageData>::New();
 
