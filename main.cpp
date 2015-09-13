@@ -44,6 +44,11 @@ int main(int argc, char *argv[]){
     //! ------create some folders by predefined paths as the workspaces of the application-------------------
     //under the windows os, get the username of the system
 
+    QString name = qgetenv("USER");
+        if (name.isEmpty())
+            name = qgetenv("USERNAME");
+        qDebug() << name;
+
     QString username = get_username();
 
     if(username != "unknown") {
