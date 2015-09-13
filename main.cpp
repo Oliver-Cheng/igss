@@ -14,15 +14,18 @@
 //! \return
 //!
 QString get_username(){
-    QStringList environment = QProcess::systemEnvironment();
-    int index = environment.indexOf(QRegExp("USERNAME.*"));
-    if (index != -1){
-        QStringList stringList = environment.at(index).split('=');
-        if (stringList.size() == 2){
-            return stringList.at(1);
-        }
-    }
-    return "unknown";
+//    QStringList environment = QProcess::systemEnvironment();
+//    int index = environment.indexOf(QRegExp("USERNAME.*"));
+//    if (index != -1){
+//        QStringList stringList = environment.at(index).split('=');
+//        if (stringList.size() == 2){
+//            return stringList.at(1);
+//        }
+//    }
+    QString name = qgetenv("USER");
+        if (name.isEmpty())
+            name = qgetenv("USERNAME");
+    return name;
 }
 
 //!
@@ -44,10 +47,7 @@ int main(int argc, char *argv[]){
     //! ------create some folders by predefined paths as the workspaces of the application-------------------
     //under the windows os, get the username of the system
 
-    QString name = qgetenv("USER");
-        if (name.isEmpty())
-            name = qgetenv("USERNAME");
-        qDebug() << name;
+
 
     QString username = get_username();
 
