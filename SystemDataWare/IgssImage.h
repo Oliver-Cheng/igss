@@ -10,6 +10,7 @@ class IgssImage{
 
 public:
     IgssImage();
+
     void setNumberOfDimension(int NDims);
     void setDimensionSize(int x, int y, int z);
     void setElementSpacing(float x_spacing, float y_spacing, float z_spacing);
@@ -23,7 +24,7 @@ public:
     int getElementByteOrderMSB();
 
     void setLengthOfDataSet();
-    void setValueByIndex(int index, unsigned short value);
+    void setValueByIndex(long index, unsigned short value);
 
     QString getRawFileName();
     long getLengthOfDataset();

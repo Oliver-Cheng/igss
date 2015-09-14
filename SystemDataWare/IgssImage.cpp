@@ -143,7 +143,7 @@ void IgssImage::setLengthOfDataSet(){
 //! \param index
 //! \param value
 //!
-void IgssImage::setValueByIndex(int index, unsigned short value){
+void IgssImage::setValueByIndex(long index, unsigned short value){
     values[index] = value;
 }
 
