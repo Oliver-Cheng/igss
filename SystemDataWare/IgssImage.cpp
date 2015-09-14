@@ -29,7 +29,7 @@ void IgssImage::setDimensionSize(int x, int y, int z){
     this->DimSize[0] = x;
     this->DimSize[1] = y;
     this->DimSize[2] = z;
-    qDebug()<<x*y*z;
+
 }
 
 //!------------------------------------------------------------------------
@@ -157,7 +157,19 @@ unsigned short IgssImage::getValueByIndex(long i)
     return this->values[i];
 }
 
+//!
+//! \brief IgssImage::getLengthOfDataset
+//! \return
+//!
 long IgssImage::getLengthOfDataset()
 {
     return this->length;
+}
+
+//!
+//! \brief IgssImage::getIgssScalarType
+//! \return
+//!
+int IgssImage::getIgssScalarType(){
+    return IGSS_UNSIGNED_SHORT;
 }

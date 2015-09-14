@@ -5,7 +5,7 @@ SystemDispatcher::SystemDispatcher(SystemDataBase* database){
 }
 
 void SystemDispatcher::findPatientExisted(){
-
+    this->database->findPatientsExisted();
 
 }
 

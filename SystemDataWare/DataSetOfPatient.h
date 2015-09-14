@@ -8,10 +8,13 @@
 class DataSetOfPatient
 {
 public:
-    DataSetOfPatient();
+    DataSetOfPatient(QString name,QString birthday);
+    QString getBirthdayOfPatient();
 
 private:
     //! personnel informations
+    QString name;
+    QString birthday;
     QString firstName;
     QString lastName;
     QString sex;

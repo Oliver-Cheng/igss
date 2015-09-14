@@ -4,6 +4,8 @@
 #include <QString>
 #include <QDebug>
 
+#define IGSS_UNSIGNED_SHORT  5
+
 class IgssImage{
 
 public:
@@ -27,6 +29,7 @@ public:
     long getLengthOfDataset();
     unsigned short getValueByIndex(long i);
 
+    int getIgssScalarType();
 
 private:
     int NDims;

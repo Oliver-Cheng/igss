@@ -15,7 +15,7 @@ public:
     QString getMetaData();
     QString getImageCenterPath();
 
-    void find();
+    void findPatientsExisted();
 
 
 private:
