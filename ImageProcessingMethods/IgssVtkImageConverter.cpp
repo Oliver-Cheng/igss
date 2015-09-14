@@ -25,8 +25,11 @@ void IgssVtkImageConverter::IgssToVtk(IgssImage* input, vtkSmartPointer<vtkImage
 
     output->SetDimensions(indims[0],indims[1],indims[2]);
     output->SetOrigin(0.0,0.0,0.0);
-    output->AllocateScalars(VTK_UNSIGNED_SHORT,1);
     output->SetSpacing(inspaces[0],inspaces[1],inspaces[2]);
+
+    if(input->getIgssScalarType()==IGSS_UNSIGNED_SHORT){
+        output->AllocateScalars(VTK_UNSIGNED_SHORT,1);
+    }
 
     vtkDataArray* output_array = output->GetPointData()->GetScalars();
     //unsigned short *ptr = (unsigned short*)output->GetScalarPointer();
