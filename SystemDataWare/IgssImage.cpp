@@ -76,6 +76,19 @@ void IgssImage::setRawFileName(QString rawFileName){
 
 //!------------------------------------------------------------------------
 //!
+//! \brief IgssImage::setPosition
+//! \param x_position
+//! \param y_position
+//! \param z_position
+//!
+void IgssImage::setPosition(float x_position, float y_position, float z_position){
+    this->Position[0] = x_position;
+    this->Position[1] = y_position;
+    this->Position[2] = z_position;
+}
+
+//!------------------------------------------------------------------------
+//!
 //! \brief MraImage::getDimensionSize
 //! \param dims
 //!
@@ -112,6 +125,17 @@ int IgssImage::getNumberOfDimension(){
 //!
 int IgssImage::getElementByteOrderMSB(){
     return this->ElementByteOrderMSB;
+}
+
+//!------------------------------------------------------------------------
+//!
+//! \brief IgssImage::getPosition
+//! \param position
+//!
+void IgssImage::getPosition(float *position){
+    position[0] = this->Position[0];
+    position[1] = this->Position[1];
+    position[2] = this->Position[2];
 }
 
 //!------------------------------------------------------------------------
