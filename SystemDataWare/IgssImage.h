@@ -17,11 +17,13 @@ public:
     void setElementType(QString type);
     void setElementByteOrderMSB(int order);
     void setRawFileName(QString rawFileName);
+    void setPosition(float x_position, float y_position, float z_position);
 
     void getDimensionSize(int *dims);
     void getElementSpacing(double *spaces);
     int getNumberOfDimension();
     int getElementByteOrderMSB();
+    void getPosition(float *position);
 
     void setLengthOfDataSet();
     void setValueByIndex(long index, unsigned short value);

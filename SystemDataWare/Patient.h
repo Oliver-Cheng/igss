@@ -5,6 +5,7 @@
 #include <IgssImage.h>
 #include <QFileInfo>
 #include <QDir>
+#include <QThread>
 
 class Patient
 {

@@ -33,6 +33,6 @@ void Patient::ThreadImageProcessing::run(){
     QString mraImageFilePath;
 
     //! check if file exists and if yes: Is it really a file and no directory?
-    if()
+    //if()
 
 }
