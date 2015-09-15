@@ -1,15 +1,29 @@
-#ifndef DATASETOFPATIENT_H
-#define DATASETOFPATIENT_H
+#ifndef PATIENT_H
+#define PATIENT_H
 
-#include <QString>
 #include <QList>
 #include <IgssImage.h>
+#include <QFileInfo>
+#include <QDir>
 
 class Patient
 {
+private:
+
+    class ThreadImageProcessing : public QThread{
+        public:
+            void run();
+
+            Patient *patient;
+
+    };
+
 public:
     Patient(QString myPath);
     QString getBirthdayOfPatient();
+    void doImageProcessing();
+    QString getMRAPath();
+    QString getName();
 
 private:
 
@@ -33,6 +47,11 @@ private:
     QList<IgssImage *> cImageSequence;
 
     //! parameter of image......
+
+public:
+
+    ThreadImageProcessing imageProcessingThread;
+
 };
 
-#endif // DATASETOFPATIENT_H
+#endif // PATIENT_H

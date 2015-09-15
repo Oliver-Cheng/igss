@@ -21,9 +21,9 @@ void Patients::findPatientExisted(){
             continue;
         }
 
-        Patient *datasetOfPatient = new Patient(list.at(cpt).filePath());
+        Patient *patient = new Patient(list.at(cpt).filePath());
 
-        patients.append(datasetOfPatient);
+        patients.append(patient);
     }
 }
 

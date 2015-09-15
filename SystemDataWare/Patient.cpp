@@ -13,3 +13,26 @@ Patient::Patient(QString myPath){
 QString Patient::getBirthdayOfPatient(){
     return this->birthday;
 }
+
+void Patient::doImageProcessing(){
+    imageProcessingThread.patient = this;
+    imageProcessingThread.start();
+}
+
+QString Patient::getMRAPath(){
+    return this->myPath;
+}
+
+QString Patient::getName(){
+    return this->name;
+}
+
+void Patient::ThreadImageProcessing::run(){
+    //! check if patient's mra image exist in the personnel mra path....
+    QFileInfo checkMHDFile(patient->myPath + patient->name + ".mhd");
+    QString mraImageFilePath;
+
+    //! check if file exists and if yes: Is it really a file and no directory?
+    if()
+
+}
