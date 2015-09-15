@@ -13,10 +13,11 @@ class IgssMainWindow : public QWidget
     Q_OBJECT
 
 public:
-    IgssMainWindow(SystemDispatcher* dispatcher);
+    IgssMainWindow();
 #ifdef win32
     ~Widget();
 #endif
+    void setSystemDispatecher(SystemDispatcher* dispatcher);
     void readImageFileFrom(QString path);
     void readImageFromVtkConvert();
 

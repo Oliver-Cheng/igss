@@ -5,13 +5,16 @@
 #include <QList>
 #include <IgssImage.h>
 
-class DataSetOfPatient
+class Patient
 {
 public:
-    DataSetOfPatient(QString name,QString birthday);
+    Patient(QString myPath);
     QString getBirthdayOfPatient();
 
 private:
+
+    QString myPath;
+
     //! personnel informations
     QString name;
     QString birthday;

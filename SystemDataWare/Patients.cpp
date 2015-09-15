@@ -9,6 +9,7 @@ Patients::Patients(){
 //! \brief Patients::findPatientExisted
 //!
 void Patients::findPatientExisted(){
+
     QDir patientsPath(this->patients_path);
 
     patientsPath.setFilter(QDir::Dirs);
@@ -19,10 +20,9 @@ void Patients::findPatientExisted(){
         if(list.at(cpt).filePath().contains(".") || list.at(cpt).filePath().contains("..")){
             continue;
         }
-        QString currentPath = list.at(cpt).filePath();
-        QStringList temp = currentPath.split(this->patients_path);
-        QStringList patientInfo = temp[1].split("__");
-        DataSetOfPatient *datasetOfPatient = new DataSetOfPatient(patientInfo[0],patientInfo[1]);
+
+        Patient *datasetOfPatient = new Patient(list.at(cpt).filePath());
+
         patients.append(datasetOfPatient);
     }
 }

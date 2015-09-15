@@ -2,20 +2,22 @@
 #include "vtkImageData.h"
 
 
-IgssMainWindow::IgssMainWindow(SystemDispatcher* dispatcher): QWidget(){
-
-    this->dispatcher = dispatcher;
+IgssMainWindow::IgssMainWindow(): QWidget(){
 
     //readImageFileFrom("C://Users//duyue//Documents//CanalyserWorkspace//PatientsDataware//Wang_Dechun__1990_09_04//mra_tridimensionel__image//Wang_Dechun.mhd");
     //readImageFileFrom("/home/bigboom/Documents/CanalyserWorkspace/PatientsDataware/He_Shiyu__1990_09_03/mra_tridimensionel__image/He_Shiyu.mhd");
-    readImageFileFrom("/home/vincent/Documents/CanalyserWorkspace/PatientsDataware/He_Shiyu__1990_09_03/mra_tridimensionel__image/He_Shiyu.mhd");
+    //readImageFileFrom("/home/vincent/Documents/CanalyserWorkspace/PatientsDataware/He_Shiyu__1990_09_03/mra_tridimensionel__image/He_Shiyu.mhd");
     //readImageFileFrom("/home/sky/Documents/CanalyserWorkspace/PatientsDataware/He_Shiyu__1990_09_03/mra_tridimensionel__image/He_Shiyu.mhd");
 
-    vtkSmartPointer<vtkImageData> input = vtkSmartPointer<vtkImageData>::New();
+    //vtkSmartPointer<vtkImageData> input = vtkSmartPointer<vtkImageData>::New();
 
-    IgssVtkImageConverter *c = new IgssVtkImageConverter();
-    c->IgssToVtk(mraImage, input);
-    readImageFromVtkConvert();
+    //IgssVtkImageConverter *c = new IgssVtkImageConverter();
+    //c->IgssToVtk(mraImage, input);
+    //readImageFromVtkConvert();
+}
+
+void IgssMainWindow::setSystemDispatecher(SystemDispatcher* dispatcher){
+    this->dispatcher = dispatcher;
 }
 
 //!

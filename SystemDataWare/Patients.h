@@ -1,7 +1,7 @@
 #ifndef PATIENTS_H
 #define PATIENTS_H
 
-#include <DataSetOfPatient.h>
+#include <Patient.h>
 #include <QList>
 #include <QDir>
 #include <QDebug>
@@ -15,7 +15,7 @@ public:
     void setPatientsPath(QString patients_path);
 
 private:
-    QList<DataSetOfPatient*> patients;
+    QList<Patient*> patients;
     QString patients_path;
 };
 
