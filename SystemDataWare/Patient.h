@@ -1,11 +1,11 @@
 #ifndef PATIENT_H
 #define PATIENT_H
-
 #include <QList>
 #include <IgssImage.h>
 #include <QFileInfo>
 #include <QDir>
 #include <QThread>
+#include "MHDFileReader.h"
 
 class Patient
 {
@@ -49,9 +49,9 @@ private:
 
     //! parameter of image......
 
-public:
-
+    //! Handle du thread
     ThreadImageProcessing imageProcessingThread;
+    MHDFileReader *mhdFileReader;
 
 };
 
