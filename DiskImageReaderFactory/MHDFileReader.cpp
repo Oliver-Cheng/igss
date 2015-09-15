@@ -11,7 +11,7 @@ MHDFileReader::MHDFileReader(){
 //! \param mhdFilePath
 //! \param image
 //!
-void MHDFileReader::doParseMHDFile(QString mhdFilePath, IgssImage*image){
+void MHDFileReader::doParseMHDFile(QString mhdFilePath, IgssImage* image){
 
     //! lecture of the mhd metadata file
     QFile *file = new QFile(mhdFilePath);
