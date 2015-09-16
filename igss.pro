@@ -28,26 +28,32 @@ SOURCES +=  main.cpp\
             Dispatchers/SystemDispatcher.cpp \
             SystemDataWare/SystemDataBase.cpp \
             SystemDataWare/IgssImage.cpp \
-            ImageProcessingMethods/IgssVtkImageConverter.cpp \
-            ImageProcessingMethods/IgssItkImageConverter.cpp \
+            ImageProcessingMethods/igssGeneralLib/IgssVtkImageConverter.cpp \
+            ImageProcessingMethods/igssGeneralLib/IgssItkImageConverter.cpp \
             SystemDataWare/CenterLinePoint.cpp \
             GUIs/IgssMainWindow.cpp \
             SystemDataWare/Patients.cpp \
             SystemDataWare/SystemMetaData.cpp \
-    SystemDataWare/Patient.cpp
+            SystemDataWare/Patient.cpp \
+    ImageProcessingMethods/igssMathLib/Derivation.cpp \
+    ImageProcessingMethods/igssMathLib/Convolution.cpp \
+    ImageProcessingMethods/igssSegmentationLib/VesselEnhancementFilter.cpp
 
 HEADERS  += \
             DiskImageReaderFactory/MHDFileReader.h \
             Dispatchers/SystemDispatcher.h \
             SystemDataWare/SystemDataBase.h \
             SystemDataWare/IgssImage.h \
-            ImageProcessingMethods/IgssVtkImageConverter.h \
-            ImageProcessingMethods/IgssItkImageConverter.h \
+            ImageProcessingMethods/igssGeneralLib/IgssVtkImageConverter.h \
+            ImageProcessingMethods/igssGeneralLib/IgssItkImageConverter.h \
             SystemDataWare/CenterLinePoint.h \
             GUIs/IgssMainWindow.h \
             SystemDataWare/Patients.h \
             SystemDataWare/SystemMetaData.h \
-    SystemDataWare/Patient.h
+            SystemDataWare/Patient.h \
+    ImageProcessingMethods/igssMathLib/Derivation.h \
+    ImageProcessingMethods/igssMathLib/Convolution.h \
+    ImageProcessingMethods/igssSegmentationLib/VesselEnhancementFilter.h
 
 win32:INCLUDEPATH += "C:\Program Files\VTK\include\vtk-6.2"
 unix:INCLUDEPATH += $$PWD/../../../../../usr/local/include/vtk-6.2
