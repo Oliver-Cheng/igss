@@ -21,7 +21,7 @@ INCLUDEPATH += Dispatchers
 
 INCLUDEPATH += DiskImageReaderFactory
 
-INCLUDEPATH += ImageProcessingMethods
+INCLUDEPATH += ImageProcessingMethods/igssGeneralLib
 
 SOURCES +=  main.cpp\
             DiskImageReaderFactory/MHDFileReader.cpp \
