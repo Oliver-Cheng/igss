@@ -13,19 +13,19 @@ MHDFileReader::MHDFileReader(){
 //!
 void MHDFileReader::doParseMHDFile(QString mhdFilePath, IgssImage* image){
 
-    //! lecture of the mhd metadata file
+    //qDebug()<<"lecture of the mhd metadata file";
     QFile *file = new QFile(mhdFilePath);
     if(!file->open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug()<<"Can't open the file!"<<endl;
     }
 
+    //qDebug()<<"mhd start";
     while(!file->atEnd()) {
         //!fetch a line of character
         QByteArray line = file->readLine();
         QString str(line);
         str.replace(QString("\n"), QString(""));
 
-        //!
         if(str.contains("NDim")){
             QStringList temp = str.split(" = ");
             image->setNumberOfDimension(temp[1].toInt(0,10));
@@ -57,9 +57,10 @@ void MHDFileReader::doParseMHDFile(QString mhdFilePath, IgssImage* image){
             //qDebug()<<mhdFilePath;
         }
     }
+    //qDebug()<<"mhd finished";
     file->close();
 
-    //! allocate space for data storage
+    //qDebug()<<"allocate space for data storage";
     image->setLengthOfDataSet();
 
     //!------------------------------------------------------------------------------------------------------

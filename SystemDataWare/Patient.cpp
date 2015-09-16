@@ -3,6 +3,26 @@
 #include <QFileInfo>
 #include <QDir>
 
+
+//!----------------------------------------------------------------------------
+//!
+//! \brief Patient::ThreadImageProcessing::run
+//!
+void Patient::ThreadImageProcessing::run(){
+
+    //! check if patient's mraImage exist in the personnel mra path....
+    QFileInfo checkMHDFile(patient->myPath + "/mra_tridimensionel__image/" + patient->name + ".mhd");
+    //! check if file exists and if yes: Is it really a file and no directory?
+    if((checkMHDFile.exists() && checkMHDFile.isFile()) ){
+        patient->mhdFileReader->doParseMHDFile(checkMHDFile.filePath(),patient->originImage);
+    }
+}
+
+//!----------------------------------------------------------------------------
+//!
+//! \brief Patient::Patient
+//! \param myPath
+//!
 Patient::Patient(QString myPath){
     this->myPath = myPath;
 
@@ -11,23 +31,10 @@ Patient::Patient(QString myPath){
     QStringList patientInfo = temp[temp.size()-1].split("__");
     name = patientInfo[0];
     birthday = patientInfo[1];
+
+    originImage = new IgssImage();
+
     doImageProcessing();
-}
-
-//!----------------------------------------------------------------------------
-//!
-//! \brief Patient::ThreadImageProcessing::run
-//!
-void Patient::ThreadImageProcessing::run(){
-    //! check if patient's mraImage exist in the personnel mra path....
-    QFileInfo checkMHDFile(patient->myPath + patient->name + ".mhd");
-    QString mraImageFilePath;
-
-    //! check if file exists and if yes: Is it really a file and no directory?
-    if((checkMHDFile.exists() && checkMHDFile.isFile()) ){
-        mraImageFilePath = patient->myPath + patient->name +".mhd";
-        patient->mhdFileReader->doParseMHDFile(mraImageFilePath,patient->originImage);
-    }
 }
 
 //!------------------------------------------------------------------------------

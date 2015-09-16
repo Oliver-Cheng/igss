@@ -10,13 +10,10 @@
 class Patient
 {
 private:
-
     class ThreadImageProcessing : public QThread{
         public:
             void run();
-
             Patient *patient;
-
     };
 
 public:
@@ -27,7 +24,6 @@ public:
     QString getName();
 
 private:
-
     QString myPath;
 
     //! personnel informations

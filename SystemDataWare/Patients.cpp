@@ -20,9 +20,7 @@ void Patients::findPatientExisted(){
         if(list.at(cpt).filePath().contains(".") || list.at(cpt).filePath().contains("..")){
             continue;
         }
-
         Patient *patient = new Patient(list.at(cpt).filePath());
-
         patients.append(patient);
     }
 }
