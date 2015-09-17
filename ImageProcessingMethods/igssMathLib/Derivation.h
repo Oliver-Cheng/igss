@@ -8,6 +8,7 @@ class Derivation
 public:
     Derivation();
     void do_3D_Derivation(float sigma);
+    void do_2D_Derivation(float sigma);
     int getKernelSizeX();
     int getKernelSizeY();
     int getKernelSizeZ();
