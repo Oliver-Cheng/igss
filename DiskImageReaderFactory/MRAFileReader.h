@@ -1,16 +1,18 @@
-#ifndef MHDFILEREADER_H
-#define MHDFILEREADER_H
+#ifndef MRAFILEREADER_H
+#define MRAFILEREADER_H
 
 #include <QString>
 #include <QStringList>
 #include <IgssImage.h>
 #include <QFile>
 
-class MHDFileReader
+class MRAFileReader
 {
 public:
-    MHDFileReader();
+    MRAFileReader();
     void doParseMHDFile(QString mhdFilePath, IgssImage*image);
+private:
+    IgssImage *image;
 };
 
-#endif // MHDFILEREADER_H
+#endif // MRAFILEREADER_H

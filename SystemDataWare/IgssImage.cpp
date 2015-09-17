@@ -152,13 +152,14 @@ QString IgssImage::getRawFileName(){
 //! \brief MraImage::setLengthOfDataSet
 //!
 void IgssImage::setLengthOfDataSet(){
-    long length = 1;
+    length = 1;
 
     for(int i = 0; i < this->NDims; i++){
         length *= DimSize[i];
     }
 
     values = (unsigned short*)malloc((length)*sizeof(unsigned short));
+
 }
 
 //!------------------------------------------------------------------------

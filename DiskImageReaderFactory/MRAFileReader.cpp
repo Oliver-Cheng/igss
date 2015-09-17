@@ -1,7 +1,7 @@
-#include "MHDFileReader.h"
+#include "MRAFileReader.h"
 #include <QDebug>
 
-MHDFileReader::MHDFileReader(){
+MRAFileReader::MRAFileReader(){
 
 }
 
@@ -11,7 +11,7 @@ MHDFileReader::MHDFileReader(){
 //! \param mhdFilePath
 //! \param image
 //!
-void MHDFileReader::doParseMHDFile(QString mhdFilePath, IgssImage* image){
+void MRAFileReader::doParseMHDFile(QString mhdFilePath, IgssImage* image){
 
     //qDebug()<<"lecture of the mhd metadata file";
     QFile *file = new QFile(mhdFilePath);
@@ -60,7 +60,7 @@ void MHDFileReader::doParseMHDFile(QString mhdFilePath, IgssImage* image){
     //qDebug()<<"mhd finished";
     file->close();
 
-    //qDebug()<<"allocate space for data storage";
+    //!allocate space for data storage
     image->setLengthOfDataSet();
 
     //!------------------------------------------------------------------------------------------------------
@@ -81,3 +81,5 @@ void MHDFileReader::doParseMHDFile(QString mhdFilePath, IgssImage* image){
     rawfileReader->close();
 
 }
+
+

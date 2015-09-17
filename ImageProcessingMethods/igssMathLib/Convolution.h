@@ -6,6 +6,10 @@ class Convolution
 {
 public:
     Convolution();
+    void doConvolution();
+
+
+
 };
 
 #endif // CONVOLUTION_H

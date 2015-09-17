@@ -5,7 +5,7 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QThread>
-#include "MHDFileReader.h"
+#include "MRAFileReader.h"
 
 class Patient
 {
@@ -47,7 +47,7 @@ private:
 
     //! Handle du thread
     ThreadImageProcessing imageProcessingThread;
-    MHDFileReader *mhdFileReader;
+    MRAFileReader *mhdFileReader;
 
 };
 
