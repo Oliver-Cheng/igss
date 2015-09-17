@@ -23,8 +23,11 @@ INCLUDEPATH += DiskImageReaderFactory
 
 INCLUDEPATH += ImageProcessingMethods/igssGeneralLib
 
+INCLUDEPATH += ImageProcessingMethods/igssMathLib
+
+INCLUDEPATH += ImageProcessingMethods/igssSegmentationLib
+
 SOURCES +=  main.cpp\
-            DiskImageReaderFactory/MHDFileReader.cpp \
             Dispatchers/SystemDispatcher.cpp \
             SystemDataWare/SystemDataBase.cpp \
             SystemDataWare/IgssImage.cpp \
@@ -35,12 +38,13 @@ SOURCES +=  main.cpp\
             SystemDataWare/Patients.cpp \
             SystemDataWare/SystemMetaData.cpp \
             SystemDataWare/Patient.cpp \
-    ImageProcessingMethods/igssMathLib/Derivation.cpp \
-    ImageProcessingMethods/igssMathLib/Convolution.cpp \
-    ImageProcessingMethods/igssSegmentationLib/VesselEnhancementFilter.cpp
+            ImageProcessingMethods/igssMathLib/Derivation.cpp \
+            ImageProcessingMethods/igssMathLib/Convolution.cpp \
+            ImageProcessingMethods/igssSegmentationLib/VesselEnhancementFilter.cpp \
+            ImageProcessingMethods/igssSegmentationLib/Options.cpp \
+             DiskImageReaderFactory/MRAFileReader.cpp
 
 HEADERS  += \
-            DiskImageReaderFactory/MHDFileReader.h \
             Dispatchers/SystemDispatcher.h \
             SystemDataWare/SystemDataBase.h \
             SystemDataWare/IgssImage.h \
@@ -51,9 +55,11 @@ HEADERS  += \
             SystemDataWare/Patients.h \
             SystemDataWare/SystemMetaData.h \
             SystemDataWare/Patient.h \
-    ImageProcessingMethods/igssMathLib/Derivation.h \
-    ImageProcessingMethods/igssMathLib/Convolution.h \
-    ImageProcessingMethods/igssSegmentationLib/VesselEnhancementFilter.h
+            ImageProcessingMethods/igssMathLib/Derivation.h \
+            ImageProcessingMethods/igssMathLib/Convolution.h \
+            ImageProcessingMethods/igssSegmentationLib/VesselEnhancementFilter.h \
+            ImageProcessingMethods/igssSegmentationLib/Options.h \
+            DiskImageReaderFactory/MRAFileReader.h
 
 win32:INCLUDEPATH += "C:\Program Files\VTK\include\vtk-6.2"
 unix:INCLUDEPATH += $$PWD/../../../../../usr/local/include/vtk-6.2

@@ -2,7 +2,7 @@
 #define WIDGET_H
 
 #include <QWidget>
-#include <MHDFileReader.h>
+#include <MRAFileReader.h>
 #include <IgssImage.h>
 #include <vtkSmartPointer.h>
 #include "IgssVtkImageConverter.h"
@@ -27,7 +27,7 @@ private:
     QString mhdImagePath;
     IgssImage* mraImage;
     IgssImage* igssImage;
-    MHDFileReader* mhdFileReader;
+    MRAFileReader* mhdFileReader;
     vtkSmartPointer<vtkImageData>vtkImage;
     IgssVtkImageConverter* igssVtkImageConverter;
 };

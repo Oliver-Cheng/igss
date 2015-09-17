@@ -5,7 +5,7 @@
 IgssMainWindow::IgssMainWindow(): QWidget(){
 
     //readImageFileFrom("C://Users//duyue//Documents//CanalyserWorkspace//PatientsDataware//Wang_Dechun__1990_09_04//mra_tridimensionel__image//Wang_Dechun.mhd");
-    //readImageFileFrom("/home/bigboom/Documents/CanalyserWorkspace/PatientsDataware/He_Shiyu__1990_09_03/mra_tridimensionel__image/He_Shiyu.mhd");
+    readImageFileFrom("/home/bigboom/Documents/CanalyserWorkspace/PatientsDataware/He_Shiyu__1990_09_03/mra_tridimensionel__image/He_Shiyu.mhd");
     //readImageFileFrom("/home/vincent/Documents/CanalyserWorkspace/PatientsDataware/He_Shiyu__1990_09_03/mra_tridimensionel__image/He_Shiyu.mhd");
     //readImageFileFrom("/home/sky/Documents/CanalyserWorkspace/PatientsDataware/He_Shiyu__1990_09_03/mra_tridimensionel__image/He_Shiyu.mhd");
 
@@ -27,8 +27,9 @@ void IgssMainWindow::setSystemDispatecher(SystemDispatcher* dispatcher){
 void IgssMainWindow::readImageFileFrom(QString path){
     mhdImagePath = path;
     mraImage = new IgssImage();
-    mhdFileReader = new MHDFileReader();
+    mhdFileReader = new MRAFileReader();
     mhdFileReader->doParseMHDFile(mhdImagePath ,mraImage);
+
 }
 
 //!
