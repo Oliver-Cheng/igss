@@ -6,6 +6,17 @@ SystemDispatcher::SystemDispatcher(){
 
 //!---------------------------------------------------------------------------------------------------------
 //!
+//! \brief SystemDispatcher::getPatientInDataBase
+//! \param name
+//! \param birth
+//! \return
+//!
+Patient* SystemDispatcher::getPatientInDataBase(QString name, QString birth){
+    return this->database->getPatientByPesonnelInfo(name, birth);
+}
+
+//!---------------------------------------------------------------------------------------------------------
+//!
 //! \brief get_username
 //! \return
 //!

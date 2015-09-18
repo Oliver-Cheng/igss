@@ -13,6 +13,7 @@ public:
     Patients();
     void findPatientExisted();
     void setPatientsPath(QString patients_path);
+    Patient* getPatientByPesonnelInfo(QString name, QString birth);
 
 private:
     QList<Patient*> patients;

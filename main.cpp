@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
     dispatcher->setSystemDataBase(database);
 
     dispatcher->findPatientExisted();
-    igssMainWindow->show();
+    igssMainWindow->display();
 
     return a.exec();
 }

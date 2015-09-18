@@ -5,6 +5,7 @@ SystemDataBase::SystemDataBase(){
     this->patients = new Patients();
     this->metaData = new SystemMetaData();
 }
+
 //!--------------------------------------------------------------------------------------------
 //!
 //! \brief SystemDataBase::setPaths
@@ -13,9 +14,24 @@ SystemDataBase::SystemDataBase(){
 //! \param metadata_path
 //! \param image_center_path
 //!
-void SystemDataBase::setPaths(QString workspace_path,  QString patients_path, QString metadata_path, QString image_center_path){
+void SystemDataBase::setPaths(QString workspace_path,
+                              QString patients_path,
+                              QString metadata_path,
+                              QString image_center_path){
+
     this->metaData->setSystemPaths(workspace_path,  patients_path,  metadata_path, image_center_path);
     this->patients->setPatientsPath(patients_path);
+}
+
+//!--------------------------------------------------------------------------------------------
+//!
+//! \brief SystemDataBase::getPatientByPesonnelInfo
+//! \param name
+//! \param birth
+//! \return
+//!
+Patient* SystemDataBase::getPatientByPesonnelInfo(QString name, QString birth){
+    return this->patients->getPatientByPesonnelInfo(name, birth);
 }
 
 //!--------------------------------------------------------------------------------------------

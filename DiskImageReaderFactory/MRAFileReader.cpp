@@ -2,7 +2,25 @@
 #include <QDebug>
 
 MRAFileReader::MRAFileReader(){
+    readCompleteFlag = false;
+}
 
+//!------------------------------------------------------------------------------------------------------
+//!
+//! \brief MRAFileReader::getReadCompleteFlag
+//! \return
+//!
+bool MRAFileReader::getReadCompleteFlag(){
+    return readCompleteFlag;
+}
+
+//!------------------------------------------------------------------------------------------------------
+//!
+//! \brief MRAFileReader::setReadCompleteFlag
+//! \param flag
+//!
+void MRAFileReader::setReadCompleteFlag(bool flag){
+    readCompleteFlag = flag;
 }
 
 //!------------------------------------------------------------------------------------------------------
@@ -11,12 +29,13 @@ MRAFileReader::MRAFileReader(){
 //! \param mhdFilePath
 //! \param image
 //!
-void MRAFileReader::doParseMHDFile(QString mhdFilePath, IgssImage* image){
-
+bool MRAFileReader::doParseMHDFile(QString mhdFilePath, IgssImage* image){
+    //qDebug()<<mhdFilePath;
     //qDebug()<<"lecture of the mhd metadata file";
     QFile *file = new QFile(mhdFilePath);
     if(!file->open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug()<<"Can't open the file!"<<endl;
+        return false;
     }
 
     //qDebug()<<"mhd start";
@@ -57,7 +76,7 @@ void MRAFileReader::doParseMHDFile(QString mhdFilePath, IgssImage* image){
             //qDebug()<<mhdFilePath;
         }
     }
-    //qDebug()<<"mhd finished";
+
     file->close();
 
     //!allocate space for data storage
@@ -69,7 +88,7 @@ void MRAFileReader::doParseMHDFile(QString mhdFilePath, IgssImage* image){
     QFile* rawfileReader =  new QFile(image->getRawFileName());
     if(!rawfileReader->open(QIODevice::ReadOnly)){
         qDebug()<<"Can't open the file!"<<endl;
-        return;
+        return false;
     }
 
     QByteArray dataset = rawfileReader->readAll();
@@ -77,9 +96,8 @@ void MRAFileReader::doParseMHDFile(QString mhdFilePath, IgssImage* image){
     for(long i = 0; i < dataset.size() - 1; i += 2){
         image->setValueByIndex(i/2, int(dataset.at(i)) + int(dataset.at(i + 1))*255);
     }
-
     rawfileReader->close();
-
+    return true;
 }
 
 

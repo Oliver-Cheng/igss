@@ -10,9 +10,13 @@ class MRAFileReader
 {
 public:
     MRAFileReader();
-    void doParseMHDFile(QString mhdFilePath, IgssImage*image);
+    bool doParseMHDFile(QString mhdFilePath, IgssImage*image);
+    bool getReadCompleteFlag();
+    void setReadCompleteFlag(bool flag);
+
 private:
     IgssImage *image;
+    bool readCompleteFlag;
 };
 
 #endif // MRAFILEREADER_H

@@ -18,12 +18,16 @@ private:
 
 public:
     Patient(QString myPath);
+    bool readFinished();
     QString getBirthdayOfPatient();
     void doImageProcessing();
     QString getMRAPath();
     QString getName();
+    IgssImage *getOriginImage();
 
 private:
+    bool MraImageReadComplete;
+
     QString myPath;
 
     //! personnel informations

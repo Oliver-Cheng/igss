@@ -14,8 +14,9 @@ void Patient::ThreadImageProcessing::run(){
     QFileInfo checkMHDFile(patient->myPath + "/mra_tridimensionel__image/" + patient->name + ".mhd");
     //! check if file exists and if yes: Is it really a file and no directory?
     if((checkMHDFile.exists() && checkMHDFile.isFile()) ){
-        patient->mhdFileReader->doParseMHDFile(checkMHDFile.filePath(),patient->originImage);
+        patient->MraImageReadComplete = patient->mhdFileReader->doParseMHDFile(checkMHDFile.filePath(),patient->originImage);
     }
+    //qDebug()<<patient->MraImageReadComplete;
 }
 
 //!----------------------------------------------------------------------------
@@ -25,6 +26,7 @@ void Patient::ThreadImageProcessing::run(){
 //!
 Patient::Patient(QString myPath){
     this->myPath = myPath;
+    MraImageReadComplete = false;
 
     //! fetch name and birth of the patient
     QStringList temp = myPath.split("/");
@@ -35,6 +37,15 @@ Patient::Patient(QString myPath){
     originImage = new IgssImage();
 
     doImageProcessing();
+}
+
+//!------------------------------------------------------------------------------
+//!
+//! \brief Patient::readFinished
+//! \return
+//!
+bool Patient::readFinished(){
+    return this->MraImageReadComplete;
 }
 
 //!------------------------------------------------------------------------------
@@ -73,3 +84,11 @@ QString Patient::getName(){
     return this->name;
 }
 
+//!------------------------------------------------------------------------------
+//!
+//! \brief Patient::getOriginImage
+//! \return
+//!
+IgssImage *Patient::getOriginImage(){
+    return this->originImage;
+}

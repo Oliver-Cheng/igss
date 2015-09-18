@@ -4,6 +4,21 @@ Patients::Patients(){
 
 }
 
+//!
+//! \brief Patients::getPatientByPesonnelInfo
+//! \param name
+//! \param birth
+//! \return
+//!
+Patient* Patients::getPatientByPesonnelInfo(QString name, QString birth){
+    for(unsigned char cpt = 0; cpt < patients.size(); cpt++){
+        if((patients.at(cpt)->getName() == name)&&(patients.at(cpt)->getBirthdayOfPatient() == birth)){
+            return patients.at(cpt);
+        }
+    }
+    return NULL;
+}
+
 //!----------------------------------------------------------------------------------------------------
 //!
 //! \brief Patients::findPatientExisted

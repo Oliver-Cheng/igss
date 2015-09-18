@@ -15,6 +15,7 @@ public:
     void initializeSystemPaths();
     void findPatientExisted();
     void setSystemDataBase(SystemDataBase* database);
+    Patient* getPatientInDataBase(QString name, QString birth);
 
 private:
     SystemDataBase* database;
