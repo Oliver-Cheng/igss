@@ -5,6 +5,8 @@
 #define vtkRenderingVolume_AUTOINIT 1(vtkRenderingVolumeOpenGL)
 
 #include <QWidget>
+#include <QPushButton>
+#include <QTabWidget>
 #include <QVBoxLayout>
 #include <QVTKWidget.h>
 #include <MRAFileReader.h>
@@ -29,6 +31,9 @@ public:
 #ifdef win32
     ~Widget();
 #endif
+    void initVisualizationComponents();
+    void constructIHM();
+    void setConnections();
     void display();
     void displayMraImage(vtkImageData* input);
     void setSystemDispatecher(SystemDispatcher* dispatcher);
@@ -37,6 +42,18 @@ public:
 
 private:
     QVBoxLayout* igssMainWindowLayout;
+    QHBoxLayout *mainPlatformLayout;
+    QVBoxLayout *controlBoardLayout;
+
+    QWidget *mainPlatform;
+    QWidget *configurationBoard;
+    QWidget *systemInformationBoard;
+    QWidget *controlBoard;
+    QWidget *statusBar;
+    QPushButton *closeButton;
+    QWidget *controlArea;
+
+
     QVTKWidget* mraImageDisplayWindow;
 
     //! component for mra image display
@@ -54,6 +71,9 @@ private:
     MRAFileReader* mhdFileReader;
     vtkSmartPointer<vtkImageData>vtkImage;
     IgssVtkImageConverter* igssVtkImageConverter;
+
+private slots:
+    void closeSystem();
 
 
 };

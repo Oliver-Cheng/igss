@@ -11,12 +11,90 @@ vtkSmartPointer<vtkImageData> input = vtkSmartPointer<vtkImageData>::New();
 IgssVtkImageConverter *c = new IgssVtkImageConverter();
 c->IgssToVtk(mraImage, input);
 readImageFromVtkConvert();*/
+//mraImageDisplayWindow = new QVTKWidget();
+//igssMainWindowLayout->addWidget(mraImageDisplayWindow);
 
 IgssMainWindow::IgssMainWindow(): QWidget(){
-    igssMainWindowLayout =  new QVBoxLayout(this);
-    mraImageDisplayWindow = new QVTKWidget();
-    igssMainWindowLayout->addWidget(mraImageDisplayWindow);
+    this->setWindowState(Qt::WindowFullScreen);
 
+    this->constructIHM();
+    this->setConnections();
+
+}
+
+void IgssMainWindow::constructIHM(){
+    //!------------------------------------------------------------------------------------------
+    //! configurationBoard:
+    //!------------------------------------------------------------------------------------------
+    configurationBoard = new QWidget();
+    configurationBoard->setFixedWidth(250);
+    configurationBoard->setStyleSheet("background-color:yellow");
+
+    //!------------------------------------------------------------------------------------------
+    //! system information board: a place where all information about patient, doctor and replays
+    //! in the system will be displayed here
+    //!------------------------------------------------------------------------------------------
+    systemInformationBoard = new QTabWidget();
+    systemInformationBoard->setStyleSheet("background-color:green");
+
+    //!------------------------------------------------------------------------------------------
+    //! controlBoard:
+    //!------------------------------------------------------------------------------------------
+    controlBoard = new QWidget();
+    controlBoard->setStyleSheet("background-color:blue");
+
+    closeButton = new QPushButton("X");
+    closeButton->setFixedSize(40,40);
+
+    controlArea = new QWidget();
+
+    controlBoardLayout = new QVBoxLayout(controlBoard);
+    controlBoardLayout->addWidget(closeButton);
+    controlBoardLayout->addWidget(controlArea);
+    controlBoardLayout->setSpacing(0);
+    controlBoardLayout->setMargin(0);
+
+    //!----------------------------------------------------------------------------------------------------
+    //! main platform
+    //!----------------------------------------------------------------------------------------------------
+    mainPlatform = new QWidget();
+    mainPlatformLayout = new QHBoxLayout(mainPlatform);
+    mainPlatformLayout->addWidget(configurationBoard);
+    mainPlatformLayout->addWidget(systemInformationBoard);
+    mainPlatformLayout->addWidget(controlBoard);
+    mainPlatformLayout->setSpacing(0);
+    mainPlatformLayout->setMargin(0);
+
+    //!----------------------------------------------------------------------------------------------------
+    //! status bar area
+    //!----------------------------------------------------------------------------------------------------
+    statusBar = new QWidget();
+    statusBar->setFixedHeight(50);
+    statusBar->setStyleSheet("background-color:red");
+
+    //!----------------------------------------------------------------------------------------------------
+    //! main window
+    //!----------------------------------------------------------------------------------------------------
+    igssMainWindowLayout =  new QVBoxLayout(this);
+    igssMainWindowLayout->addWidget(mainPlatform);
+    igssMainWindowLayout->addWidget(statusBar);
+    igssMainWindowLayout->setSpacing(0);
+    igssMainWindowLayout->setMargin(0);
+}
+
+//!----------------------------------------------------------------------------------------
+//!
+//! \brief IgssMainWindow::setConnectios
+//!
+void IgssMainWindow::setConnections(){
+    this->connect(closeButton, SIGNAL(released()), this, SLOT(closeSystem()));
+}
+
+//!----------------------------------------------------------------------------------------
+//!
+//! \brief IgssMainWindow::initVisualizationComponents
+//!
+void IgssMainWindow::initVisualizationComponents(){
     volumeMapper = vtkVolumeRayCastMapper::New();
     compositeFunction = vtkVolumeRayCastCompositeFunction::New();
     volume = vtkVolume::New();
@@ -24,8 +102,11 @@ IgssMainWindow::IgssMainWindow(): QWidget(){
     renderer = vtkSmartPointer<vtkRenderer>::New();
 }
 
+//!----------------------------------------------------------------------------------------
+//!
+//! \brief IgssMainWindow::display
+//!
 void IgssMainWindow::display(){
-    this->resize(800, 600);
     this->show();
 }
 
@@ -86,4 +167,8 @@ void IgssMainWindow::readImageFromVtkConvert()
     }
     igssVtkImageConverter = new IgssVtkImageConverter();
     igssVtkImageConverter->VtkToIgss(vtkImage,igssImage);
+}
+
+void IgssMainWindow::closeSystem(){
+    this->close();
 }
