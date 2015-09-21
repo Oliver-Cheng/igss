@@ -9,11 +9,16 @@
 #include <QTabWidget>
 #include <QVBoxLayout>
 #include <QVTKWidget.h>
+
 #include <MRAFileReader.h>
 #include <IgssImage.h>
+#include <IgssVtkImageConverter.h>
+#include <SystemDispatcher.h>
+#include <PatientsWidget.h>
+#include <ReplaysWidget.h>
+#include <SurgerySystemWidget.h>
+
 #include <vtkSmartPointer.h>
-#include "IgssVtkImageConverter.h"
-#include "SystemDispatcher.h"
 #include <vtkImageData.h>
 #include <vtkVolume.h>
 #include <vtkVolumeRayCastCompositeFunction.h>
@@ -31,6 +36,7 @@ public:
 #ifdef win32
     ~Widget();
 #endif
+    void initVariable();
     void initVisualizationComponents();
     void constructIHM();
     void setConnections();
@@ -47,14 +53,21 @@ private:
 
     QWidget *mainPlatform;
     QWidget *configurationBoard;
-    QWidget *systemInformationBoard;
     QWidget *controlBoard;
     QWidget *statusBar;
-    QPushButton *closeButton;
     QWidget *controlArea;
 
+    QPushButton *closeButton;
+
+    QTabWidget *systemInformationBoard;
 
     QVTKWidget* mraImageDisplayWindow;
+
+    QString systemInformationBoardStyleSheet;
+
+    PatientsWidget* patientsWidget;
+    ReplaysWidget*replaysWidget;
+    SurgerySystemWidget* surgerySystemWidget;
 
     //! component for mra image display
     vtkVolumeRayCastMapper* volumeMapper;

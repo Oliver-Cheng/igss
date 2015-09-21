@@ -1,25 +1,14 @@
 #include "IgssMainWindow.h"
 #include "vtkImageData.h"
 
-/*
-readImageFileFrom("C://Users//duyue//Documents//CanalyserWorkspace//PatientsDataware//Wang_Dechun__1990_09_04//mra_tridimensionel__image//Wang_Dechun.mhd");
-readImageFileFrom("/home/bigboom/Documents/CanalyserWorkspace/PatientsDataware/He_Shiyu__1990_09_03/mra_tridimensionel__image/He_Shiyu.mhd");
-readImageFileFrom("/home/vincent/Documents/CanalyserWorkspace/PatientsDataware/He_Shiyu__1990_09_03/mra_tridimensionel__image/He_Shiyu.mhd");
-readImageFileFrom("/home/sky/Documents/CanalyserWorkspace/PatientsDataware/He_Shiyu__1990_09_03/mra_tridimensionel__image/He_Shiyu.mhd");
-
-vtkSmartPointer<vtkImageData> input = vtkSmartPointer<vtkImageData>::New();
-IgssVtkImageConverter *c = new IgssVtkImageConverter();
-c->IgssToVtk(mraImage, input);
-readImageFromVtkConvert();*/
-//mraImageDisplayWindow = new QVTKWidget();
-//igssMainWindowLayout->addWidget(mraImageDisplayWindow);
 
 IgssMainWindow::IgssMainWindow(): QWidget(){
     this->setWindowState(Qt::WindowFullScreen);
 
+
+    this->initVariable();
     this->constructIHM();
     this->setConnections();
-
 }
 
 void IgssMainWindow::constructIHM(){
@@ -28,26 +17,32 @@ void IgssMainWindow::constructIHM(){
     //!------------------------------------------------------------------------------------------
     configurationBoard = new QWidget();
     configurationBoard->setFixedWidth(250);
-    configurationBoard->setStyleSheet("background-color:yellow");
+    //configurationBoard->setStyleSheet("background-color:yellow");
 
     //!------------------------------------------------------------------------------------------
     //! system information board: a place where all information about patient, doctor and replays
     //! in the system will be displayed here
     //!------------------------------------------------------------------------------------------
+    patientsWidget = new PatientsWidget();
+    replaysWidget = new ReplaysWidget();
+    surgerySystemWidget = new SurgerySystemWidget();
+
     systemInformationBoard = new QTabWidget();
-    systemInformationBoard->setStyleSheet("background-color:green");
+    systemInformationBoard->setStyleSheet(this->systemInformationBoardStyleSheet);
+    systemInformationBoard->insertTab(0, patientsWidget, "Patients");
+    systemInformationBoard->insertTab(1, surgerySystemWidget, "System");
+    systemInformationBoard->insertTab(2, replaysWidget, "Replays");
 
     //!------------------------------------------------------------------------------------------
     //! controlBoard:
     //!------------------------------------------------------------------------------------------
     controlBoard = new QWidget();
-    controlBoard->setStyleSheet("background-color:blue");
+    //controlBoard->setStyleSheet("background-color:blue");
 
     closeButton = new QPushButton("X");
-    closeButton->setFixedSize(40,40);
+    closeButton->setFixedSize(25,25);
 
     controlArea = new QWidget();
-
     controlBoardLayout = new QVBoxLayout(controlBoard);
     controlBoardLayout->addWidget(closeButton);
     controlBoardLayout->addWidget(controlArea);
@@ -70,7 +65,7 @@ void IgssMainWindow::constructIHM(){
     //!----------------------------------------------------------------------------------------------------
     statusBar = new QWidget();
     statusBar->setFixedHeight(50);
-    statusBar->setStyleSheet("background-color:red");
+    //statusBar->setStyleSheet("background-color:red");
 
     //!----------------------------------------------------------------------------------------------------
     //! main window
@@ -80,6 +75,19 @@ void IgssMainWindow::constructIHM(){
     igssMainWindowLayout->addWidget(statusBar);
     igssMainWindowLayout->setSpacing(0);
     igssMainWindowLayout->setMargin(0);
+}
+
+void IgssMainWindow::initVariable(){
+    this->systemInformationBoardStyleSheet =
+                       "QTabWidget::pane {border: 1px solid AliceBlue;}" \
+                       "QTabWidget::tab-bar {left: 0px; /* move to the right by 0px */}  " \
+                       "QTabBar::tab {background-color: aliceBlue; color: white; padding: 10px;"\
+                       "border: 1px solid #C4C4C3;border-bottom-color: #C2C7CB; /* same as the pane color */border-top-left-radius: 0px;border-top-right-radius: 0px;min-width: 8ex;padding: 2px; color:gray} " \
+                       "QTabBar::tab:selected, QTabBar::tab:hover {background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 LightSteelBlue, stop: 0.4 #f4f4f4,stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);}" \
+                       "QTabBar::tab:selected { border-color: #9B9B9B;border-bottom-color: #C2C7CB; /* same as pane color */ }" \
+                       "QTabBar::tab:!selected {margin-top: 0px; /* make non-selected tabs look smaller */}"\
+                       "QTabBar::close-button{border-image: url(:/no.png)}" \
+                       "QTabBar::close-button:hover {border-image: url(:/images/close-hover.png)}";
 }
 
 //!----------------------------------------------------------------------------------------
