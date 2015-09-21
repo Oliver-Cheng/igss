@@ -42,7 +42,10 @@ SOURCES +=  main.cpp\
             ImageProcessingMethods/igssMathLib/Convolution.cpp \
             ImageProcessingMethods/igssSegmentationLib/VesselEnhancementFilter.cpp \
             ImageProcessingMethods/igssSegmentationLib/Options.cpp \
-             DiskImageReaderFactory/MRAFileReader.cpp
+             DiskImageReaderFactory/MRAFileReader.cpp \
+    GUIs/PatientsWidget.cpp \
+    GUIs/SurgerySystemWidget.cpp \
+    GUIs/ReplaysWidget.cpp
 
 HEADERS  += \
             Dispatchers/SystemDispatcher.h \
@@ -59,7 +62,10 @@ HEADERS  += \
             ImageProcessingMethods/igssMathLib/Convolution.h \
             ImageProcessingMethods/igssSegmentationLib/VesselEnhancementFilter.h \
             ImageProcessingMethods/igssSegmentationLib/Options.h \
-            DiskImageReaderFactory/MRAFileReader.h
+            DiskImageReaderFactory/MRAFileReader.h \
+    GUIs/PatientsWidget.h \
+    GUIs/SurgerySystemWidget.h \
+    GUIs/ReplaysWidget.h
 
 win32:INCLUDEPATH += "C:\Program Files\VTK\include\vtk-6.2"
 unix:INCLUDEPATH += $$PWD/../../../../../usr/local/include/vtk-6.2
