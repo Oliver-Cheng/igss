@@ -14,6 +14,8 @@ public:
     void findPatientExisted();
     void setPatientsPath(QString patients_path);
     Patient* getPatientByPesonnelInfo(QString name, QString birth);
+    QStringList getPatientsStatus();
+    IgssImage* getPatientMRAImageById(int id);
 
 private:
     QList<Patient*> patients;

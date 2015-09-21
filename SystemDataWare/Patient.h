@@ -17,7 +17,8 @@ private:
     };
 
 public:
-    Patient(QString myPath);
+    Patient(QString myPath, int id);
+    int getIdNumber();
     bool readFinished();
     QString getBirthdayOfPatient();
     void doImageProcessing();
@@ -39,6 +40,7 @@ private:
     QString IdentityNumber;
 
     int age;
+    int id;
 
     //! tridimensionnel Image (MRA)
     IgssImage *originImage;

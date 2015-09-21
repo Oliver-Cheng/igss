@@ -20,8 +20,9 @@ public:
     void findPatientsExisted();
 
     Patient* getPatientByPesonnelInfo(QString name, QString birth);
+    QStringList getPatientsStatus();
 
-
+    IgssImage* getPatientMRAImageById(int id);
 private:
     Patients* patients;
     SystemMetaData* metaData;

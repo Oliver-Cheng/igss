@@ -4,6 +4,10 @@ SystemDispatcher::SystemDispatcher(){
     this->initializeSystemPaths();
 }
 
+QStringList SystemDispatcher::getPatientsStatus(){
+    return this->database->getPatientsStatus();
+}
+
 //!---------------------------------------------------------------------------------------------------------
 //!
 //! \brief SystemDispatcher::getPatientInDataBase
@@ -84,4 +88,11 @@ void SystemDispatcher::setSystemDataBase(SystemDataBase* database){
 //!
 void SystemDispatcher::findPatientExisted(){
     this->database->findPatientsExisted();
+}
+QString SystemDispatcher::doImageProcessingByMethodType(int id, int dim, QString method){
+    input = new IgssImage();
+    imageProcessingFactory = new ImageProcessingFactory();
+    this->input = this->database->getPatientMRAImageById(id);
+
+    return this->imageProcessingFactory->doProcessingByCommand(input, output, dim, method);
 }

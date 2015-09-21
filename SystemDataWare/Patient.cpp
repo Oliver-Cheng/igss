@@ -24,7 +24,8 @@ void Patient::ThreadImageProcessing::run(){
 //! \brief Patient::Patient
 //! \param myPath
 //!
-Patient::Patient(QString myPath){
+Patient::Patient(QString myPath, int id){
+    this->id = id;
     this->myPath = myPath;
     MraImageReadComplete = false;
 
@@ -47,6 +48,16 @@ Patient::Patient(QString myPath){
 bool Patient::readFinished(){
     return this->MraImageReadComplete;
 }
+
+//!------------------------------------------------------------------------------
+//!
+//! \brief Patient::getIdNumber
+//! \return
+//!
+int Patient::getIdNumber(){
+    return this->id;
+}
+
 
 //!------------------------------------------------------------------------------
 //!

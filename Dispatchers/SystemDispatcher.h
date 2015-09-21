@@ -6,6 +6,7 @@
 #include <QString>
 #include <QDir>
 #include <QFile>
+#include "ImageProcessingFactory.h"
 
 class SystemDispatcher
 {
@@ -17,6 +18,8 @@ public:
     void setSystemDataBase(SystemDataBase* database);
     Patient* getPatientInDataBase(QString name, QString birth);
 
+    QStringList getPatientsStatus();
+    QString doImageProcessingByMethodType(int id, int dim, QString method);
 private:
     SystemDataBase* database;
 
@@ -25,6 +28,9 @@ private:
     QString patients_path;
     QString metadata_path;
     QString image_center_path;
+    IgssImage *input;
+    IgssImage *output;
+    ImageProcessingFactory *imageProcessingFactory;
 };
 
 #endif // SYSTEMDISPATCHER_H

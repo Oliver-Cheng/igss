@@ -9,6 +9,8 @@
 #include <QTabWidget>
 #include <QVBoxLayout>
 #include <QVTKWidget.h>
+#include <QLineEdit>
+#include <QTextEdit>
 
 #include <MRAFileReader.h>
 #include <IgssImage.h>
@@ -27,8 +29,7 @@
 #include <vtkRenderer.h>
 
 
-class IgssMainWindow : public QWidget
-{
+class IgssMainWindow : public QWidget{
     Q_OBJECT
 
 public:
@@ -45,11 +46,13 @@ public:
     void setSystemDispatecher(SystemDispatcher* dispatcher);
     void readImageFileFrom(QString path);
     void readImageFromVtkConvert();
+    void setSystemStatus(QString status);
 
 private:
     QVBoxLayout* igssMainWindowLayout;
-    QHBoxLayout *mainPlatformLayout;
     QVBoxLayout *controlBoardLayout;
+    QHBoxLayout *mainPlatformLayout;
+    QGridLayout *statusBarLayout;
 
     QWidget *mainPlatform;
     QWidget *configurationBoard;
@@ -57,6 +60,10 @@ private:
     QWidget *statusBar;
     QWidget *controlArea;
 
+    QTextEdit *systemStatus;
+    QLineEdit *systemCommand;
+
+    QPushButton *displayStatusButton;
     QPushButton *closeButton;
 
     QTabWidget *systemInformationBoard;
@@ -85,10 +92,12 @@ private:
     vtkSmartPointer<vtkImageData>vtkImage;
     IgssVtkImageConverter* igssVtkImageConverter;
 
+    int flag;
+
 private slots:
     void closeSystem();
-
-
+    void getPatientsStatus();
+    void doParseCommand();
 };
 
 #endif // WIDGET_H

@@ -2,11 +2,16 @@
 #define PATIENTSWIDGET_H
 
 #include <QWidget>
+#include <SystemDispatcher.h>
 
 class PatientsWidget : public QWidget
 {
 public:
-    explicit PatientsWidget();
+    explicit PatientsWidget(SystemDispatcher* dispatcher);
+
+
+private:
+    SystemDispatcher* dispatcher;
 
 signals:
 

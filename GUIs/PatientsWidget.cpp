@@ -1,7 +1,6 @@
 #include "PatientsWidget.h"
 
-PatientsWidget::PatientsWidget()
-{
-
+PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher){
+    this->dispatcher = dispatcher;
 }
 
