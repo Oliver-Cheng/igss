@@ -9,9 +9,15 @@ public:
     Derivation();
     void do_3D_Derivation(float sigma);
     void do_2D_Derivation(float sigma);
-    int getKernelSizeX();
-    int getKernelSizeY();
-    int getKernelSizeZ();
+
+    void getKernelSize(int *dim);
+
+    float getGaussKernel_xx(int index);
+    float getGaussKernel_yy(int index);
+    float getGaussKernel_zz(int index);
+    float getGaussKernel_xy(int index);
+    float getGaussKernel_xz(int index);
+    float getGaussKernel_yz(int index);
 
 private:
 

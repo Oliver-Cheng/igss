@@ -50,6 +50,7 @@ private:
     QString ElementDataFile;
 
     unsigned short *values;
+
     long length ;
 
 };

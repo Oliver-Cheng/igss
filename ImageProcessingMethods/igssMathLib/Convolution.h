@@ -8,7 +8,7 @@ class Convolution
 {
 public:
     Convolution();
-    void do_3D_Convolution(IgssImage *igssImage,Derivation *gaussDerivation);
+    bool do_3D_Convolution(IgssImage *igssImage,Derivation *gaussDerivation);
 
 private:
     float hession_3D[3][3];
