@@ -11,9 +11,11 @@ int main(int argc, char *argv[]){
     SystemDataBase*   database       = new SystemDataBase();
     SystemDispatcher* dispatcher     = new SystemDispatcher();
     IgssMainWindow*   igssMainWindow = new IgssMainWindow();
+    ImageProcessingFactory *imageProcessingFactory = new ImageProcessingFactory();
 
     igssMainWindow->setSystemDispatecher(dispatcher);
     dispatcher->setSystemDataBase(database);
+    dispatcher->setImageProcessingFactory(imageProcessingFactory);
 
     dispatcher->findPatientExisted();
     igssMainWindow->display();

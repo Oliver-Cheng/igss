@@ -7,6 +7,7 @@
 #include <QDir>
 #include <QFile>
 #include "ImageProcessingFactory.h"
+#include "ErrorMessage.h"
 
 class SystemDispatcher
 {
@@ -16,21 +17,23 @@ public:
     void initializeSystemPaths();
     void findPatientExisted();
     void setSystemDataBase(SystemDataBase* database);
+    void setImageProcessingFactory(ImageProcessingFactory *imageProcessingFactory);
     Patient* getPatientInDataBase(QString name, QString birth);
 
     QStringList getPatientsStatus();
     QString doImageProcessingByMethodType(int id, int dim, QString method);
 private:
     SystemDataBase* database;
+    ImageProcessingFactory *imageProcessingFactory;
 
     //! -------------create a workspace folder with the default path----------------------------------------
     QString workspace_path;
     QString patients_path;
     QString metadata_path;
     QString image_center_path;
-    IgssImage *input;
+
     IgssImage *output;
-    ImageProcessingFactory *imageProcessingFactory;
+
 };
 
 #endif // SYSTEMDISPATCHER_H

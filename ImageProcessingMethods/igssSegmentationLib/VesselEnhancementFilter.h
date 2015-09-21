@@ -6,16 +6,21 @@
 #include "MRAFileReader.h"
 #include "Derivation.h"
 #include "Convolution.h"
+#include "ErrorMessage.h"
+
 
 class VesselEnhancementFilter
 {
 public:
     VesselEnhancementFilter();
-    QString doVesselEnhancement(IgssImage *input,IgssImage *output);
+    eProcessingErrorCode doVesselEnhancement(IgssImage *input,IgssImage *output);
 
 private:
 
     Options *option;
+
+    int sigma[3];
+
     IgssImage *mraImage;
     MRAFileReader *mraFileReader;
     Derivation* gaussDerivation;

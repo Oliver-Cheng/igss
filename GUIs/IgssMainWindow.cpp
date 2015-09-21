@@ -68,7 +68,7 @@ void IgssMainWindow::constructIHM(){
 
     displayStatusButton = new QPushButton("display");
     systemStatus = new QTextEdit();
-    systemCommand = new QLineEdit("hello");
+    systemCommand = new QLineEdit("vef mri 0");
 
     statusBarLayout->addWidget(displayStatusButton,0,0);
     statusBarLayout->addWidget(systemStatus,0,1);
@@ -199,10 +199,18 @@ void IgssMainWindow::readImageFromVtkConvert()
     igssVtkImageConverter->VtkToIgss(vtkImage,igssImage);
 }
 
+//!----------------------------------------------------------------------------------------
+//!
+//! \brief IgssMainWindow::closeSystem
+//!
 void IgssMainWindow::closeSystem(){
     this->close();
 }
 
+//!----------------------------------------------------------------------------------------
+//!
+//! \brief IgssMainWindow::getPatientsStatus
+//!
 void IgssMainWindow::getPatientsStatus(){
     flag++;
     QStringList s = this->dispatcher->getPatientsStatus();
@@ -212,8 +220,28 @@ void IgssMainWindow::getPatientsStatus(){
     }
     this->setSystemStatus(info);
 }
+
+//!----------------------------------------------------------------------------------------
+//!
+//! \brief IgssMainWindow::doParseCommand
+//!
 void IgssMainWindow::doParseCommand(){
     QString cmd = systemCommand->text();
+    QString msg;
+
+    if(cmd.contains("vef")){
+        if(cmd.contains("mri")){
+            QStringList temp = cmd.split(" mri ");
+            int id = temp[1].toInt(0,10);
+            msg = this->dispatcher->doImageProcessingByMethodType(id, 3, "vef");
+        }
+        else{
+            //!do 2d vessel enhancement
+        }
+    }
+    this->setSystemStatus(msg);
+
+    /*
     QStringList temp = cmd.split(" do ");
     QStringList temp1 = temp[0].split("patient ");
     QStringList temp2 = temp[1].split("3d ");
@@ -221,5 +249,9 @@ void IgssMainWindow::doParseCommand(){
     if(temp[1].contains("3d")){
         this->dispatcher->doImageProcessingByMethodType(id, 3, temp2[1]);
     }
-    this->setSystemStatus(this->dispatcher->doImageProcessingByMethodType(id, 3, temp2[1]));
+    this->setSystemStatus(this->dispatcher->doImageProcessingByMethodType(id, 3, temp2[1]));*/
+
+
+
+
 }

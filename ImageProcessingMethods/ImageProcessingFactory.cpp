@@ -5,10 +5,12 @@ ImageProcessingFactory::ImageProcessingFactory()
     this->vesselEnhancementFilter = new VesselEnhancementFilter();
 }
 
-QString ImageProcessingFactory::doProcessingByCommand(IgssImage *input, IgssImage *output, int dim, QString method){
+eProcessingErrorCode ImageProcessingFactory::doProcessingByCommand(IgssImage *input, IgssImage *output, int dim, QString method){
+    eProcessingErrorCode ret = PROCESSING_NO_ERRROR;
     if(dim == 3){
-        if(method.contains("vessel enhancement")){
-            return this->vesselEnhancementFilter->doVesselEnhancement(input,output);
+        if(method == "vef"){
+            ret = this->vesselEnhancementFilter->doVesselEnhancement(input,output);
         }
     }
+    return ret;
 }
