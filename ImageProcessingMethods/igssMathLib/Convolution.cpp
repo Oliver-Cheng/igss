@@ -5,10 +5,13 @@ Convolution::Convolution(){
 }
 
 bool Convolution::do_3D_Convolution(IgssImage *igssImage, Derivation *gaussDerivation){
+
     int x, y, z, m, n, l, mm, nn, ll;
+
     int kCenterX,kCenterY,kCenterZ;
-    //float sum;
+
     int abscissa_X, ordinate_Y,isometric_Z;
+
     int dims[3];
     int kernelSize[3];
     this->hxx = 0.0;

@@ -4,16 +4,28 @@
 #include "Options.h"
 #include "IgssImage.h"
 #include "MRAFileReader.h"
+#include "Derivation.h"
+#include "Convolution.h"
+#include "ErrorMessage.h"
+
 
 class VesselEnhancementFilter
 {
 public:
     VesselEnhancementFilter();
-    void doVesselEnhancement();
+    eProcessingErrorCode doVesselEnhancement(IgssImage *input,IgssImage *output);
+
 private:
+
     Options *option;
+
+    int sigma[3];
+
     IgssImage *mraImage;
     MRAFileReader *mraFileReader;
+    Derivation* gaussDerivation;
+    Convolution* hessionConvolution;
+
 };
 
 #endif // VESSELENHANCEMENTFILTER_H

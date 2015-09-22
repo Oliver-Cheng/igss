@@ -4,6 +4,10 @@ SystemDispatcher::SystemDispatcher(){
     this->initializeSystemPaths();
 }
 
+QStringList SystemDispatcher::getPatientsStatus(){
+    return this->database->getPatientsStatus();
+}
+
 //!---------------------------------------------------------------------------------------------------------
 //!
 //! \brief SystemDispatcher::getPatientInDataBase
@@ -80,8 +84,39 @@ void SystemDispatcher::setSystemDataBase(SystemDataBase* database){
 
 //!---------------------------------------------------------------------------------------------------------
 //!
+//! \brief SystemDispatcher::setImageProcessingFactory
+//! \param imageProcessingFactory
+//!
+void SystemDispatcher::setImageProcessingFactory(ImageProcessingFactory *imageProcessingFactory){
+    this->imageProcessingFactory = imageProcessingFactory;
+}
+
+//!---------------------------------------------------------------------------------------------------------
+//!
 //! \brief SystemDispatcher::findPatientExisted
 //!
 void SystemDispatcher::findPatientExisted(){
     this->database->findPatientsExisted();
+}
+
+//!
+//! \brief SystemDispatcher::doImageProcessingByMethodType
+//! \param id
+//! \param dim
+//! \param method
+//! \return
+//!
+QString SystemDispatcher::doImageProcessingByMethodType(int id, int dim, QString method){
+    QString msg;
+    output = new IgssImage();
+
+    IgssImage*input = this->database->getPatientMRAImageById(id);
+
+    eProcessingErrorCode ret = this->imageProcessingFactory->doProcessingByCommand(input,output,dim, method);
+
+    if(ret == PROCESSING_NO_ERRROR){
+        msg= method + " proceed with no error";
+    }
+
+    return msg;
 }

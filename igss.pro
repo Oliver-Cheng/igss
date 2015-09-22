@@ -21,6 +21,8 @@ INCLUDEPATH += Dispatchers
 
 INCLUDEPATH += DiskImageReaderFactory
 
+INCLUDEPATH += ImageProcessingMethods
+
 INCLUDEPATH += ImageProcessingMethods/igssGeneralLib
 
 INCLUDEPATH += ImageProcessingMethods/igssMathLib
@@ -45,7 +47,9 @@ SOURCES +=  main.cpp\
              DiskImageReaderFactory/MRAFileReader.cpp \
     GUIs/PatientsWidget.cpp \
     GUIs/SurgerySystemWidget.cpp \
-    GUIs/ReplaysWidget.cpp
+    GUIs/ReplaysWidget.cpp \
+    ImageProcessingMethods/ImageProcessingFactory.cpp \
+    ImageProcessingMethods/ErrorMessage.cpp
 
 HEADERS  += \
             Dispatchers/SystemDispatcher.h \
@@ -65,7 +69,9 @@ HEADERS  += \
             DiskImageReaderFactory/MRAFileReader.h \
     GUIs/PatientsWidget.h \
     GUIs/SurgerySystemWidget.h \
-    GUIs/ReplaysWidget.h
+    GUIs/ReplaysWidget.h \
+    ImageProcessingMethods/ImageProcessingFactory.h \
+    ImageProcessingMethods/ErrorMessage.h
 
 win32:INCLUDEPATH += "C:\Program Files\VTK\include\vtk-6.2"
 unix:INCLUDEPATH += $$PWD/../../../../../usr/local/include/vtk-6.2

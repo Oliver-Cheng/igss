@@ -6,6 +6,14 @@ SystemDataBase::SystemDataBase(){
     this->metaData = new SystemMetaData();
 }
 
+QStringList SystemDataBase::getPatientsStatus(){
+    return this->patients->getPatientsStatus();
+}
+
+IgssImage* SystemDataBase::getPatientMRAImageById(int id){
+    return this->patients->getPatientMRAImageById(id);
+}
+
 //!--------------------------------------------------------------------------------------------
 //!
 //! \brief SystemDataBase::setPaths

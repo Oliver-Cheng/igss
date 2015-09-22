@@ -5,10 +5,10 @@
 IgssMainWindow::IgssMainWindow(): QWidget(){
     this->setWindowState(Qt::WindowFullScreen);
 
-
     this->initVariable();
     this->constructIHM();
     this->setConnections();
+
 }
 
 void IgssMainWindow::constructIHM(){
@@ -23,7 +23,7 @@ void IgssMainWindow::constructIHM(){
     //! system information board: a place where all information about patient, doctor and replays
     //! in the system will be displayed here
     //!------------------------------------------------------------------------------------------
-    patientsWidget = new PatientsWidget();
+    patientsWidget = new PatientsWidget(this->dispatcher);
     replaysWidget = new ReplaysWidget();
     surgerySystemWidget = new SurgerySystemWidget();
 
@@ -37,7 +37,6 @@ void IgssMainWindow::constructIHM(){
     //! controlBoard:
     //!------------------------------------------------------------------------------------------
     controlBoard = new QWidget();
-    //controlBoard->setStyleSheet("background-color:blue");
 
     closeButton = new QPushButton("X");
     closeButton->setFixedSize(25,25);
@@ -64,8 +63,16 @@ void IgssMainWindow::constructIHM(){
     //! status bar area
     //!----------------------------------------------------------------------------------------------------
     statusBar = new QWidget();
-    statusBar->setFixedHeight(50);
-    //statusBar->setStyleSheet("background-color:red");
+    statusBar->setFixedHeight(200);
+    statusBarLayout = new QGridLayout(statusBar);
+
+    displayStatusButton = new QPushButton("display");
+    systemStatus = new QTextEdit();
+    systemCommand = new QLineEdit("vef mri 0");
+
+    statusBarLayout->addWidget(displayStatusButton,0,0);
+    statusBarLayout->addWidget(systemStatus,0,1);
+    statusBarLayout->addWidget(systemCommand, 1, 1);
 
     //!----------------------------------------------------------------------------------------------------
     //! main window
@@ -78,6 +85,7 @@ void IgssMainWindow::constructIHM(){
 }
 
 void IgssMainWindow::initVariable(){
+    flag = 0;
     this->systemInformationBoardStyleSheet =
                        "QTabWidget::pane {border: 1px solid AliceBlue;}" \
                        "QTabWidget::tab-bar {left: 0px; /* move to the right by 0px */}  " \
@@ -95,7 +103,12 @@ void IgssMainWindow::initVariable(){
 //! \brief IgssMainWindow::setConnectios
 //!
 void IgssMainWindow::setConnections(){
-    this->connect(closeButton, SIGNAL(released()), this, SLOT(closeSystem()));
+    this->connect(closeButton, SIGNAL(clicked()), this, SLOT(closeSystem()));
+    //displayStatusButton
+    this->connect(displayStatusButton, SIGNAL(clicked()), this, SLOT(getPatientsStatus()));
+    //systemCommand
+    this->connect(systemCommand,SIGNAL(returnPressed()),this,SLOT(doParseCommand()));
+
 }
 
 //!----------------------------------------------------------------------------------------
@@ -157,6 +170,15 @@ void IgssMainWindow::readImageFileFrom(QString path){
 
 }
 
+//!----------------------------------------------------------------------------------------
+//!
+//! \brief IgssMainWindow::setSystemStatus
+//!
+void IgssMainWindow::setSystemStatus(QString status){
+    this->systemStatus->setText(QString::number(flag)+"\n"+status+"\n");
+}
+
+//!----------------------------------------------------------------------------------------
 //!
 //! \brief Widget::readImageFromVtkConvert
 //!
@@ -177,6 +199,59 @@ void IgssMainWindow::readImageFromVtkConvert()
     igssVtkImageConverter->VtkToIgss(vtkImage,igssImage);
 }
 
+//!----------------------------------------------------------------------------------------
+//!
+//! \brief IgssMainWindow::closeSystem
+//!
 void IgssMainWindow::closeSystem(){
     this->close();
+}
+
+//!----------------------------------------------------------------------------------------
+//!
+//! \brief IgssMainWindow::getPatientsStatus
+//!
+void IgssMainWindow::getPatientsStatus(){
+    flag++;
+    QStringList s = this->dispatcher->getPatientsStatus();
+    QString info = "";
+    for(int i = 0; i < s.length(); i++){
+        info += s[i]+"\n";
+    }
+    this->setSystemStatus(info);
+}
+
+//!----------------------------------------------------------------------------------------
+//!
+//! \brief IgssMainWindow::doParseCommand
+//!
+void IgssMainWindow::doParseCommand(){
+    QString cmd = systemCommand->text();
+    QString msg;
+
+    if(cmd.contains("vef")){
+        if(cmd.contains("mri")){
+            QStringList temp = cmd.split(" mri ");
+            int id = temp[1].toInt(0,10);
+            msg = this->dispatcher->doImageProcessingByMethodType(id, 3, "vef");
+        }
+        else{
+            //!do 2d vessel enhancement
+        }
+    }
+    this->setSystemStatus(msg);
+
+    /*
+    QStringList temp = cmd.split(" do ");
+    QStringList temp1 = temp[0].split("patient ");
+    QStringList temp2 = temp[1].split("3d ");
+    int id = temp1[1].toInt(0, 10);
+    if(temp[1].contains("3d")){
+        this->dispatcher->doImageProcessingByMethodType(id, 3, temp2[1]);
+    }
+    this->setSystemStatus(this->dispatcher->doImageProcessingByMethodType(id, 3, temp2[1]));*/
+
+
+
+
 }

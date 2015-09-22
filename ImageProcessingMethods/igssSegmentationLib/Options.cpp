@@ -12,3 +12,9 @@ void Options::init(){
     this->beta = 0.5;
     this->c = 600;
 }
+
+void Options::getSigmaValue(int sigma[3]){
+    sigma[0] = this->sigma_MIN;
+    sigma[1] = this->sigma_MAX;
+    sigma[2] = this->sigma_Step;
+}

@@ -7,6 +7,7 @@ class Options{
 public:
     Options();
     void init();
+    void getSigmaValue(int sigma[3]);
 
 private:
     float sigma_MIN;
