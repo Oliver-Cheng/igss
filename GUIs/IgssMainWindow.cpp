@@ -8,6 +8,7 @@ IgssMainWindow::IgssMainWindow(): QWidget(){
     this->initVariable();
     this->constructIHM();
     this->setConnections();
+    this->drawBackground();
 
 }
 
@@ -31,7 +32,7 @@ void IgssMainWindow::constructIHM(){
     systemInformationBoard->setStyleSheet(this->systemInformationBoardStyleSheet);
     systemInformationBoard->insertTab(0, patientsWidget, "Patients");
     systemInformationBoard->insertTab(1, surgerySystemWidget, "System");
-    systemInformationBoard->insertTab(2, replaysWidget, "Replays");
+    systemInformationBoard->insertTab(2, replaysWidget, "History");
 
     //!------------------------------------------------------------------------------------------
     //! controlBoard:
@@ -84,16 +85,39 @@ void IgssMainWindow::constructIHM(){
     igssMainWindowLayout->setMargin(0);
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------
+//!
+//! \brief AnalyserMainWindow::drawBackground
+//!
+void IgssMainWindow::drawBackground(){
+    pixmap = new QPixmap(":/images/background_darkBlue.png");
+    QPalette p =  this->palette();
+
+    p.setBrush(QPalette::Background, QBrush(pixmap->scaled(QSize(this->primary_screen_width, this->primary_screen_height), Qt::IgnoreAspectRatio, Qt::SmoothTransformation)));
+
+    this->setPalette(p);
+    this->setMask(pixmap->mask());
+}
+
+//!---------------------------------------------------------------------------------------
+//!
+//! \brief IgssMainWindow::initVariable
+//!
 void IgssMainWindow::initVariable(){
+    desktop = QApplication::desktop();
+    primary_screen_width = desktop->screen(0)->width();
+    primary_screen_height = desktop->screen(0)->height();
+    qDebug()<<primary_screen_width<<primary_screen_height;
+
     flag = 0;
     this->systemInformationBoardStyleSheet =
-                       "QTabWidget::pane {border: 1px solid AliceBlue;}" \
+                       "QTabWidget::pane {border: 0.5px solid AliceBlue;}" \
                        "QTabWidget::tab-bar {left: 0px; /* move to the right by 0px */}  " \
                        "QTabBar::tab {background-color: aliceBlue; color: white; padding: 10px;"\
                        "border: 1px solid #C4C4C3;border-bottom-color: #C2C7CB; /* same as the pane color */border-top-left-radius: 0px;border-top-right-radius: 0px;min-width: 8ex;padding: 2px; color:gray} " \
                        "QTabBar::tab:selected, QTabBar::tab:hover {background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 LightSteelBlue, stop: 0.4 #f4f4f4,stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);}" \
                        "QTabBar::tab:selected { border-color: #9B9B9B;border-bottom-color: #C2C7CB; /* same as pane color */ }" \
-                       "QTabBar::tab:!selected {margin-top: 0px; /* make non-selected tabs look smaller */}"\
+                       "QTabBar::tab:!selected {margin-top: 3px; /* make non-selected tabs look smaller */}"\
                        "QTabBar::close-button{border-image: url(:/no.png)}" \
                        "QTabBar::close-button:hover {border-image: url(:/images/close-hover.png)}";
 }

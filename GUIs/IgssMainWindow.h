@@ -11,6 +11,12 @@
 #include <QVTKWidget.h>
 #include <QLineEdit>
 #include <QTextEdit>
+#include <QDesktopWidget>
+#include <QPixmap>
+#include <QPalette>
+#include <QBrush>
+#include <QBitmap>
+#include <QApplication>
 
 #include <MRAFileReader.h>
 #include <IgssImage.h>
@@ -47,8 +53,12 @@ public:
     void readImageFileFrom(QString path);
     void readImageFromVtkConvert();
     void setSystemStatus(QString status);
+    void drawBackground();
 
 private:
+    QPixmap *pixmap;
+    QDesktopWidget *desktop;
+
     QVBoxLayout* igssMainWindowLayout;
     QVBoxLayout *controlBoardLayout;
     QHBoxLayout *mainPlatformLayout;
@@ -93,6 +103,8 @@ private:
     IgssVtkImageConverter* igssVtkImageConverter;
 
     int flag;
+    int primary_screen_width;
+    int primary_screen_height;
 
 private slots:
     void closeSystem();

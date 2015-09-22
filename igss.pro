@@ -29,6 +29,8 @@ INCLUDEPATH += ImageProcessingMethods/igssMathLib
 
 INCLUDEPATH += ImageProcessingMethods/igssSegmentationLib
 
+RESOURCES = imageresources.qrc
+
 SOURCES +=  main.cpp\
             Dispatchers/SystemDispatcher.cpp \
             SystemDataWare/SystemDataBase.cpp \
@@ -44,12 +46,12 @@ SOURCES +=  main.cpp\
             ImageProcessingMethods/igssMathLib/Convolution.cpp \
             ImageProcessingMethods/igssSegmentationLib/VesselEnhancementFilter.cpp \
             ImageProcessingMethods/igssSegmentationLib/Options.cpp \
-             DiskImageReaderFactory/MRAFileReader.cpp \
-    GUIs/PatientsWidget.cpp \
-    GUIs/SurgerySystemWidget.cpp \
-    GUIs/ReplaysWidget.cpp \
-    ImageProcessingMethods/ImageProcessingFactory.cpp \
-    ImageProcessingMethods/ErrorMessage.cpp
+            DiskImageReaderFactory/MRAFileReader.cpp \
+            GUIs/PatientsWidget.cpp \
+            GUIs/SurgerySystemWidget.cpp \
+            GUIs/ReplaysWidget.cpp \
+            ImageProcessingMethods/ImageProcessingFactory.cpp \
+            ImageProcessingMethods/ErrorMessage.cpp
 
 HEADERS  += \
             Dispatchers/SystemDispatcher.h \
@@ -67,11 +69,11 @@ HEADERS  += \
             ImageProcessingMethods/igssSegmentationLib/VesselEnhancementFilter.h \
             ImageProcessingMethods/igssSegmentationLib/Options.h \
             DiskImageReaderFactory/MRAFileReader.h \
-    GUIs/PatientsWidget.h \
-    GUIs/SurgerySystemWidget.h \
-    GUIs/ReplaysWidget.h \
-    ImageProcessingMethods/ImageProcessingFactory.h \
-    ImageProcessingMethods/ErrorMessage.h
+            GUIs/PatientsWidget.h \
+            GUIs/SurgerySystemWidget.h \
+            GUIs/ReplaysWidget.h \
+            ImageProcessingMethods/ImageProcessingFactory.h \
+            ImageProcessingMethods/ErrorMessage.h
 
 win32:INCLUDEPATH += "C:\Program Files\VTK\include\vtk-6.2"
 unix:INCLUDEPATH += $$PWD/../../../../../usr/local/include/vtk-6.2
