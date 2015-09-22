@@ -9,7 +9,7 @@ eProcessingErrorCode ImageProcessingFactory::doProcessingByCommand(IgssImage *in
     eProcessingErrorCode ret = PROCESSING_NO_ERRROR;
     if(dim == 3){
         if(method == "vef"){
-            ret = this->vesselEnhancementFilter->doVesselEnhancement(input,output);
+            ret = this->vesselEnhancementFilter->do_3D_VesselEnhancement(input,output);
         }
     }
     return ret;

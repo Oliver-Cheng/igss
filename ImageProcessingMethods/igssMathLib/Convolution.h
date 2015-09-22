@@ -9,15 +9,9 @@ class Convolution
 public:
     Convolution();
     bool do_3D_Convolution(IgssImage *igssImage,Derivation *gaussDerivation);
+    bool do_2D_Convolution(IgssImage *input,Derivation *gaussDerivation);
 
 private:
-    float hession_3D[3][3];
-    float hxx;
-    float hyy;
-    float hzz;
-    float hxy;
-    float hxz;
-    float hyz;
 };
 
 #endif // CONVOLUTION_H
