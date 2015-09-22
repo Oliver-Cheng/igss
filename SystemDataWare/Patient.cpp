@@ -16,7 +16,6 @@ void Patient::ThreadImageProcessing::run(){
     if((checkMHDFile.exists() && checkMHDFile.isFile()) ){
         patient->MraImageReadComplete = patient->mhdFileReader->doParseMHDFile(checkMHDFile.filePath(),patient->originImage);
     }
-    //qDebug()<<patient->MraImageReadComplete;
 }
 
 //!----------------------------------------------------------------------------
@@ -27,6 +26,7 @@ void Patient::ThreadImageProcessing::run(){
 Patient::Patient(QString myPath, int id){
     this->id = id;
     this->myPath = myPath;
+
     MraImageReadComplete = false;
 
     //! fetch name and birth of the patient
@@ -34,6 +34,7 @@ Patient::Patient(QString myPath, int id){
     QStringList patientInfo = temp[temp.size()-1].split("__");
     name = patientInfo[0];
     birthday = patientInfo[1];
+    myPhotoPath = myPath + "/personnelInfoPath/" + name +".png";
 
     originImage = new IgssImage();
 
@@ -84,6 +85,15 @@ void Patient::doImageProcessing(){
 //!
 QString Patient::getMRAPath(){
     return this->myPath;
+}
+
+//!------------------------------------------------------------------------------
+//!
+//! \brief Patient::getPhotoPath
+//! \return
+//!
+QString Patient::getPhotoPath(){
+    return this->myPhotoPath;
 }
 
 //!------------------------------------------------------------------------------

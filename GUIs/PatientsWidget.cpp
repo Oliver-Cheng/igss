@@ -2,10 +2,24 @@
 
 PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher){
     this->dispatcher = dispatcher;
+
     this->constructIHM();
 }
 
+//!----------------------------------------------------------------------------------------------------
+//!
+//! \brief PatientsWidget::findPatientExisted
+//!
+void PatientsWidget::findPatientExisted(){
+    int numberOfPatient = this->dispatcher->findPatientExisted();
 
+    for(int cpt = 0; cpt < numberOfPatient; cpt++){
+        addPatientToListWidget(this->dispatcher->getPatientById(cpt)->getName(),
+                               this->dispatcher->getPatientById(cpt)->getPhotoPath());
+    }
+}
+
+//!----------------------------------------------------------------------------------------------------
 //!
 //! \brief PatientsWidget::constructIHM
 //!
@@ -26,4 +40,24 @@ void PatientsWidget::constructIHM(){
     this->patientsWidgetLayout->addWidget(this->patientListWidget);
     this->patientsWidgetLayout->setSpacing(0);
     this->patientsWidgetLayout->setMargin(0);
+}
+
+//!----------------------------------------------------------------------------------------------------
+//!
+//! \brief PatientsWidget::addPatientToListWidget
+//! \param patients
+//!
+void PatientsWidget::addPatientToListWidget(QString name, QString path){
+
+    QListWidgetItem *patientItem = new QListWidgetItem();
+    qDebug()<<path;
+    patientItem->setIcon(QIcon(path));
+
+    patientItem->setText(name);
+    patientItem->setTextAlignment(Qt::AlignBottom);
+
+    this->patientListWidget->addItem(patientItem);
+
+
+
 }

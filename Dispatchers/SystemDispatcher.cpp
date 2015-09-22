@@ -15,8 +15,8 @@ QStringList SystemDispatcher::getPatientsStatus(){
 //! \param birth
 //! \return
 //!
-Patient* SystemDispatcher::getPatientInDataBase(QString name, QString birth){
-    return this->database->getPatientByPesonnelInfo(name, birth);
+Patient* SystemDispatcher::getPatientById(int id){
+    return this->database->getPatientById(id);
 }
 
 //!---------------------------------------------------------------------------------------------------------
@@ -95,8 +95,8 @@ void SystemDispatcher::setImageProcessingFactory(ImageProcessingFactory *imagePr
 //!
 //! \brief SystemDispatcher::findPatientExisted
 //!
-void SystemDispatcher::findPatientExisted(){
-    this->database->findPatientsExisted();
+int SystemDispatcher::findPatientExisted(){
+    return this->database->findPatientsExisted();
 }
 
 //!

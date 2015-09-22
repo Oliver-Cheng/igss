@@ -1,7 +1,7 @@
 #include "Patients.h"
 
 Patients::Patients(){
-
+    id = 0;
 }
 
 //!----------------------------------------------------------------------------------------------------
@@ -27,9 +27,9 @@ QStringList Patients::getPatientsStatus(){
 //! \param birth
 //! \return
 //!
-Patient* Patients::getPatientByPesonnelInfo(QString name, QString birth){
+Patient* Patients::getPatientById(int id){
     for(unsigned char cpt = 0; cpt < patients.size(); cpt++){
-        if((patients.at(cpt)->getName() == name)&&(patients.at(cpt)->getBirthdayOfPatient() == birth)){
+        if((patients.at(cpt)->getIdNumber() == id)){
             return patients.at(cpt);
         }
     }
@@ -40,14 +40,14 @@ Patient* Patients::getPatientByPesonnelInfo(QString name, QString birth){
 //!
 //! \brief Patients::findPatientExisted
 //!
-void Patients::findPatientExisted(){
+int Patients::findPatientExisted(){
 
     QDir patientsPath(this->patients_path);
 
     patientsPath.setFilter(QDir::Dirs);
 
     QFileInfoList list = patientsPath.entryInfoList();
-    int id;
+
     for(unsigned char cpt = 0; cpt < list.size(); cpt++){
         if(list.at(cpt).filePath().contains(".") || list.at(cpt).filePath().contains("..")){
             continue;
@@ -57,12 +57,33 @@ void Patients::findPatientExisted(){
         patients.append(patient);
         id++;
     }
+    return id;
 }
 
+//!----------------------------------------------------------------------------------------------------
+//!
+//! \brief Patients::setPatientsPath
+//! \param patients_path
+//!
 void Patients::setPatientsPath(QString patients_path){
     this->patients_path = patients_path;
 }
 
+//!----------------------------------------------------------------------------------------------------
+//!
+//! \brief Patients::getPatientMRAImageById
+//! \param id
+//! \return
+//!
 IgssImage* Patients::getPatientMRAImageById(int id){
     return this->patients.at(id)->getOriginImage();
+}
+
+//!----------------------------------------------------------------------------------------------------
+//!
+//! \brief Patients::getPatientsList
+//! \return
+//!
+QList<Patient *> Patients::getPatientsList(){
+    return this->patients;
 }

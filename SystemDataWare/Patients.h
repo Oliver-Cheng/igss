@@ -11,15 +11,17 @@ class Patients
 {
 public:
     Patients();
-    void findPatientExisted();
+    int findPatientExisted();
     void setPatientsPath(QString patients_path);
-    Patient* getPatientByPesonnelInfo(QString name, QString birth);
+    Patient* getPatientById(int id);
     QStringList getPatientsStatus();
     IgssImage* getPatientMRAImageById(int id);
+    QList<Patient*> getPatientsList();
 
 private:
     QList<Patient*> patients;
     QString patients_path;
+    int id;
 };
 
 #endif // PATIENTS_H

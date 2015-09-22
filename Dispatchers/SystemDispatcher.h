@@ -15,13 +15,15 @@ public:
     SystemDispatcher();
     QString get_username();
     void initializeSystemPaths();
-    void findPatientExisted();
+    int findPatientExisted();
     void setSystemDataBase(SystemDataBase* database);
     void setImageProcessingFactory(ImageProcessingFactory *imageProcessingFactory);
-    Patient* getPatientInDataBase(QString name, QString birth);
+
+    Patient* getPatientById(int id);
 
     QStringList getPatientsStatus();
     QString doImageProcessingByMethodType(int id, int dim, QString method);
+
 private:
     SystemDataBase* database;
     ImageProcessingFactory *imageProcessingFactory;

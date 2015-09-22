@@ -24,12 +24,14 @@ public:
     void doImageProcessing();
     QString getMRAPath();
     QString getName();
+    QString getPhotoPath();
     IgssImage *getOriginImage();
 
 private:
     bool MraImageReadComplete;
 
     QString myPath;
+    QString myPhotoPath;
 
     //! personnel informations
     QString name;

@@ -6,10 +6,21 @@ SystemDataBase::SystemDataBase(){
     this->metaData = new SystemMetaData();
 }
 
+//!--------------------------------------------------------------------------------------------
+//!
+//! \brief SystemDataBase::getPatientsStatus
+//! \return
+//!
 QStringList SystemDataBase::getPatientsStatus(){
     return this->patients->getPatientsStatus();
 }
 
+//!--------------------------------------------------------------------------------------------
+//!
+//! \brief SystemDataBase::getPatientMRAImageById
+//! \param id
+//! \return
+//!
 IgssImage* SystemDataBase::getPatientMRAImageById(int id){
     return this->patients->getPatientMRAImageById(id);
 }
@@ -38,8 +49,8 @@ void SystemDataBase::setPaths(QString workspace_path,
 //! \param birth
 //! \return
 //!
-Patient* SystemDataBase::getPatientByPesonnelInfo(QString name, QString birth){
-    return this->patients->getPatientByPesonnelInfo(name, birth);
+Patient* SystemDataBase::getPatientById(int id){
+    return this->patients->getPatientById(id);
 }
 
 //!--------------------------------------------------------------------------------------------
@@ -82,6 +93,15 @@ QString SystemDataBase::getImageCenterPath(){
 //!
 //! \brief SystemDataBase::findPatientsExisted
 //!
-void SystemDataBase::findPatientsExisted(){
-    this->patients->findPatientExisted();
+int SystemDataBase::findPatientsExisted(){
+    return this->patients->findPatientExisted();
+}
+
+//!--------------------------------------------------------------------------------------------
+//!
+//! \brief SystemDataBase::getPatientsData
+//! \return
+//!
+Patients* SystemDataBase::getPatientsData(){
+    return this->patients;
 }

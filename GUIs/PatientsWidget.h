@@ -5,12 +5,17 @@
 #include <QListWidget>
 #include <QVBoxLayout>
 #include <SystemDispatcher.h>
+#include <Patients.h>
+#include <QDebug>
 
 class PatientsWidget : public QWidget
 {
 public:
     explicit PatientsWidget(SystemDispatcher* dispatcher);
     void constructIHM();
+    void findPatientExisted();
+
+    void addPatientToListWidget(QString name, QString path);
 
 private:
     SystemDispatcher* dispatcher;

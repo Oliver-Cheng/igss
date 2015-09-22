@@ -5,8 +5,8 @@
 #include "SystemMetaData.h"
 
 
-class SystemDataBase
-{
+class SystemDataBase{
+
 public:
     SystemDataBase();
 
@@ -17,12 +17,13 @@ public:
     QString getMetaData();
     QString getImageCenterPath();
 
-    void findPatientsExisted();
-
-    Patient* getPatientByPesonnelInfo(QString name, QString birth);
+    int findPatientsExisted();
+    Patients* getPatientsData();
+    Patient* getPatientById(int id);
     QStringList getPatientsStatus();
 
     IgssImage* getPatientMRAImageById(int id);
+
 private:
     Patients* patients;
     SystemMetaData* metaData;

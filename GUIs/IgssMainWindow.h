@@ -39,10 +39,11 @@ class IgssMainWindow : public QWidget{
     Q_OBJECT
 
 public:
-    IgssMainWindow();
+    IgssMainWindow(SystemDispatcher *dispatcher);
 #ifdef win32
     ~Widget();
 #endif
+    void findPatientExisted();
     void initVariable();
     void initVisualizationComponents();
     void constructIHM();
