@@ -19,7 +19,7 @@ VesselEnhancementFilter::VesselEnhancementFilter(){
 //! \param output
 //! \return
 //!
-eProcessingErrorCode VesselEnhancementFilter::doVesselEnhancement(IgssImage *input, IgssImage *output){
+eProcessingErrorCode VesselEnhancementFilter::do_3D_VesselEnhancement(IgssImage *input, IgssImage *output){
     eProcessingErrorCode ret = PROCESSING_NO_ERRROR;
     for(int scale = sigma[0]; scale<=sigma[1]; scale += sigma[2]){
         gaussDerivation->do_3D_Derivation(scale);

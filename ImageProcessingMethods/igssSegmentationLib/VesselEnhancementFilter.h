@@ -13,7 +13,7 @@ class VesselEnhancementFilter
 {
 public:
     VesselEnhancementFilter();
-    eProcessingErrorCode doVesselEnhancement(IgssImage *input,IgssImage *output);
+    eProcessingErrorCode do_3D_VesselEnhancement(IgssImage *input,IgssImage *output);
 
 private:
 
