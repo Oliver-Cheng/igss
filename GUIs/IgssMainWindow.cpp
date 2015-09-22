@@ -70,7 +70,7 @@ void IgssMainWindow::constructIHM(){
     systemStatus = new QTextEdit();
     systemCommand = new QLineEdit("vef mri 0");
 
-    statusBarLayout->addWidget(displayStatusButton,1,0);
+    statusBarLayout->addWidget(displayStatusButton,0,0);
     statusBarLayout->addWidget(systemStatus,0,1);
     statusBarLayout->addWidget(systemCommand, 1, 1);
 
