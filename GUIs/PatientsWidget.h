@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <QTextEdit>
 #include <AlgorithmTestPlatform.h>
+#include <QPushButton>
 
 class PatientsWidget : public QWidget
 {
@@ -20,9 +21,25 @@ public:
 
 private:
     SystemDispatcher* dispatcher;
+
     QHBoxLayout* patientsWidgetLayout;
+    QVBoxLayout* totalInformationLayout;
+    QHBoxLayout* patientsIntroductionLayout;
+    QHBoxLayout* patientsPhotoListWidgetLayout;
+
     QWidget* controlBar;
-    QListWidget* patientListWidget;
+    QWidget* patientsIntroduction;
+    QWidget* personalInformation;
+    QWidget* patientsPhotoWidget;
+    QWidget* somethingelse;
+    QWidget* totalInformation;
+    QWidget* currentPatient;
+
+    QListWidget* waittingPatients;
+
+    QPushButton* leftSelectButton;
+    QPushButton* rightSelectButton;
+
     AlgorithmTestPlatform *algorithmTestPlatform;
 
 signals:
