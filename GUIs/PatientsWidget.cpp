@@ -31,18 +31,30 @@ void PatientsWidget::constructIHM(){
 
     this->waittingPatients = new QListWidget();
 
+    //!--------------------------------------------------------------------------------------
+    //!the left select button
+    //!--------------------------------------------------------------------------------------
     this->leftSelectButton = new QPushButton();
     this->leftSelectButton->setFixedSize(40,100);
     this->leftSelectButton->setIcon(QIcon(":/images/splitter_left.png"));
 
+    //!--------------------------------------------------------------------------------------
+    //!current patient widget
+    //!--------------------------------------------------------------------------------------
     this->currentPatient = new QWidget();
     this->currentPatient->setFixedWidth(180);
     this->currentPatient->setStyleSheet("background-color:red");
 
+    //!--------------------------------------------------------------------------------------
+    //!the right select button
+    //!--------------------------------------------------------------------------------------
     this->rightSelectButton = new QPushButton();
     this->rightSelectButton->setFixedSize(40,100);
     this->rightSelectButton->setIcon(QIcon(":/images/splitter_right.png"));
 
+    //!--------------------------------------------------------------------------------------
+    //!patient photo widget: there are 3 photoes of waitting patients and 1 current patient
+    //!--------------------------------------------------------------------------------------
     this->patientsPhotoWidget = new QWidget();
     this->patientsPhotoListWidgetLayout = new QHBoxLayout(this->patientsPhotoWidget);
     this->patientsPhotoListWidgetLayout->addWidget(waittingPatients);
@@ -52,31 +64,43 @@ void PatientsWidget::constructIHM(){
     this->patientsPhotoListWidgetLayout->setSpacing(0);
     this->patientsPhotoListWidgetLayout->setMargin(0);
 
+    //!--------------------------------------------------------------------------------------
+    //!the information of the current patient
+    //!--------------------------------------------------------------------------------------
     this->personalInformation = new QWidget();
     this->personalInformation->setFixedWidth(300);
     this->personalInformation->setStyleSheet("background-color:red");
 
-
+    //!--------------------------------------------------------------------------------------
+    //!the interface of the introduction about patients
+    //!--------------------------------------------------------------------------------------
     this->patientsIntroductionLayout = new QHBoxLayout(this->patientsIntroduction);
     this->patientsIntroductionLayout->addWidget(patientsPhotoWidget);
     this->patientsIntroductionLayout->addWidget(personalInformation);
     this->patientsIntroductionLayout->setSpacing(0);
     this->patientsIntroductionLayout->setMargin(0);
 
-
+    //!--------------------------------------------------------------------------------------
+    //!this area will put something else
+    //!--------------------------------------------------------------------------------------
     this->somethingelse->setFixedHeight(400);
 
     this->controlBar = new QWidget();
     this->controlBar->setFixedWidth(35);
 
+    //!--------------------------------------------------------------------------------------
+    //!the total information of patient and doctors
+    //!--------------------------------------------------------------------------------------
     this->totalInformation = new QWidget();
-    this->patientsInformationLayout = new QVBoxLayout(this->totalInformation);
-    this->patientsInformationLayout->addWidget(patientsIntroduction);
-    this->patientsInformationLayout->addWidget(somethingelse);
-    this->patientsInformationLayout->setSpacing(0);
-    this->patientsInformationLayout->setMargin(0);
+    this->totalInformationLayout = new QVBoxLayout(this->totalInformation);
+    this->totalInformationLayout->addWidget(patientsIntroduction);
+    this->totalInformationLayout->addWidget(somethingelse);
+    this->totalInformationLayout->setSpacing(0);
+    this->totalInformationLayout->setMargin(0);
 
-
+    //!--------------------------------------------------------------------------------------
+    //!the layout of patients widget
+    //!--------------------------------------------------------------------------------------
     this->waittingPatients->setViewMode(QListWidget::IconMode);
     this->totalInformation->setStyleSheet("QListWidget {show-decoration-selected: 2;background: transparent; border:1px solid gainsboro; color: aliceBlue}"
                                                      "QListWidget::item:alternate { background: transparent;}"

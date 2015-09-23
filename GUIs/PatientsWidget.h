@@ -23,7 +23,7 @@ private:
     SystemDispatcher* dispatcher;
 
     QHBoxLayout* patientsWidgetLayout;
-    QVBoxLayout* patientsInformationLayout;
+    QVBoxLayout* totalInformationLayout;
     QHBoxLayout* patientsIntroductionLayout;
     QHBoxLayout* patientsPhotoListWidgetLayout;
 
