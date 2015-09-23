@@ -51,7 +51,8 @@ SOURCES +=  main.cpp\
             GUIs/SurgerySystemWidget.cpp \
             GUIs/ReplaysWidget.cpp \
             ImageProcessingMethods/ImageProcessingFactory.cpp \
-            ImageProcessingMethods/ErrorMessage.cpp
+            ImageProcessingMethods/ErrorMessage.cpp \
+    GUIs/AlgorithmTestPlatform.cpp
 
 HEADERS  += \
             Dispatchers/SystemDispatcher.h \
@@ -73,7 +74,8 @@ HEADERS  += \
             GUIs/SurgerySystemWidget.h \
             GUIs/ReplaysWidget.h \
             ImageProcessingMethods/ImageProcessingFactory.h \
-            ImageProcessingMethods/ErrorMessage.h
+            ImageProcessingMethods/ErrorMessage.h \
+    GUIs/AlgorithmTestPlatform.h
 
 win32:INCLUDEPATH += "C:\Program Files\VTK\include\vtk-6.2"
 unix:INCLUDEPATH += $$PWD/../../../../../usr/local/include/vtk-6.2

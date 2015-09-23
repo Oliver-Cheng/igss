@@ -7,14 +7,15 @@
 #include <SystemDispatcher.h>
 #include <Patients.h>
 #include <QDebug>
+#include <QTextEdit>
+#include <AlgorithmTestPlatform.h>
 
 class PatientsWidget : public QWidget
 {
 public:
-    explicit PatientsWidget(SystemDispatcher* dispatcher);
+    explicit PatientsWidget(SystemDispatcher* dispatcher, AlgorithmTestPlatform *algorithmTestPlatform);
     void constructIHM();
     void findPatientExisted();
-
     void addPatientToListWidget(QString name, QString path);
 
 private:
@@ -22,6 +23,7 @@ private:
     QHBoxLayout* patientsWidgetLayout;
     QWidget* controlBar;
     QListWidget* patientListWidget;
+    AlgorithmTestPlatform *algorithmTestPlatform;
 
 signals:
 

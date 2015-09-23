@@ -1,7 +1,8 @@
 #include "PatientsWidget.h"
 
-PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher){
+PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher, AlgorithmTestPlatform*algorithmTestPlatform){
     this->dispatcher = dispatcher;
+    this->algorithmTestPlatform = algorithmTestPlatform;
 
     this->constructIHM();
 }

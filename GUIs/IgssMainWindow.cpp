@@ -11,10 +11,15 @@ IgssMainWindow::IgssMainWindow(SystemDispatcher* dispatcher): QWidget(){
     this->constructIHM();
     this->setConnections();
     this->drawBackground();
-
 }
 
 void IgssMainWindow::constructIHM(){
+
+    //!----------------------------------------------------------------------------------------------------
+    //! status bar area
+    //!----------------------------------------------------------------------------------------------------
+    algorithmTestPlatform = new AlgorithmTestPlatform(this->dispatcher);
+
     //!------------------------------------------------------------------------------------------
     //! configurationBoard:
     //!------------------------------------------------------------------------------------------
@@ -26,7 +31,7 @@ void IgssMainWindow::constructIHM(){
     //! system information board: a place where all information about pa    //qDebug()<<patient->MraImageReadComplete;tient, doctor and replays
     //! in the system will be displayed here
     //!------------------------------------------------------------------------------------------
-    patientsWidget = new PatientsWidget(this->dispatcher);
+    patientsWidget = new PatientsWidget(this->dispatcher, this->algorithmTestPlatform);
     replaysWidget = new ReplaysWidget();
     surgerySystemWidget = new SurgerySystemWidget();
 
@@ -40,8 +45,12 @@ void IgssMainWindow::constructIHM(){
     //! controlBoard:
     //!------------------------------------------------------------------------------------------
     controlBoard = new QWidget();
+    closeButton = new QPushButton();
+    closeButton->setIcon(QIcon(":/images/close.png"));
+    closeButton->setIconSize(QSize(40,40));
+    closeButton->setStyleSheet("background-color:transparent");
 
-    closeButton = new QPushButton("X");
+
     closeButton->setFixedSize(25,25);
 
     controlArea = new QWidget();
@@ -63,26 +72,11 @@ void IgssMainWindow::constructIHM(){
     mainPlatformLayout->setMargin(0);
 
     //!----------------------------------------------------------------------------------------------------
-    //! status bar area
-    //!----------------------------------------------------------------------------------------------------
-    statusBar = new QWidget();
-    statusBar->setFixedHeight(200);
-    statusBarLayout = new QGridLayout(statusBar);
-
-    //displayStatusButton = new QPushButton("display");
-    systemStatus = new QTextEdit();
-    systemCommand = new QLineEdit("vef mri 0");
-
-    //statusBarLayout->addWidget(displayStatusButton,0,0);
-    statusBarLayout->addWidget(systemStatus,0,1);
-    statusBarLayout->addWidget(systemCommand, 1, 1);
-
-    //!----------------------------------------------------------------------------------------------------
     //! main window
     //!----------------------------------------------------------------------------------------------------
     igssMainWindowLayout =  new QVBoxLayout(this);
     igssMainWindowLayout->addWidget(mainPlatform);
-    igssMainWindowLayout->addWidget(statusBar);
+    igssMainWindowLayout->addWidget(algorithmTestPlatform);
     igssMainWindowLayout->setSpacing(0);
     igssMainWindowLayout->setMargin(0);
 }
@@ -137,9 +131,6 @@ void IgssMainWindow::initVariable(){
 //!
 void IgssMainWindow::setConnections(){
     this->connect(closeButton, SIGNAL(clicked()), this, SLOT(closeSystem()));
-    //systemCommand
-    this->connect(systemCommand,SIGNAL(returnPressed()),this,SLOT(doParseCommand()));
-
 }
 
 //!----------------------------------------------------------------------------------------
@@ -203,14 +194,6 @@ void IgssMainWindow::readImageFileFrom(QString path){
 
 //!----------------------------------------------------------------------------------------
 //!
-//! \brief IgssMainWindow::setSystemStatus
-//!
-void IgssMainWindow::setSystemStatus(QString status){
-    this->systemStatus->setText(QString::number(flag)+"\n"+status+"\n");
-}
-
-//!----------------------------------------------------------------------------------------
-//!
 //! \brief Widget::readImageFromVtkConvert
 //!
 void IgssMainWindow::readImageFromVtkConvert()
@@ -238,49 +221,3 @@ void IgssMainWindow::closeSystem(){
     this->close();
 }
 
-//!----------------------------------------------------------------------------------------
-//!doParseCommand
-//! \brief IgssMainWindow::getPatientsStatus
-//!
-void IgssMainWindow::getPatientsStatus(){
-    flag++;
-    QStringList s = this->dispatcher->getPatientsStatus();
-    QString info = "";
-    for(int i = 0; i < s.length(); i++){
-        info += s[i]+"\n";
-    }
-    this->setSystemStatus(info);
-}
-
-//!----------------------------------------------------------------------------------------
-//!
-//! \brief IgssMainWindow::doParseCommand
-//!
-void IgssMainWindow::doParseCommand(){
-    QString cmd = systemCommand->text();
-    QString msg;
-
-    if(cmd.contains("vef")){
-        if(cmd.contains("mri")){
-            QStringList temp = cmd.split(" mri ");
-            int id = temp[1].toInt(0,10);
-            msg = this->dispatcher->doImageProcessingByMethodType(id, 3, "vef");
-        }
-        else{
-            //!do 2d vessel enhancement
-        }
-        this->setSystemStatus(msg);
-    }
-    else if(cmd.contains("check")){
-        if(cmd.contains("mri")){
-            if(cmd.contains("states")){
-                this->getPatientsStatus();
-            }
-        }
-    }
-
-
-
-
-
-}

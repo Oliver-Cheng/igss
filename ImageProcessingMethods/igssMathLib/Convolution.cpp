@@ -34,7 +34,7 @@ bool Convolution::do_3D_Convolution(IgssImage *igssImage, Derivation *gaussDeriv
 
     for(int voxels = 0; voxels < dims[0] * dims[1] * dims[2]; voxels++){
 
-        z = (int)(voxels/(dims[0] * dims[1]));
+        /*z = (int)(voxels/(dims[0] * dims[1]));
         y = (int)((voxels%(dims[0] * dims[1]))/dims[1]);
         x = (int)((voxels%(dims[0] * dims[1]))%dims[1]);
 
@@ -69,11 +69,12 @@ bool Convolution::do_3D_Convolution(IgssImage *igssImage, Derivation *gaussDeriv
         hession_3D[1][2] = hyz;
         hession_3D[2][0] = hession_3D[0][2];
         hession_3D[2][1] = hession_3D[1][2];
-        hession_3D[2][2] = hzz;
+        hession_3D[2][2] = hzz;*/
     }
 
     return true;
 }
+
 
 bool Convolution::do_2D_Convolution(IgssImage *input,Derivation *gaussDerivation){
     int i, j, m, n, mm, nn;

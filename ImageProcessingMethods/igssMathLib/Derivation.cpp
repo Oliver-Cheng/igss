@@ -48,7 +48,6 @@ void Derivation::do_3D_Derivation(float sigma){
         }
         i++;
     }
-
 }
 
 

@@ -25,6 +25,7 @@
 #include <PatientsWidget.h>
 #include <ReplaysWidget.h>
 #include <SurgerySystemWidget.h>
+#include <AlgorithmTestPlatform.h>
 
 #include <vtkSmartPointer.h>
 #include <vtkImageData.h>
@@ -71,8 +72,7 @@ private:
     QWidget *statusBar;
     QWidget *controlArea;
 
-    QTextEdit *systemStatus;
-    QLineEdit *systemCommand;
+    AlgorithmTestPlatform* algorithmTestPlatform;
 
     QPushButton *displayStatusButton;
     QPushButton *closeButton;
@@ -109,8 +109,6 @@ private:
 
 private slots:
     void closeSystem();
-    void getPatientsStatus();
-    void doParseCommand();
 };
 
 #endif // WIDGET_H

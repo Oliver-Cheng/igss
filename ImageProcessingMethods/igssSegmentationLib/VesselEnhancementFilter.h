@@ -7,6 +7,7 @@
 #include "Derivation.h"
 #include "Convolution.h"
 #include "ErrorMessage.h"
+#include <QElapsedTimer>
 
 
 class VesselEnhancementFilter
@@ -16,15 +17,13 @@ public:
     eProcessingErrorCode do_3D_VesselEnhancement(IgssImage *input,IgssImage *output);
 
 private:
-
     Options *option;
-
     int sigma[3];
-
     IgssImage *mraImage;
     MRAFileReader *mraFileReader;
     Derivation* gaussDerivation;
     Convolution* hessionConvolution;
+    QElapsedTimer myTimer;
 
 };
 

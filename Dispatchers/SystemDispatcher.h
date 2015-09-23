@@ -6,6 +6,7 @@
 #include <QString>
 #include <QDir>
 #include <QFile>
+#include <QTextEdit>
 #include "ImageProcessingFactory.h"
 #include "ErrorMessage.h"
 
@@ -14,6 +15,7 @@ class SystemDispatcher
 public:
     SystemDispatcher();
     QString get_username();
+    void setMessageDisplayWindow(QTextEdit *msgDisplay);
     void initializeSystemPaths();
     int findPatientExisted();
     void setSystemDataBase(SystemDataBase* database);

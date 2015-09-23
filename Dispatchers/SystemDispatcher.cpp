@@ -19,6 +19,10 @@ Patient* SystemDispatcher::getPatientById(int id){
     return this->database->getPatientById(id);
 }
 
+void SystemDispatcher::setMessageDisplayWindow(QTextEdit *msgDisplay){
+
+}
+
 //!---------------------------------------------------------------------------------------------------------
 //!
 //! \brief get_username
