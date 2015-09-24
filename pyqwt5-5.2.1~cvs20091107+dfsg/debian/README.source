@@ -1,4 +1,0 @@
-The source can be downloaded with the get-orig-source target in the 
-debian/rules file.
-
-The dpatch system is used for applying patches before building.
