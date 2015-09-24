@@ -10,7 +10,7 @@ IgssMainWindow::IgssMainWindow(SystemDispatcher* dispatcher): QWidget(){
     this->initVariable();
     this->constructIHM();
     this->setConnections();
-    this->drawBackground();
+    //this->drawBackground();
 }
 
 void IgssMainWindow::constructIHM(){
@@ -18,25 +18,31 @@ void IgssMainWindow::constructIHM(){
     //!----------------------------------------------------------------------------------------------------
     //! status bar area
     //!----------------------------------------------------------------------------------------------------
-    algorithmTestPlatform = new AlgorithmTestPlatform(this->dispatcher);
+    algorithmTestPlatform = new AlgorithmTestPlatform(this->dispatcher,
+                                                      this->primary_screen_width,
+                                                      this->primary_screen_height);
 
     //!------------------------------------------------------------------------------------------
     //! configurationBoard:
     //!------------------------------------------------------------------------------------------
     configurationBoard = new QWidget();
-    configurationBoard->setFixedWidth(250);
-    //configurationBoard->setStyleSheet("background-color:yellow");
+    configurationBoard->setFixedWidth(this->primary_screen_width*0.13);
 
     //!------------------------------------------------------------------------------------------
     //! system information board: a place where all information about pa    //qDebug()<<patient->MraImageReadComplete;tient, doctor and replays
     //! in the system will be displayed here
     //!------------------------------------------------------------------------------------------
-    patientsWidget = new PatientsWidget(this->dispatcher, this->algorithmTestPlatform);
+    patientsWidget = new PatientsWidget(this->dispatcher,
+                                        this->algorithmTestPlatform,
+                                        this->primary_screen_width,
+                                        this->primary_screen_height);
+
     replaysWidget = new ReplaysWidget();
     surgerySystemWidget = new SurgerySystemWidget();
 
     systemInformationBoard = new QTabWidget();
     systemInformationBoard->setStyleSheet(this->systemInformationBoardStyleSheet);
+
     systemInformationBoard->insertTab(0, patientsWidget, "Patients");
     systemInformationBoard->insertTab(1, surgerySystemWidget, "System");
     systemInformationBoard->insertTab(2, replaysWidget, "History");
@@ -47,11 +53,11 @@ void IgssMainWindow::constructIHM(){
     controlBoard = new QWidget();
     closeButton = new QPushButton();
     closeButton->setIcon(QIcon(":/images/close.png"));
-    closeButton->setIconSize(QSize(40,40));
+    closeButton->setIconSize(QSize(30,30));
     closeButton->setStyleSheet("background-color:transparent");
 
-
-    closeButton->setFixedSize(25,25);
+    closeButton->setFixedSize(this->primary_screen_width*0.013,
+                              this->primary_screen_width*0.013);
 
     controlArea = new QWidget();
     controlBoardLayout = new QVBoxLayout(controlBoard);
@@ -107,10 +113,10 @@ void IgssMainWindow::drawBackground(){
 //! \brief IgssMainWindow::initVariable
 //!
 void IgssMainWindow::initVariable(){
+
     desktop = QApplication::desktop();
     primary_screen_width = desktop->screen(0)->width();
     primary_screen_height = desktop->screen(0)->height();
-    qDebug()<<primary_screen_width<<primary_screen_height;
 
     flag = 0;
     this->systemInformationBoardStyleSheet =

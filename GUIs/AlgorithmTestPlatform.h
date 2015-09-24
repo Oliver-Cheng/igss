@@ -12,7 +12,7 @@ class AlgorithmTestPlatform : public QWidget
 {
     Q_OBJECT
 public:
-    explicit AlgorithmTestPlatform(SystemDispatcher* dispatcher);
+    explicit AlgorithmTestPlatform(SystemDispatcher* dispatcher, int appWidth, int appHeight);
 
     void setSystemStatus(QString status);
     void getPatientsStatus();
@@ -30,6 +30,9 @@ private:
     QTextEdit* systemStatus;
     QLineEdit* systemCommand;
     SystemDispatcher* dispatcher;
+
+    int appWidth;
+    int appHeight;
 
 signals:
 

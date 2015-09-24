@@ -6,7 +6,11 @@
 
 int main(int argc, char *argv[]){
 
-    QApplication a(argc, argv);
+    QApplication analyser(argc, argv);
+    //analyser.setStyle("cleanlooks");
+    analyser.setOrganizationName("Chinese Acdemic of Science -- SIAT");
+    analyser.setApplicationName("InterventionalTherapyAnalyser");
+    analyser.setWindowIcon(QIcon(":/images/icon.png"));
 
     SystemDataBase*   database       = new SystemDataBase();
     SystemDispatcher* dispatcher     = new SystemDispatcher();
@@ -20,5 +24,5 @@ int main(int argc, char *argv[]){
     igssMainWindow->findPatientExisted();
     igssMainWindow->display();
 
-    return a.exec();
+    return analyser.exec();
 }

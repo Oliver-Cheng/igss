@@ -1,0 +1,198 @@
+pyqwt5 (5.2.1~cvs20091107+dfsg-7build1) trusty; urgency=medium
+
+  * No-change rebuild against sip 4.15.5.
+
+ -- Dmitry Shachnev <mitya57@ubuntu.com>  Sat, 22 Mar 2014 15:06:40 +0400
+
+pyqwt5 (5.2.1~cvs20091107+dfsg-7) unstable; urgency=low
+
+  [ Jakub Wilk ]
+  * Add epoch to python-numpy version in Build-Depends.
+  * Use canonical URIs for Vcs-* fields.
+
+  [ Gudjon I. Gudjonsson ]
+  * Rebuild fixes segmentation fault (Closes: #731437)
+  * Bump standards version to 3.9.5
+
+ -- Gudjon I. Gudjonsson <gudjon@gudjon.org>  Fri, 03 Jan 2014 08:09:25 +0100
+
+pyqwt5 (5.2.1~cvs20091107+dfsg-6) unstable; urgency=low
+
+  * Bump standards version to 3.9.2
+  * Add X-Python-Version
+  * Update python dependencies
+  * Change from dh_pysupport to dh_python2 (Closes: #634862)
+  * Change short description in python-qwt5-doc
+  * Comment out QaPolygon from BodePlot demo. All examples do work now.
+
+ -- Gudjon I. Gudjonsson <gudjon@gudjon.org>  Fri, 12 Aug 2011 07:43:55 +0200
+
+pyqwt5 (5.2.1~cvs20091107+dfsg-5) unstable; urgency=low
+
+  * Rebuilding package (Closes: #619500)
+
+ -- Gudjon I. Gudjonsson <gudjon@gudjon.org>  Sun, 27 Mar 2011 14:59:43 +0200
+
+pyqwt5 (5.2.1~cvs20091107+dfsg-4) unstable; urgency=low
+
+  * Remove qt3 support (Closes: #604373)
+  * Switch to dpkg-source 3.0 (quilt) format
+  * Bump standards to 3.9.1
+  * Patch 03_fix_QwtMemArray removed. Only used for qt3
+  * Rewrite other patches to quilt format
+  * Remove qt3examples from python-qwt5-doc
+
+ -- Gudjon I. Gudjonsson <gudjon@gudjon.org>  Sat, 26 Feb 2011 09:00:52 +0100
+
+pyqwt5 (5.2.1~cvs20091107+dfsg-3) unstable; urgency=low
+
+  * Upgrade to new sip version (Closes: #567228)
+  * Bump standards version to 3.8.4
+  * Change from sip4 to sip dependencies
+  * Change dephelper version to 7
+  * Add misc depends for python-qwt5-doc
+
+ -- Gudjon I. Gudjonsson <gudjon@gudjon.org>  Sat, 06 Feb 2010 13:25:49 +0100
+
+pyqwt5 (5.2.1~cvs20091107+dfsg-2) unstable; urgency=low
+
+  [ Jakub Wilk ]
+  * Fix watch file.
+
+  [ Gudjon I. Gudjonsson ]
+  * Add fix to rules files that adds binary dependency on 
+    libqwt5-qt{3,4} (Closes: #557170)
+
+ -- Gudjon I. Gudjonsson <gudjon@gudjon.org>  Fri, 27 Nov 2009 16:45:14 +0100
+
+pyqwt5 (5.2.1~cvs20091107+dfsg-1) unstable; urgency=low
+
+  * New CVS version
+  * Fixes problems in qt3 port
+  * Rename README.Source to README.source and upgrade content
+  * Add +dfsg to CVS get-orig-source target
+  * Commented out three extra lines from configure.py that the script
+    failed on.
+
+ -- Gudjon I. Gudjonsson <gudjon@gudjon.org>  Sat, 07 Nov 2009 19:53:13 +0100
+
+pyqwt5 (5.2.0+dfsg-2) unstable; urgency=low
+
+  * Change sip4 dependencies to >=4.9
+  * Add binary dependency on python-sip4 >=4.9
+  * Bump standards version to 3.8.3, no changes needed
+
+ -- Gudjon I. Gudjonsson <gudjon@gudjon.org>  Wed, 04 Nov 2009 22:53:02 +0100
+
+pyqwt5 (5.2.0+dfsg-1) unstable; urgency=low
+
+  * New upstream release
+  * Remove export QTDIR from rules file
+  * Fix watch file. Upstream path changed
+  * DEB_UPSTREAM_VERSION not hardcoded anymore
+
+ -- Gudjon I. Gudjonsson <gudjon@gudjon.org>  Sun, 09 Aug 2009 21:57:55 +0200
+
+pyqwt5 (5.1.1~cvs20090626+dfsg-2) unstable; urgency=low
+
+  * Qwt has been upgraded to version 5.2, PyQwt needs rebuilding
+
+ -- Gudjon I. Gudjonsson <gudjon@gudjon.org>  Thu, 02 Jul 2009 19:20:11 +0200
+
+pyqwt5 (5.1.1~cvs20090626+dfsg-1) unstable; urgency=medium
+
+  [ Gudjon I. Gudjonsson ]
+  * New CVS version:
+    - Builds from source (Closes: #533950)
+    - python-qwt5-qt4 doesn't segfault (Closes: #532850)
+    - python-qwt5-qt3 fails but this version is still an improvement
+  * Bump standards version to 3.8.2, no changes needed
+  * Hardcode DEB_UPSTREAM_VERSION=5.1.0, will be changed in
+    next release
+  * Upgrade version dependency on python-qt4 and sip4
+  * Add README.Source file
+
+  [ Piotr Ożarowski ]
+  * Add get-orig-source rule
+  * Prepare for Python 2.6: dh_install now recognizes files in
+    /usr/local/*/dist-packages/ as well
+
+ -- Gudjon I. Gudjonsson <gudjon@gudjon.org>  Fri, 27 Jun 2009 13:16:04 +0200
+
+pyqwt5 (5.1.0.dfsg-2) unstable; urgency=low
+
+  [ Sandro Tosi ]
+  * debian/control
+    - switch Vcs-Browser field to viewsvn
+
+  [ Bernd Zeimetz ]
+  * Replace python-central by python-support to follow the change in
+    python-qt4. This would not be an issue if python-central would
+    create namespace packages properly. We should not need to
+    change the build-dependency on python-qt4 as python-support should
+    handle it for all versions in a sane way.
+  * Depend on python-qtX larger or equal than the version the package
+    was built against.
+  * Bump Standards-Version to 3.8.1, no changes needed.
+  * Fix build-target dependencies in debian/rules. 
+
+  [ Gudjon I. Gudjonsson ]
+  * Add patch 03_fix_QwtMemArray. Needed for compilation.
+  * Upgrade to python-support system makes the Qwt.so module import
+    correctly (Closes: #525838)
+
+ -- Gudjon I. Gudjonsson <gudjon@gudjon.org>  Thu, 07 May 2009 13:11:37 +0200
+
+pyqwt5 (5.1.0.dfsg-1) unstable; urgency=low
+
+  * New upstream release
+  * Bump standard version to 3.8.0, no changes needed
+  * Add -indep and -arch for build and install in rules file.
+
+ -- Gudjon I. Gudjonsson <gudjon@gudjon.org>  Sun, 15 Jun 2008 08:50:11 +0200
+
+pyqwt5 (5.1~20080523cvs.dfsg-1) unstable; urgency=medium
+
+  [ Gudjon I. Gudjonsson ]
+  * New CVS snapshot that fixes FTBFS. (Closes: #482230)
+
+  [ Piotr Ożarowski ]
+  * Rename XS-Vcs-* fields to Vcs-* (dpkg supports them now)
+  * Change sip4 and python-sip4-dev minimum required build versions
+    to (>= 4.7.1-1~) to ease backports
+  * Bump Standards-Version to 3.7.3 (no changes needed)
+
+ -- Gudjon I. Gudjonsson <gudjon@gudjon.org>  Fri, 23 May 2008 19:58:11 +0200
+
+pyqwt5 (5.0.1.dfsg-3) unstable; urgency=low
+
+  [ Piotr Ożarowski ]
+  * Homepage field added
+  * debian/watch file updated (remove ".dfsg" in dversionmangle)
+
+  [ Gudjon I. Gudjonsson ]
+  * Changed dependency of sip4 and python-sip4-dev to 4.7.1-1 
+    (Closes: #442968)
+
+ -- Gudjon I. Gudjonsson <gudjon@gudjon.org>  Wed, 03 Oct 2007 11:21:39 +0200
+
+pyqwt5 (5.0.1.dfsg-2) unstable; urgency=low
+
+  * python-qt4 has been upgraded to version 4.3
+
+ -- Gudjon I. Gudjonsson <gudjon@gudjon.org>  Sun, 05 Aug 2007 18:36:15 +0200
+
+pyqwt5 (5.0.1.dfsg-1) unstable; urgency=low
+
+  * New upstream release
+  * Added python-qwt5-doc for the example directories. The documentation
+    will be added later.
+  * Removed patch 2 since multidemo has been fixed.
+
+ -- Gudjon I. Gudjonsson <gudjon@gudjon.org>  Sat, 28 Jul 2007 22:01:03 +0200
+
+pyqwt5 (5.0.0.dfsg-1) unstable; urgency=low
+
+  * Initial release (Closes: #413372)
+
+ -- Gudjon I. Gudjonsson <gudjon@gudjon.org>  Mon, 23 Jul 2007 13:21:37 +0200

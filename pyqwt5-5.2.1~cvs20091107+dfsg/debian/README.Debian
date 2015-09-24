@@ -1,0 +1,9 @@
+The documentation has been removed since it was created with the non-free 
+latex2html
+
+To try out the package, using the examples do the following:
+$ cp -a /usr/share/doc/python-qwt5-doc/qt?examples .
+$ cd qt?examples
+$ python Grab.py
+
+ -- Gudjon I. Gudjonsson <gudjon@gudjon.org>  Sat, 28 Jul 2007 12:57:00 +0200

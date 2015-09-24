@@ -14,7 +14,10 @@
 class PatientsWidget : public QWidget
 {
 public:
-    explicit PatientsWidget(SystemDispatcher* dispatcher, AlgorithmTestPlatform *algorithmTestPlatform);
+    explicit PatientsWidget(SystemDispatcher* dispatcher,
+                            AlgorithmTestPlatform *algorithmTestPlatform,
+                            int appWidth,
+                            int appHeight);
     void constructIHM();
     void findPatientExisted();
     void addPatientToListWidget(QString name, QString path);
@@ -22,7 +25,7 @@ public:
 private:
     SystemDispatcher* dispatcher;
 
-    QHBoxLayout* patientsWidgetLayout;
+    QVBoxLayout* patientsWidgetLayout;
     QVBoxLayout* totalInformationLayout;
     QHBoxLayout* patientsIntroductionLayout;
     QHBoxLayout* patientsPhotoListWidgetLayout;
@@ -41,6 +44,9 @@ private:
     QPushButton* rightSelectButton;
 
     AlgorithmTestPlatform *algorithmTestPlatform;
+
+    int appWidth;
+    int appHeight;
 
 signals:
 

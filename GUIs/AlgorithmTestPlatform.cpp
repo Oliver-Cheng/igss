@@ -1,8 +1,12 @@
 #include "AlgorithmTestPlatform.h"
 
-AlgorithmTestPlatform::AlgorithmTestPlatform(SystemDispatcher* dispatcher)
+AlgorithmTestPlatform::AlgorithmTestPlatform(SystemDispatcher* dispatcher,
+                                             int appWidth,
+                                             int appHeight)
 {
     this->dispatcher = dispatcher;
+    this->appWidth = appWidth;
+    this->appHeight = appHeight;
     this->setFixedHeight(200);
     this->constructIHM();
     this->setConnections();
@@ -16,7 +20,7 @@ void AlgorithmTestPlatform::constructIHM(){
 
 
     unknownArea = new QWidget();
-    unknownArea->setFixedWidth(250);
+    unknownArea->setFixedWidth(this->appWidth*0.13);
 
     terminalWindow = new QWidget();
     terminalWindowLayout = new QVBoxLayout(terminalWindow);

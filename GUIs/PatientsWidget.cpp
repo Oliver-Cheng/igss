@@ -1,8 +1,14 @@
 #include "PatientsWidget.h"
 
-PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher, AlgorithmTestPlatform*algorithmTestPlatform){
+PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher,
+                               AlgorithmTestPlatform *algorithmTestPlatform,
+                               int appWidth,
+                               int appHeight){
+
     this->dispatcher = dispatcher;
     this->algorithmTestPlatform = algorithmTestPlatform;
+    this->appWidth = appWidth;
+    this->appHeight = appHeight;
 
     this->constructIHM();
 }
@@ -30,6 +36,7 @@ void PatientsWidget::constructIHM(){
     this->somethingelse = new QWidget();
 
     this->waittingPatients = new QListWidget();
+    this->waittingPatients->setViewMode(QListWidget::IconMode);
 
     //!--------------------------------------------------------------------------------------
     //!the left select button
@@ -42,8 +49,8 @@ void PatientsWidget::constructIHM(){
     //!current patient widget
     //!--------------------------------------------------------------------------------------
     this->currentPatient = new QWidget();
-    this->currentPatient->setFixedWidth(180);
-    this->currentPatient->setStyleSheet("background-color:red");
+    this->currentPatient->setFixedWidth(this->appWidth*0.857*0.15);
+    //this->currentPatient->setStyleSheet("background-color:red");
 
     //!--------------------------------------------------------------------------------------
     //!the right select button
@@ -68,7 +75,7 @@ void PatientsWidget::constructIHM(){
     //!the information of the current patient
     //!--------------------------------------------------------------------------------------
     this->personalInformation = new QWidget();
-    this->personalInformation->setFixedWidth(300);
+    this->personalInformation->setFixedWidth(this->appWidth*0.857*0.4);
     this->personalInformation->setStyleSheet("background-color:red");
 
     //!--------------------------------------------------------------------------------------
@@ -83,25 +90,25 @@ void PatientsWidget::constructIHM(){
     //!--------------------------------------------------------------------------------------
     //!this area will put something else
     //!--------------------------------------------------------------------------------------
-    this->somethingelse->setFixedHeight(400);
+    this->somethingelse->setFixedHeight(550);
 
     this->controlBar = new QWidget();
-    this->controlBar->setFixedWidth(35);
+    this->controlBar->setFixedHeight(30);
 
     //!--------------------------------------------------------------------------------------
     //!the total information of patient and doctors
     //!--------------------------------------------------------------------------------------
     this->totalInformation = new QWidget();
     this->totalInformationLayout = new QVBoxLayout(this->totalInformation);
-    this->totalInformationLayout->addWidget(patientsIntroduction);
-    this->totalInformationLayout->addWidget(somethingelse);
+    this->totalInformationLayout->addWidget(this->patientsIntroduction);
+    this->totalInformationLayout->addWidget(this->somethingelse);
     this->totalInformationLayout->setSpacing(0);
     this->totalInformationLayout->setMargin(0);
 
     //!--------------------------------------------------------------------------------------
     //!the layout of patients widget
     //!--------------------------------------------------------------------------------------
-    this->waittingPatients->setViewMode(QListWidget::IconMode);
+
     this->totalInformation->setStyleSheet("QListWidget {show-decoration-selected: 2;background: transparent; border:1px solid gainsboro; color: aliceBlue}"
                                                      "QListWidget::item:alternate { background: transparent;}"
                                                      "QListWidget::item:selected {border: 0px;}"
@@ -109,7 +116,8 @@ void PatientsWidget::constructIHM(){
                                                      "QListWidget::item:selected:active {background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 lightgray, stop: 1 gainsboro);color:aliceBlue}"
                                                      "QListWidget::item:hover {background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #FAFBFE, stop: 1 #DCDEF1);}");
 
-    this->patientsWidgetLayout = new QHBoxLayout(this);
+
+    this->patientsWidgetLayout = new QVBoxLayout(this);
     this->patientsWidgetLayout->addWidget(this->controlBar);
     this->patientsWidgetLayout->addWidget(this->totalInformation);
     this->patientsWidgetLayout->setSpacing(0);

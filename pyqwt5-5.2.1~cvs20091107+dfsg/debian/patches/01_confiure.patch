@@ -1,0 +1,27 @@
+Remove the extra library added by the configure.py script. Doesn't fit
+the Debian library naming
+--- a/configure/configure.py
++++ b/configure/configure.py
+@@ -768,6 +768,9 @@
+     elif qwt not in options.extra_libs:
+         # no, add the qwt library if needed
+         options.extra_libs.append(qwt)
++    # Added for the Debian packaging script
++    while options.extra_libs.count(qwt):
++        options.extra_libs.remove(qwt)
+ 
+     # zap the temporary directory
+     try:
+@@ -1119,9 +1122,9 @@
+ if __name__ == '__main__':
+     try:
+         main()
+-    except Die as e:
+-        inform('%s\n' % e.args)
+-        sys.exit(1)
++    #except Die as e:
++    #    inform('%s\n' % e.args)
++    #    sys.exit(1)
+     except:
+         for entry in traceback.extract_tb(sys.exc_info()[-1]):
+             if 'optparse.py' in entry[0]:

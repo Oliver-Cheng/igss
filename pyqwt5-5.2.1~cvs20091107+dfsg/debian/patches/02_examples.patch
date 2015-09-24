@@ -1,0 +1,28 @@
+MultiDemo is excluded because the Debian package
+is compiled without support for numarray and numeric
+--- a/qt4examples/Grab.py
++++ b/qt4examples/Grab.py
+@@ -29,7 +29,7 @@
+     'ImagePlotDemo',
+     'MapDemo',
+     'MaskedDataDemo',
+-    'MultiDemo',
++#    'MultiDemo',
+     'PickerDemo',
+     'RadioDemo',
+     'ReallySimpleDemo',
+--- a/qt4examples/BodeDemo.py
++++ b/qt4examples/BodeDemo.py
+@@ -379,9 +379,9 @@
+         self.connect(self.picker,
+                      SIGNAL('moved(const QPoint &)'),
+                      self.moved)
+-        self.connect(self.picker,
+-                     SIGNAL('selected(const QaPolygon &)'),
+-                     self.selected)
++#        self.connect(self.picker,
++#                     SIGNAL('selected(const QaPolygon &)'),
++#                     self.selected)
+ 
+     # __init__()
+ 
