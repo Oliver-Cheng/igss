@@ -20,7 +20,7 @@ public:
                             int appHeight);
     void constructIHM();
     void findPatientExisted();
-    void addPatientToListWidget(QString name, QString path);
+    void addPatientToWidget(QString name, QString path);
 
 private:
     SystemDispatcher* dispatcher;
@@ -28,7 +28,9 @@ private:
     QVBoxLayout* patientsWidgetLayout;
     QVBoxLayout* totalInformationLayout;
     QHBoxLayout* patientsIntroductionLayout;
-    QHBoxLayout* patientsPhotoListWidgetLayout;
+    QHBoxLayout* patientsPhotoWidgetLayout;
+    QVBoxLayout* waittingPatientsAndBlackAreaWindowLayout;
+    QHBoxLayout* waittingPatientPhotoesLayout;
 
     QWidget* controlBar;
     QWidget* patientsIntroduction;
@@ -37,8 +39,18 @@ private:
     QWidget* somethingelse;
     QWidget* totalInformation;
     QWidget* currentPatient;
+    QWidget* upBlackArea;
+    QWidget* waittingPatientPhotoes;
+    QWidget* downBlackArea;
+    QWidget* leftBlackArea;
+    QWidget* rightBlackArea;
+    QWidget* firstPatientPhoto;
+    QWidget* secondPatientPhoto;
+    QWidget* thirdPatientPhoto;
+    QWidget* fourthPatientPhoto;
+    QWidget* fifthPatientPhoto;
 
-    QListWidget* waittingPatients;
+    QWidget* waittingPatientsAndBlackAreaWindow;
 
     QPushButton* leftSelectButton;
     QPushButton* rightSelectButton;

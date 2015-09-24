@@ -53,7 +53,7 @@ void IgssMainWindow::constructIHM(){
     controlBoard = new QWidget();
     closeButton = new QPushButton();
     closeButton->setIcon(QIcon(":/images/close.png"));
-    closeButton->setIconSize(QSize(30,30));
+    closeButton->setIconSize(QSize(this->primary_screen_width*0.014,this->primary_screen_width*0.014));
     closeButton->setStyleSheet("background-color:transparent");
 
     closeButton->setFixedSize(this->primary_screen_width*0.013,

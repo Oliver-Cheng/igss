@@ -7,7 +7,7 @@ AlgorithmTestPlatform::AlgorithmTestPlatform(SystemDispatcher* dispatcher,
     this->dispatcher = dispatcher;
     this->appWidth = appWidth;
     this->appHeight = appHeight;
-    this->setFixedHeight(200);
+    this->setFixedHeight(this->appHeight*0.18);
     this->constructIHM();
     this->setConnections();
 }

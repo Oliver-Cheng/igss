@@ -20,10 +20,12 @@ PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher,
 void PatientsWidget::findPatientExisted(){
     int numberOfPatient = this->dispatcher->findPatientExisted();
 
-    for(int cpt = 0; cpt < numberOfPatient; cpt++){
-        addPatientToListWidget(this->dispatcher->getPatientById(cpt)->getName(),
-                               this->dispatcher->getPatientById(cpt)->getPhotoPath());
-    }
+//    for(int cpt = 0; cpt < numberOfPatient; cpt++){
+//        addPatientToWidget(this->dispatcher->getPatientById(cpt)->getName(),
+//                            skyblue   this->dispatcher->getPatientById(cpt)->getPhotoPath());
+//        this->PatientPhoto[cpt]->addItem(patientItem);
+//    }
+
 }
 
 //!----------------------------------------------------------------------------------------------------
@@ -33,43 +35,89 @@ void PatientsWidget::findPatientExisted(){
 void PatientsWidget::constructIHM(){
 
     this->patientsIntroduction = new QWidget();
-    this->somethingelse = new QWidget();
 
-    this->waittingPatients = new QListWidget();
-    this->waittingPatients->setViewMode(QListWidget::IconMode);
+
+    this->waittingPatientsAndBlackAreaWindow = new QWidget();
+    //this->waittingPatientsWindow->setViewMode(QListWidget::IconMode);
+
+    this->upBlackArea = new QWidget();
+    this->upBlackArea->setFixedHeight(this->appHeight*0.185*0.2);
+    this->upBlackArea->setStyleSheet("background-color:transparent");
+
+    this->waittingPatientPhotoes = new QWidget();
+    this->downBlackArea = new QWidget();
+    this->downBlackArea->setFixedHeight(this->appHeight*0.185*0.2);
+
+    this->leftBlackArea = new QWidget();
+    this->leftBlackArea->setFixedWidth(this->appHeight*0.34*0.05);
+    this->leftBlackArea->setStyleSheet("background-color:transparent");
+
+    this->firstPatientPhoto = new QWidget();
+    this->firstPatientPhoto->setStyleSheet("background-color:skyblue");
+    this->secondPatientPhoto = new QWidget();
+    this->secondPatientPhoto->setStyleSheet("background-color:skyblue");
+    this->thirdPatientPhoto = new QWidget();
+    this->thirdPatientPhoto->setStyleSheet("background-color:skyblue");
+    this->fourthPatientPhoto = new QWidget();
+    this->fourthPatientPhoto->setStyleSheet("background-color:skyblue");
+    this->fifthPatientPhoto = new QWidget();
+    this->fifthPatientPhoto->setStyleSheet("background-color:skyblue");
+
+    this->rightBlackArea = new QWidget();
+    this->rightBlackArea->setFixedWidth(this->appHeight*0.34*0.01);
+    this->rightBlackArea->setStyleSheet("background-color:transparent");
+
+    this->waittingPatientPhotoesLayout = new QHBoxLayout(waittingPatientPhotoes);
+    this->waittingPatientPhotoesLayout->addWidget(leftBlackArea);
+    this->waittingPatientPhotoesLayout->addWidget(firstPatientPhoto);
+    this->waittingPatientPhotoesLayout->addWidget(secondPatientPhoto);
+    this->waittingPatientPhotoesLayout->addWidget(thirdPatientPhoto);
+    this->waittingPatientPhotoesLayout->addWidget(fourthPatientPhoto);
+    this->waittingPatientPhotoesLayout->addWidget(fifthPatientPhoto);
+    this->waittingPatientPhotoesLayout->addWidget(rightBlackArea);
+    this->waittingPatientPhotoesLayout->setSpacing(2);
+    this->waittingPatientPhotoesLayout->setMargin(0);
+
+    this->waittingPatientsAndBlackAreaWindowLayout = new QVBoxLayout(waittingPatientsAndBlackAreaWindow);
+    this->waittingPatientsAndBlackAreaWindowLayout->addWidget(upBlackArea);
+    this->waittingPatientsAndBlackAreaWindowLayout->addWidget(waittingPatientPhotoes);
+    this->waittingPatientsAndBlackAreaWindowLayout->addWidget(downBlackArea);
+    this->waittingPatientsAndBlackAreaWindowLayout->setSpacing(0);
+    this->waittingPatientsAndBlackAreaWindowLayout->setMargin(0);
 
     //!--------------------------------------------------------------------------------------
     //!the left select button
     //!--------------------------------------------------------------------------------------
     this->leftSelectButton = new QPushButton();
-    this->leftSelectButton->setFixedSize(40,100);
+    this->leftSelectButton->setFixedSize(this->appWidth*0.021,this->appHeight*0.093);
     this->leftSelectButton->setIcon(QIcon(":/images/splitter_left.png"));
-
+    this->leftSelectButton->setStyleSheet("background-color:transparent");
     //!--------------------------------------------------------------------------------------
     //!current patient widget
     //!--------------------------------------------------------------------------------------
     this->currentPatient = new QWidget();
     this->currentPatient->setFixedWidth(this->appWidth*0.857*0.15);
-    //this->currentPatient->setStyleSheet("background-color:red");
+    this->currentPatient->setStyleSheet("background-color:blue");
 
     //!--------------------------------------------------------------------------------------
     //!the right select button
     //!--------------------------------------------------------------------------------------
     this->rightSelectButton = new QPushButton();
-    this->rightSelectButton->setFixedSize(40,100);
+    this->rightSelectButton->setFixedSize(this->appWidth*0.021,this->appHeight*0.093);
     this->rightSelectButton->setIcon(QIcon(":/images/splitter_right.png"));
+    this->rightSelectButton->setStyleSheet("background-color:transparent");
 
     //!--------------------------------------------------------------------------------------
     //!patient photo widget: there are 3 photoes of waitting patients and 1 current patient
     //!--------------------------------------------------------------------------------------
     this->patientsPhotoWidget = new QWidget();
-    this->patientsPhotoListWidgetLayout = new QHBoxLayout(this->patientsPhotoWidget);
-    this->patientsPhotoListWidgetLayout->addWidget(waittingPatients);
-    this->patientsPhotoListWidgetLayout->addWidget(leftSelectButton);
-    this->patientsPhotoListWidgetLayout->addWidget(currentPatient);
-    this->patientsPhotoListWidgetLayout->addWidget(rightSelectButton);
-    this->patientsPhotoListWidgetLayout->setSpacing(0);
-    this->patientsPhotoListWidgetLayout->setMargin(0);
+    this->patientsPhotoWidgetLayout = new QHBoxLayout(this->patientsPhotoWidget);
+    this->patientsPhotoWidgetLayout->addWidget(waittingPatientsAndBlackAreaWindow);
+    this->patientsPhotoWidgetLayout->addWidget(leftSelectButton);
+    this->patientsPhotoWidgetLayout->addWidget(currentPatient);
+    this->patientsPhotoWidgetLayout->addWidget(rightSelectButton);
+    this->patientsPhotoWidgetLayout->setSpacing(0);
+    this->patientsPhotoWidgetLayout->setMargin(0);
 
     //!--------------------------------------------------------------------------------------
     //!the information of the current patient
@@ -90,10 +138,13 @@ void PatientsWidget::constructIHM(){
     //!--------------------------------------------------------------------------------------
     //!this area will put something else
     //!--------------------------------------------------------------------------------------
-    this->somethingelse->setFixedHeight(550);
+    this->somethingelse = new QWidget();
+    this->somethingelse->setFixedHeight(this->appHeight*0.509);
+    this->somethingelse->setStyleSheet("background-color:yellow");
 
     this->controlBar = new QWidget();
-    this->controlBar->setFixedHeight(30);
+    this->controlBar->setFixedHeight(this->appHeight*0.025);
+    this->controlBar->setStyleSheet("background-color:green");
 
     //!--------------------------------------------------------------------------------------
     //!the total information of patient and doctors
@@ -129,7 +180,7 @@ void PatientsWidget::constructIHM(){
 //! \brief PatientsWidget::addPatientToListWidget
 //! \param patients
 //!
-void PatientsWidget::addPatientToListWidget(QString name, QString path){
+void PatientsWidget::addPatientToWidget(QString name, QString path){
 
     QListWidgetItem *patientItem = new QListWidgetItem();
     qDebug()<<path;
@@ -138,5 +189,4 @@ void PatientsWidget::addPatientToListWidget(QString name, QString path){
     patientItem->setText(name);
     patientItem->setTextAlignment(Qt::AlignBottom);
 
-    this->waittingPatients->addItem(patientItem);
 }
