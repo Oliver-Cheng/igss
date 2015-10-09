@@ -8,8 +8,8 @@ int main(int argc, char *argv[]){
 
     QApplication analyser(argc, argv);
     //analyser.setStyle("cleanlooks");
-    analyser.setOrganizationName("Chinese Acdemic of Science -- SIAT");
-    analyser.setApplicationName("InterventionalTherapyAnalyser");
+    analyser.setOrganizationName("CAS -- SIAT");
+    analyser.setApplicationName("igss");
     analyser.setWindowIcon(QIcon(":/images/icon.png"));
 
     SystemDataBase*   database       = new SystemDataBase();

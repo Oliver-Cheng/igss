@@ -46,6 +46,7 @@ void SystemDispatcher::initializeSystemPaths(){
 
     if(username != "unknown") {
         //! define the software's deault path according to the os type
+
         #ifdef linux
         workspace_path = "/home/" + username + "/Documents/CanalyserWorkspace/";
         patients_path = workspace_path + "PatientsDataware/";
@@ -56,6 +57,11 @@ void SystemDispatcher::initializeSystemPaths(){
         patients_path = workspace_path + "PatientsDataware\\";
         metadata_path = workspace_path + "CanalyserMetadata\\";
         image_center_path = workspace_path + "CanalyserImageCenter\\";
+        #elif __APPLE__
+        workspace_path = "/Users/" + username + "/Documents/CanalyserWorkspace/";
+        patients_path = workspace_path + "PatientsDataware/";
+        metadata_path = workspace_path + "CanalyserMetadata/";
+        image_center_path = workspace_path + "CanalyserImageCenter/";
         #endif
     }
     else{
@@ -63,7 +69,10 @@ void SystemDispatcher::initializeSystemPaths(){
         return;
     }
 
+    qDebug()<<workspace_path;
+
     QFileInfo folder(workspace_path);
+
     if(!folder.isDir()){
         QDir path;
         path.mkdir(workspace_path);

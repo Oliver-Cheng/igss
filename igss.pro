@@ -36,7 +36,6 @@ SOURCES +=  main.cpp\
             SystemDataWare/SystemDataBase.cpp \
             SystemDataWare/IgssImage.cpp \
             ImageProcessingMethods/igssGeneralLib/IgssVtkImageConverter.cpp \
-            ImageProcessingMethods/igssGeneralLib/IgssItkImageConverter.cpp \
             SystemDataWare/CenterLinePoint.cpp \
             GUIs/IgssMainWindow.cpp \
             SystemDataWare/Patients.cpp \
@@ -59,7 +58,6 @@ HEADERS  += \
             SystemDataWare/SystemDataBase.h \
             SystemDataWare/IgssImage.h \
             ImageProcessingMethods/igssGeneralLib/IgssVtkImageConverter.h \
-            ImageProcessingMethods/igssGeneralLib/IgssItkImageConverter.h \
             SystemDataWare/CenterLinePoint.h \
             GUIs/IgssMainWindow.h \
             SystemDataWare/Patients.h \
@@ -204,6 +202,12 @@ win32:LIBS += $$quote(C:\Program Files\VTK\lib\vtkzlib-6.2.lib)
 
 win32:INCLUDEPATH += "C:\Program Files\ITK\include\ITK-4.7"
 unix:INCLUDEPATH += "/usr/local/include/ITK-4.7"
+macx: INCLUDEPATH += $$PWD/../../../../../usr/local/include/ITK-4.7
+macx: DEPENDPATH += $$PWD/../../../../../usr/local/include/ITK-4.7
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../../Program Files/ITK/lib/ -lITKBiasCorrection-4.7 -lITKBioCell-4.7 -lITKCommon -lITKDICOMParser-4.7 -litkdouble-conversion-4.7 -lITKEXPAT-4.7 -lITKFEM-4.7 -litkgdcmCommon-4.7 -litkgdcmDICT-4.7 -litkgdcmDSED-4.7 -litkgdcmIOD-4.7 -litkgdcmjpeg8-4.7 -litkgdcmjpeg12-4.7 -litkgdcmjpeg16-4.7 -litkgdcmMSFF-4.7 -lITKgiftiio-4.7 -litkhdf5_cpp-4.7 -litkhdf5-4.7 -lITKIOBioRad-4.7 -lITKIOBMP-4.7 -lITKIOCSV-4.7 -lITKIOGDCM-4.7 -lITKIOGE-4.7 -lITKIOGIPL-4.7 -lITKIOHDF5-4.7 -lITKIOImageBase-4.7 -lITKIOIPL-4.7 -lITKIOJPEG-4.7 -lITKIOLSM-4.7 -lITKIOMesh-4.7 -lITKIOMeta-4.7 -lITKIOMRC-4.7 -lITKIONIFTI-4.7 -lITKIONRRD-4.7 -lITKIOPNG-4.7 -lITKIOSiemens-4.7 -lITKIOSpatialObjects-4.7 -lITKIOStimulate-4.7 -lITKIOTIFF-4.7 -lITKIOTransformBase-4.7 -lITKIOTransformHDF5-4.7 -lITKIOTransformInsightLegacy-4.7 -lITKIOTransformMatlab-4.7 -lITKIOVTK-4.7 -lITKIOXML-4.7 -litkjpeg-4.7 -lITKKLMRegionGrowing-4.7 -lITKLabelMap-4.7 -lITKMesh-4.7 -lITKMetaIO-4.7 -litkNetlibSlatec-4.7 -lITKniftiio-4.7 -lITKNrrdIO-4.7 -litkopenjpeg-4.7 -lITKOptimizers-4.7 -lITKOptimizersv4-4.7 -lITKPath-4.7 -litkpng-4.7 -lITKPolynomials-4.7 -lITKQuadEdgeMesh-4.7 -lITKSpatialObjects-4.7 -lITKStatistics-4.7 -litksys-4.7 -litktiff-4.7 -litkv3p_lsqr-4.7 -litkv3p_netlib-4.7 -litkvcl-4.7 -lITKVideoCore-4.7 -lITKVideoIO-4.7 -litkvnl_algo-4.7 -litkvnl-4.7 -lITKVNLInstantiation-4.7 -lITKVTK-4.7 -lITKWatersheds-4.7 -litkzlib-4.7 -lITKznz-4.7
 unix: LIBS += -L$$PWD/usr/local/lib/ -lITKBiasCorrection-4.7 -lITKBioCell-4.7 -lITKCommon-4.7 -lITKDICOMParser-4.7 -litkdouble-conversion-4.7 -lITKEXPAT-4.7 -lITKFEM-4.7 -litkgdcmCommon-4.7 -litkgdcmDICT-4.7 -litkgdcmDSED-4.7 -litkgdcmIOD-4.7 -litkgdcmjpeg8-4.7 -litkgdcmjpeg12-4.7 -litkgdcmjpeg16-4.7 -litkgdcmMSFF-4.7 -lITKgiftiio-4.7 -litkhdf5_cpp-4.7 -litkhdf5-4.7 -lITKIOBioRad-4.7 -lITKIOBMP-4.7 -lITKIOCSV-4.7 -lITKIOGDCM-4.7 -lITKIOGE-4.7 -lITKIOGIPL-4.7 -lITKIOHDF5-4.7 -lITKIOImageBase-4.7 -lITKIOIPL-4.7 -lITKIOJPEG-4.7 -lITKIOLSM-4.7 -lITKIOMesh-4.7 -lITKIOMeta-4.7 -lITKIOMRC-4.7 -lITKIONIFTI-4.7 -lITKIONRRD-4.7 -lITKIOPNG-4.7 -lITKIOSiemens-4.7 -lITKIOSpatialObjects-4.7 -lITKIOStimulate-4.7 -lITKIOTIFF-4.7 -lITKIOTransformBase-4.7 -lITKIOTransformHDF5-4.7 -lITKIOTransformInsightLegacy-4.7 -lITKIOTransformMatlab-4.7 -lITKIOVTK-4.7 -lITKIOXML-4.7 -litkjpeg-4.7 -lITKKLMRegionGrowing-4.7 -lITKLabelMap-4.7 -lITKMesh-4.7 -lITKMetaIO-4.7 -litkNetlibSlatec-4.7 -lITKniftiio-4.7 -lITKNrrdIO-4.7 -litkopenjpeg-4.7 -lITKOptimizers-4.7 -lITKOptimizersv4-4.7 -lITKPath-4.7 -litkpng-4.7 -lITKPolynomials-4.7 -lITKQuadEdgeMesh-4.7 -lITKSpatialObjects-4.7 -lITKStatistics-4.7 -litksys-4.7 -litktiff-4.7 -litkv3p_lsqr-4.7 -litkv3p_netlib-4.7 -litkvcl-4.7 -lITKVideoCore-4.7 -lITKVideoIO-4.7 -litkvnl_algo-4.7 -litkvnl-4.7 -lITKVNLInstantiation-4.7 -lITKVTK-4.7 -lITKWatersheds-4.7 -litkzlib-4.7 -lITKznz-4.7
+macx: LIBS += -L$$PWD/../../../../../usr/local/lib/ -lITKBiasCorrection-4.7 -lITKBioCell-4.7 -lITKCommon-4.7 -lITKDICOMParser-4.7 -litkdouble-conversion-4.7 -lITKEXPAT-4.7 -lITKFEM-4.7 -litkgdcmCommon-4.7 -litkgdcmDICT-4.7 -litkgdcmDSED-4.7 -litkgdcmIOD-4.7 -litkgdcmjpeg8-4.7 -litkgdcmjpeg12-4.7 -litkgdcmjpeg16-4.7 -litkgdcmMSFF-4.7 -lITKgiftiio-4.7 -litkhdf5_cpp-4.7 -litkhdf5-4.7 -lITKIOBioRad-4.7 -lITKIOBMP-4.7 -lITKIOCSV-4.7 -lITKIOGDCM-4.7 -lITKIOGE-4.7 -lITKIOGIPL-4.7 -lITKIOHDF5-4.7 -lITKIOImageBase-4.7 -lITKIOIPL-4.7 -lITKIOJPEG-4.7 -lITKIOLSM-4.7 -lITKIOMesh-4.7 -lITKIOMeta-4.7 -lITKIOMRC-4.7 -lITKIONIFTI-4.7 -lITKIONRRD-4.7 -lITKIOPNG-4.7 -lITKIOSiemens-4.7 -lITKIOSpatialObjects-4.7 -lITKIOStimulate-4.7 -lITKIOTIFF-4.7 -lITKIOTransformBase-4.7 -lITKIOTransformHDF5-4.7 -lITKIOTransformInsightLegacy-4.7 -lITKIOTransformMatlab-4.7 -lITKIOVTK-4.7 -lITKIOXML-4.7 -litkjpeg-4.7 -lITKKLMRegionGrowing-4.7 -lITKLabelMap-4.7 -lITKMesh-4.7 -lITKMetaIO-4.7 -litkNetlibSlatec-4.7 -lITKniftiio-4.7 -lITKNrrdIO-4.7 -litkopenjpeg-4.7 -lITKOptimizers-4.7 -lITKOptimizersv4-4.7 -lITKPath-4.7 -litkpng-4.7 -lITKPolynomials-4.7 -lITKQuadEdgeMesh-4.7 -lITKSpatialObjects-4.7 -lITKStatistics-4.7 -litksys-4.7 -litktiff-4.7 -litkv3p_lsqr-4.7 -litkv3p_netlib-4.7 -litkvcl-4.7 -lITKVideoCore-4.7 -lITKVideoIO-4.7 -litkvnl_algo-4.7 -litkvnl-4.7 -lITKVNLInstantiation-4.7 -lITKVTK-4.7 -lITKWatersheds-4.7 -litkzlib-4.7 -lITKznz-4.7
+
+#INCLUDEPATH += $$PWD/../../../../../usr/local/include/ITK-4.7
+#DEPENDPATH += $$PWD/../../../../../usr/local/include/ITK-4.7

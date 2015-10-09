@@ -19,7 +19,7 @@ PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher,
 //!
 void PatientsWidget::findPatientExisted(){
     int numberOfPatient = this->dispatcher->findPatientExisted();
-
+    algorithmTestPlatform->setSystemStatus(QString::number(numberOfPatient));
 //    for(int cpt = 0; cpt < numberOfPatient; cpt++){
 //        addPatientToWidget(this->dispatcher->getPatientById(cpt)->getName(),
 //                            skyblue   this->dispatcher->getPatientById(cpt)->getPhotoPath());

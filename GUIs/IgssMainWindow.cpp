@@ -51,15 +51,16 @@ void IgssMainWindow::constructIHM(){
     //! controlBoard:
     //!------------------------------------------------------------------------------------------
     controlBoard = new QWidget();
+    controlBoard->setFixedWidth(this->primary_screen_width*0.024);
     closeButton = new QPushButton();
     closeButton->setIcon(QIcon(":/images/close.png"));
-    closeButton->setIconSize(QSize(this->primary_screen_width*0.014,this->primary_screen_width*0.014));
+    closeButton->setIconSize(QSize(this->primary_screen_width*0.024,this->primary_screen_width*0.024));
     closeButton->setStyleSheet("background-color:transparent");
 
-    closeButton->setFixedSize(this->primary_screen_width*0.013,
-                              this->primary_screen_width*0.013);
+    closeButton->setFixedSize(this->primary_screen_width*0.023, this->primary_screen_width*0.023);
 
     controlArea = new QWidget();
+    //controlArea->setStyleSheet("background-color:red");
     controlBoardLayout = new QVBoxLayout(controlBoard);
     controlBoardLayout->addWidget(closeButton);
     controlBoardLayout->addWidget(controlArea);
