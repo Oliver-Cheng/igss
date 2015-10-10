@@ -21,8 +21,8 @@ PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher,
 //! \brief PatientsWidget::findPatientExisted
 //!
 void PatientsWidget::findPatientExisted(){
-    int numberOfPatient = this->dispatcher->findPatientExisted();
-    algorithmTestPlatform->setSystemStatus(QString::number(numberOfPatient));
+//    int numberOfPatient = this->dispatcher->findPatientExisted();
+//    algorithmTestPlatform->setSystemStatus(QString::number(numberOfPatient));
 //    for(int cpt = 0; cpt < numberOfPatient; cpt++){
 //        addPatientToWidget(this->dispatcher->getPatientById(cpt)->getName(),
 //                            skyblue   this->dispatcher->getPatientById(cpt)->getPhotoPath());
@@ -145,9 +145,68 @@ void PatientsWidget::constructIHM(){
     //!--------------------------------------------------------------------------------------
     //!the information of the current patient
     //!--------------------------------------------------------------------------------------
+
+
+    this->nameLabel = new QLabel("Name:");
+    this->birthdayLabel = new QLabel("Birth:");
+    this->sexualLabel = new QLabel("Sex:");
+    this->idNumberLabel = new QLabel("ID:");
+    this->nameLineEdit = new QLineEdit();
+    this->nameLineEdit->setFont(QFont("Segoe UI", 8, QFont::AnyStyle, true));
+    this->nameLineEdit->setStyleSheet("QLineEdit {border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background: transparent;selection-background-color: skyblue;}");
+    this->birthdayLineEdit = new QLineEdit();
+    this->birthdayLineEdit->setFont(QFont("Segoe UI", 8, QFont::AnyStyle, true));
+    this->birthdayLineEdit->setStyleSheet("QLineEdit {border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background: transparent;selection-background-color: skyblue;}");
+    this->sexualLineEdit = new QLineEdit();
+    this->sexualLineEdit->setFont(QFont("Segoe UI", 8, QFont::AnyStyle, true));
+    this->sexualLineEdit->setStyleSheet("QLineEdit {border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background: transparent;selection-background-color: skyblue;}");
+    this->idNumberEdit = new QLineEdit();
+    this->idNumberEdit->setFont(QFont("Segoe UI", 8, QFont::AnyStyle, true));
+    this->idNumberEdit->setStyleSheet("QLineEdit {border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background: transparent;selection-background-color: skyblue;}");
+    this->patientInfoContainer = new QWidget();
+    this->patientInfoContainerLayout = new QGridLayout(patientInfoContainer);
+    this->patientInfoContainerLayout->addWidget(nameLabel, 0, 0);
+    this->patientInfoContainerLayout->addWidget(birthdayLabel, 1, 0);
+    this->patientInfoContainerLayout->addWidget(sexualLabel, 2, 0);
+    this->patientInfoContainerLayout->addWidget(idNumberLabel, 3, 0);
+    this->patientInfoContainerLayout->addWidget(nameLineEdit, 0, 1);
+    this->patientInfoContainerLayout->addWidget(birthdayLineEdit, 1, 1);
+    this->patientInfoContainerLayout->addWidget(sexualLineEdit, 2, 1);
+    this->patientInfoContainerLayout->addWidget(idNumberEdit, 3, 1);
+    this->patientInfoContainerLayout->setSpacing(1);
+
+    this->leadDoctorLabel = new QLabel("Doctor:");
+    this->therapyTimeLabel = new QLabel("Time:");
+    this->leadDoctorEdit = new QLineEdit();
+    this->leadDoctorEdit->setFont(QFont("Segoe UI", 9, QFont::AnyStyle, false));
+    this->leadDoctorEdit->setStyleSheet("QLineEdit {border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background: transparent;selection-background-color: skyblue;}");
+    this->therapyTimeEdit = new QLineEdit();
+    this->therapyTimeEdit->setFont(QFont("Segoe UI", 9, QFont::AnyStyle, false));
+    this->therapyTimeEdit->setStyleSheet("QLineEdit {border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background: transparent;selection-background-color: skyblue;}");
+    this->doctorInfoContainer = new QWidget();
+    this->doctorInfoContainerLayout = new QGridLayout(doctorInfoContainer);
+    this->doctorInfoContainerLayout->addWidget(leadDoctorLabel, 0, 0);
+    this->doctorInfoContainerLayout->addWidget(therapyTimeLabel, 1, 0);
+    this->doctorInfoContainerLayout->addWidget(leadDoctorEdit, 0, 1);
+    this->doctorInfoContainerLayout->addWidget(therapyTimeEdit, 1, 1);
+
+    this->commentTextEdit = new QTextEdit();
+
+    this->doctorComment = new QWidget();
+    this->doctorCommentLayout = new QVBoxLayout(doctorComment);
+    this->doctorCommentLayout->addWidget(doctorInfoContainer);
+    this->doctorCommentLayout->addWidget(commentTextEdit);
+    this->doctorCommentLayout->setSpacing(0);
+    this->doctorCommentLayout->setMargin(0);
+
     this->personalInformation = new QWidget();
     this->personalInformation->setFixedWidth(this->appWidth*0.857*0.4);
-    this->personalInformation->setStyleSheet("background-color:red");
+    this->personalInformation->setStyleSheet("background-color:green");
+    this->personalInformationLayout = new QHBoxLayout(personalInformation);
+    this->personalInformationLayout->addWidget(patientInfoContainer);
+    this->personalInformationLayout->addWidget(doctorComment);
+    this->personalInformationLayout->setSpacing(0);
+    this->personalInformationLayout->setMargin(0);
 
     //!--------------------------------------------------------------------------------------
     //!the interface of the introduction about patients
@@ -172,7 +231,7 @@ void PatientsWidget::constructIHM(){
 
     this->cdRomParseButton =  new QPushButton();
     this->cdRomParseButton->setIcon(QIcon(":/images/close.png"));
-    this->cdRomParseButton->setIconSize(QSize(this->appWidth*0.020,this->appWidth*0.020));
+    this->cdRomParseButton->setIconSize(QSize(this->appWidth*0.015,this->appWidth*0.015));
     this->cdRomParseButton->setStyleSheet("background-color:transparent");
     this->cdRomParseButton->setFixedSize(this->appWidth*0.023, this->appWidth*0.023);
 

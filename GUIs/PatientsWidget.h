@@ -10,6 +10,8 @@
 #include <QTextEdit>
 #include <AlgorithmTestPlatform.h>
 #include <QPushButton>
+#include <QLabel>
+#include <QLineEdit>
 #include "DicomCDRomReader.h"
 
 class PatientsWidget : public QWidget
@@ -35,6 +37,10 @@ private:
     QVBoxLayout* waittingPatientsAndBlackAreaWindowLayout;
     QHBoxLayout* waittingPatientPhotoesLayout;
     QHBoxLayout* controlBarLayout;
+    QHBoxLayout* personalInformationLayout;
+    QGridLayout* patientInfoContainerLayout;
+    QVBoxLayout* doctorCommentLayout;
+    QGridLayout* doctorInfoContainerLayout;
 
     QWidget* controlBar;
     QWidget* patientsIntroduction;
@@ -53,6 +59,25 @@ private:
     QWidget* thirdPatientPhoto;
     QWidget* fourthPatientPhoto;
     QWidget* fifthPatientPhoto;
+    QWidget* patientInfoContainer;
+    QWidget* doctorComment;
+    QWidget* doctorInfoContainer;
+
+    QTextEdit* commentTextEdit;
+
+    QLabel* nameLabel;
+    QLabel* birthdayLabel;
+    QLabel* sexualLabel;
+    QLabel* idNumberLabel;
+    QLabel* leadDoctorLabel;
+    QLabel* therapyTimeLabel;
+
+    QLineEdit* nameLineEdit;
+    QLineEdit* birthdayLineEdit;
+    QLineEdit* sexualLineEdit;
+    QLineEdit* idNumberEdit;
+    QLineEdit* leadDoctorEdit;
+    QLineEdit* therapyTimeEdit;
 
     QWidget* waittingPatientsAndBlackAreaWindow;
 
