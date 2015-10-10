@@ -19,9 +19,12 @@ class PatientsWidget : public QWidget
     Q_OBJECT
 public:
     PatientsWidget(SystemDispatcher* dispatcher,
-                            AlgorithmTestPlatform *algorithmTestPlatform,
-                            int appWidth,
-                            int appHeight);
+                   AlgorithmTestPlatform *algorithmTestPlatform,
+                   QFont *caracterStyle,
+                   int appWidth,
+                   int appHeight);
+
+    void initVariable();
     void constructIHM();
     void findPatientExisted();
     void setConnections();
@@ -38,9 +41,9 @@ private:
     QHBoxLayout* waittingPatientPhotoesLayout;
     QHBoxLayout* controlBarLayout;
     QHBoxLayout* personalInformationLayout;
-    QGridLayout* patientInfoContainerLayout;
-    QVBoxLayout* doctorCommentLayout;
+    QGridLayout* patientInfoContainerLayout;  
     QGridLayout* doctorInfoContainerLayout;
+    QVBoxLayout* doctorCommentLayout;
 
     QWidget* controlBar;
     QWidget* patientsIntroduction;
@@ -79,6 +82,8 @@ private:
     QLineEdit* leadDoctorEdit;
     QLineEdit* therapyTimeEdit;
 
+    QFont *caracterStyle;
+
     QWidget* waittingPatientsAndBlackAreaWindow;
 
     QPushButton* leftSelectButton;
@@ -88,11 +93,14 @@ private:
     AlgorithmTestPlatform *algorithmTestPlatform;
 
     QSpacerItem* controlBarSpacer;
+    QSpacerItem* patientInfoContainerSpacer;
 
     DicomCDRomReader *dicomCDRomReader;
 
     int appWidth;
     int appHeight;
+
+    QString labelStyleSheet;
 
 signals:
 

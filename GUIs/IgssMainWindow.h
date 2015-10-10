@@ -58,6 +58,8 @@ public:
     void drawBackground();
 
 private:
+    QFont *englishCaracterStyle;
+
     QPixmap *pixmap;
     QDesktopWidget *desktop;
 

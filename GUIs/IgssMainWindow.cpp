@@ -10,7 +10,7 @@ IgssMainWindow::IgssMainWindow(SystemDispatcher* dispatcher): QWidget(){
     this->initVariable();
     this->constructIHM();
     this->setConnections();
-    //this->drawBackground();
+    this->drawBackground();
 }
 
 void IgssMainWindow::constructIHM(){
@@ -19,6 +19,7 @@ void IgssMainWindow::constructIHM(){
     //! status bar area
     //!----------------------------------------------------------------------------------------------------
     algorithmTestPlatform = new AlgorithmTestPlatform(this->dispatcher,
+                                                      this->englishCaracterStyle,
                                                       this->primary_screen_width,
                                                       this->primary_screen_height);
 
@@ -34,6 +35,7 @@ void IgssMainWindow::constructIHM(){
     //!------------------------------------------------------------------------------------------
     patientsWidget = new PatientsWidget(this->dispatcher,
                                         this->algorithmTestPlatform,
+                                        this->englishCaracterStyle,
                                         this->primary_screen_width,
                                         this->primary_screen_height);
 
@@ -54,7 +56,7 @@ void IgssMainWindow::constructIHM(){
     controlBoard->setFixedWidth(this->primary_screen_width*0.024);
     closeButton = new QPushButton();
     closeButton->setIcon(QIcon(":/images/close.png"));
-    closeButton->setIconSize(QSize(this->primary_screen_width*0.020,this->primary_screen_width*0.020));
+    closeButton->setIconSize(QSize(this->primary_screen_width*0.018,this->primary_screen_width*0.018));
     closeButton->setStyleSheet("background-color:transparent");
 
     closeButton->setFixedSize(this->primary_screen_width*0.023, this->primary_screen_width*0.023);
@@ -84,7 +86,7 @@ void IgssMainWindow::constructIHM(){
     igssMainWindowLayout =  new QVBoxLayout(this);
     igssMainWindowLayout->addWidget(mainPlatform);
     igssMainWindowLayout->addWidget(algorithmTestPlatform);
-    igssMainWindowLayout->setSpacing(0);
+    igssMainWindowLayout->setSpacing(2);
     igssMainWindowLayout->setMargin(0);
 }
 
@@ -100,7 +102,7 @@ void IgssMainWindow::findPatientExisted(){
 //! \brief AnalyserMainWindow::drawBackground
 //!
 void IgssMainWindow::drawBackground(){
-    pixmap = new QPixmap(":/images/background_darkBlue.png");
+    pixmap = new QPixmap(":/images/background.png");
     QPalette p =  this->palette();
 
     p.setBrush(QPalette::Background, QBrush(pixmap->scaled(QSize(this->primary_screen_width, this->primary_screen_height), Qt::IgnoreAspectRatio, Qt::SmoothTransformation)));
@@ -130,6 +132,8 @@ void IgssMainWindow::initVariable(){
                        "QTabBar::tab:!selected {margin-top: 1px; /* make non-selected tabs look smaller */}"\
                        "QTabBar::close-button{border-image: url(:/no.png)}" \
                        "QTabBar::close-button:hover {border-image: url(:/images/close-hover.png)}";
+
+    this->englishCaracterStyle = new QFont("Times",8,QFont::AnyStyle, false);
 }
 
 //!----------------------------------------------------------------------------------------

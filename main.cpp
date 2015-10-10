@@ -8,7 +8,7 @@ int main(int argc, char *argv[]){
 
     QApplication analyser(argc, argv);
     //analyser.setStyle("cleanlooks");
-    analyser.setOrganizationName("CAS -- SIAT");
+    analyser.setOrganizationName("CAS - SIAT");
     analyser.setApplicationName("igss");
     analyser.setWindowIcon(QIcon(":/images/icon.png"));
 

@@ -2,18 +2,24 @@
 
 PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher,
                                AlgorithmTestPlatform *algorithmTestPlatform,
+                               QFont *caracterStyle,
                                int appWidth,
-                               int appHeight): QWidget(){
+                               int appHeight) : QWidget(){
 
     this->dispatcher = dispatcher;
     this->algorithmTestPlatform = algorithmTestPlatform;
+    this->caracterStyle = caracterStyle;
     this->appWidth = appWidth;
     this->appHeight = appHeight;
 
-    dicomCDRomReader = new DicomCDRomReader();
-
+    this->initVariable();
     this->constructIHM();
     this->setConnections();
+}
+
+void PatientsWidget::initVariable(){
+    this->dicomCDRomReader = new DicomCDRomReader();
+    this->labelStyleSheet = "border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background-color: transparent; color: AliceBlue";
 }
 
 //!----------------------------------------------------------------------------------------------------
@@ -59,9 +65,7 @@ void PatientsWidget::constructIHM(){
 
     this->patientsIntroduction = new QWidget();
 
-
     this->waittingPatientsAndBlackAreaWindow = new QWidget();
-    //this->waittingPatientsWindow->setViewMode(QListWidget::IconMode);
 
     this->upBlackArea = new QWidget();
     this->upBlackArea->setFixedHeight(this->appHeight*0.185*0.2);
@@ -120,7 +124,7 @@ void PatientsWidget::constructIHM(){
     //!--------------------------------------------------------------------------------------
     this->currentPatient = new QWidget();
     this->currentPatient->setFixedWidth(this->appWidth*0.857*0.15);
-    this->currentPatient->setStyleSheet("background-color:blue");
+    //this->currentPatient->setStyleSheet("background-color:blue");
 
     //!--------------------------------------------------------------------------------------
     //!the right select button
@@ -148,21 +152,39 @@ void PatientsWidget::constructIHM(){
 
 
     this->nameLabel = new QLabel("Name:");
+    this->nameLabel->setFont(*this->caracterStyle);
+    this->nameLabel->setStyleSheet(this->labelStyleSheet);
+
     this->birthdayLabel = new QLabel("Birth:");
+    this->birthdayLabel->setFont(*this->caracterStyle);
+    this->birthdayLabel->setStyleSheet(this->labelStyleSheet);
+
     this->sexualLabel = new QLabel("Sex:");
+    this->sexualLabel->setFont(*this->caracterStyle);
+    this->sexualLabel->setStyleSheet(this->labelStyleSheet);
+
     this->idNumberLabel = new QLabel("ID:");
+    this->idNumberLabel->setFont(*this->caracterStyle);
+    this->idNumberLabel->setStyleSheet(this->labelStyleSheet);
+
     this->nameLineEdit = new QLineEdit();
-    this->nameLineEdit->setFont(QFont("Segoe UI", 8, QFont::AnyStyle, true));
-    this->nameLineEdit->setStyleSheet("QLineEdit {border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background: transparent;selection-background-color: skyblue;}");
+    this->nameLineEdit->setFont(*this->caracterStyle);
+    this->nameLineEdit->setStyleSheet(this->labelStyleSheet);
+
     this->birthdayLineEdit = new QLineEdit();
-    this->birthdayLineEdit->setFont(QFont("Segoe UI", 8, QFont::AnyStyle, true));
-    this->birthdayLineEdit->setStyleSheet("QLineEdit {border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background: transparent;selection-background-color: skyblue;}");
+    this->birthdayLineEdit->setFont(*this->caracterStyle);
+    this->birthdayLineEdit->setStyleSheet(this->labelStyleSheet);
+
     this->sexualLineEdit = new QLineEdit();
-    this->sexualLineEdit->setFont(QFont("Segoe UI", 8, QFont::AnyStyle, true));
-    this->sexualLineEdit->setStyleSheet("QLineEdit {border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background: transparent;selection-background-color: skyblue;}");
+    this->sexualLineEdit->setFont(*this->caracterStyle);
+    this->sexualLineEdit->setStyleSheet(this->labelStyleSheet);
+
     this->idNumberEdit = new QLineEdit();
-    this->idNumberEdit->setFont(QFont("Segoe UI", 8, QFont::AnyStyle, true));
-    this->idNumberEdit->setStyleSheet("QLineEdit {border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background: transparent;selection-background-color: skyblue;}");
+    this->idNumberEdit->setFont(*this->caracterStyle);
+    this->idNumberEdit->setStyleSheet(this->labelStyleSheet);
+
+    patientInfoContainerSpacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
+
     this->patientInfoContainer = new QWidget();
     this->patientInfoContainerLayout = new QGridLayout(patientInfoContainer);
     this->patientInfoContainerLayout->addWidget(nameLabel, 0, 0);
@@ -173,39 +195,54 @@ void PatientsWidget::constructIHM(){
     this->patientInfoContainerLayout->addWidget(birthdayLineEdit, 1, 1);
     this->patientInfoContainerLayout->addWidget(sexualLineEdit, 2, 1);
     this->patientInfoContainerLayout->addWidget(idNumberEdit, 3, 1);
-    this->patientInfoContainerLayout->setSpacing(1);
+    this->patientInfoContainerLayout->addItem(patientInfoContainerSpacer, 4, 0);
+
+    this->patientInfoContainerLayout->setSpacing(2);
+    this->patientInfoContainerLayout->setMargin(0);
 
     this->leadDoctorLabel = new QLabel("Doctor:");
+    this->leadDoctorLabel->setFont(*this->caracterStyle);
+    this->leadDoctorLabel->setStyleSheet(this->labelStyleSheet);
+
     this->therapyTimeLabel = new QLabel("Time:");
+    this->therapyTimeLabel->setFont(*this->caracterStyle);
+    this->therapyTimeLabel->setStyleSheet(this->labelStyleSheet);
+
     this->leadDoctorEdit = new QLineEdit();
-    this->leadDoctorEdit->setFont(QFont("Segoe UI", 9, QFont::AnyStyle, false));
-    this->leadDoctorEdit->setStyleSheet("QLineEdit {border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background: transparent;selection-background-color: skyblue;}");
+    this->leadDoctorEdit->setFont(*this->caracterStyle);
+    this->leadDoctorEdit->setStyleSheet(this->labelStyleSheet);
+
     this->therapyTimeEdit = new QLineEdit();
-    this->therapyTimeEdit->setFont(QFont("Segoe UI", 9, QFont::AnyStyle, false));
-    this->therapyTimeEdit->setStyleSheet("QLineEdit {border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background: transparent;selection-background-color: skyblue;}");
+    this->therapyTimeEdit->setFont(*this->caracterStyle);
+    this->therapyTimeEdit->setStyleSheet(this->labelStyleSheet);
+
     this->doctorInfoContainer = new QWidget();
     this->doctorInfoContainerLayout = new QGridLayout(doctorInfoContainer);
     this->doctorInfoContainerLayout->addWidget(leadDoctorLabel, 0, 0);
     this->doctorInfoContainerLayout->addWidget(therapyTimeLabel, 1, 0);
     this->doctorInfoContainerLayout->addWidget(leadDoctorEdit, 0, 1);
     this->doctorInfoContainerLayout->addWidget(therapyTimeEdit, 1, 1);
+    this->doctorInfoContainerLayout->setSpacing(2);
+    this->doctorInfoContainerLayout->setMargin(0);
 
     this->commentTextEdit = new QTextEdit();
+    this->commentTextEdit->setFont(*this->caracterStyle);
+    this->commentTextEdit->setStyleSheet(this->labelStyleSheet);
 
     this->doctorComment = new QWidget();
     this->doctorCommentLayout = new QVBoxLayout(doctorComment);
     this->doctorCommentLayout->addWidget(doctorInfoContainer);
     this->doctorCommentLayout->addWidget(commentTextEdit);
-    this->doctorCommentLayout->setSpacing(0);
+    this->doctorCommentLayout->setSpacing(2);
     this->doctorCommentLayout->setMargin(0);
 
     this->personalInformation = new QWidget();
     this->personalInformation->setFixedWidth(this->appWidth*0.857*0.4);
-    this->personalInformation->setStyleSheet("background-color:green");
+
     this->personalInformationLayout = new QHBoxLayout(personalInformation);
     this->personalInformationLayout->addWidget(patientInfoContainer);
     this->personalInformationLayout->addWidget(doctorComment);
-    this->personalInformationLayout->setSpacing(0);
+    this->personalInformationLayout->setSpacing(2);
     this->personalInformationLayout->setMargin(0);
 
     //!--------------------------------------------------------------------------------------
@@ -214,7 +251,7 @@ void PatientsWidget::constructIHM(){
     this->patientsIntroductionLayout = new QHBoxLayout(this->patientsIntroduction);
     this->patientsIntroductionLayout->addWidget(patientsPhotoWidget);
     this->patientsIntroductionLayout->addWidget(personalInformation);
-    this->patientsIntroductionLayout->setSpacing(0);
+    this->patientsIntroductionLayout->setSpacing(2);
     this->patientsIntroductionLayout->setMargin(0);
 
     //!--------------------------------------------------------------------------------------
@@ -222,7 +259,6 @@ void PatientsWidget::constructIHM(){
     //!--------------------------------------------------------------------------------------
     this->somethingelse = new QWidget();
     this->somethingelse->setFixedHeight(this->appHeight*0.509);
-    this->somethingelse->setStyleSheet("background-color:yellow");
 
     this->controlBar = new QWidget();
     this->controlBar->setFixedHeight(this->appHeight*0.030);

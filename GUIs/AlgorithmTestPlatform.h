@@ -6,13 +6,15 @@
 #include <QVBoxLayout>
 #include <QTextEdit>
 #include <QLineEdit>
+#include <QFont>
 #include <SystemDispatcher.h>
+
 
 class AlgorithmTestPlatform : public QWidget
 {
     Q_OBJECT
 public:
-    explicit AlgorithmTestPlatform(SystemDispatcher* dispatcher, int appWidth, int appHeight);
+    explicit AlgorithmTestPlatform(SystemDispatcher* dispatcher, QFont *caracterStyle, int appWidth, int appHeight);
 
     void setSystemStatus(QString status);
     void getPatientsStatus();
@@ -30,6 +32,8 @@ private:
     QTextEdit* systemStatus;
     QLineEdit* systemCommand;
     SystemDispatcher* dispatcher;
+
+    QFont* caracterStyle;
 
     int appWidth;
     int appHeight;
