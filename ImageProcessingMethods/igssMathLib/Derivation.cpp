@@ -1,7 +1,7 @@
 #include "Derivation.h"
 #include <math.h>
 #include <QDebug>
-
+#define M_PI       3.14159265358979323846
 Derivation::Derivation(){
 
 }
