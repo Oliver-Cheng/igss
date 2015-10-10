@@ -5,7 +5,6 @@
         Author    : Cheng WANG
 """
 import sys,os
-import PyQt4
 
 extens = [".cpp",".h"]
 linesCount = 0

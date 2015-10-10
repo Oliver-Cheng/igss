@@ -13,13 +13,15 @@
 
 class PatientsWidget : public QWidget
 {
+    Q_OBJECT
 public:
-    explicit PatientsWidget(SystemDispatcher* dispatcher,
+    PatientsWidget(SystemDispatcher* dispatcher,
                             AlgorithmTestPlatform *algorithmTestPlatform,
                             int appWidth,
                             int appHeight);
     void constructIHM();
     void findPatientExisted();
+    void setConnections();
     void addPatientToWidget(QString name, QString path);
 
 private:
@@ -31,6 +33,7 @@ private:
     QHBoxLayout* patientsPhotoWidgetLayout;
     QVBoxLayout* waittingPatientsAndBlackAreaWindowLayout;
     QHBoxLayout* waittingPatientPhotoesLayout;
+    QHBoxLayout* controlBarLayout;
 
     QWidget* controlBar;
     QWidget* patientsIntroduction;
@@ -54,8 +57,11 @@ private:
 
     QPushButton* leftSelectButton;
     QPushButton* rightSelectButton;
+    QPushButton* cdRomParseButton;
 
     AlgorithmTestPlatform *algorithmTestPlatform;
+
+    QSpacerItem* controlBarSpacer;
 
     int appWidth;
     int appHeight;
@@ -63,6 +69,7 @@ private:
 signals:
 
 public slots:
+    void doParseCdRom();
 
 };
 

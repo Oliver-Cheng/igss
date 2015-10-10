@@ -54,7 +54,7 @@ void IgssMainWindow::constructIHM(){
     controlBoard->setFixedWidth(this->primary_screen_width*0.024);
     closeButton = new QPushButton();
     closeButton->setIcon(QIcon(":/images/close.png"));
-    closeButton->setIconSize(QSize(this->primary_screen_width*0.024,this->primary_screen_width*0.024));
+    closeButton->setIconSize(QSize(this->primary_screen_width*0.020,this->primary_screen_width*0.020));
     closeButton->setStyleSheet("background-color:transparent");
 
     closeButton->setFixedSize(this->primary_screen_width*0.023, this->primary_screen_width*0.023);
@@ -158,6 +158,8 @@ void IgssMainWindow::initVisualizationComponents(){
 //!
 void IgssMainWindow::display(){
     this->show();
+    this->resize(this->primary_screen_width,
+                 this->primary_screen_height);
 }
 
 //!----------------------------------------------------------------------------------------

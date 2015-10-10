@@ -3,7 +3,7 @@
 PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher,
                                AlgorithmTestPlatform *algorithmTestPlatform,
                                int appWidth,
-                               int appHeight){
+                               int appHeight): QWidget(){
 
     this->dispatcher = dispatcher;
     this->algorithmTestPlatform = algorithmTestPlatform;
@@ -11,6 +11,7 @@ PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher,
     this->appHeight = appHeight;
 
     this->constructIHM();
+    this->setConnections();
 }
 
 //!----------------------------------------------------------------------------------------------------
@@ -25,7 +26,20 @@ void PatientsWidget::findPatientExisted(){
 //                            skyblue   this->dispatcher->getPatientById(cpt)->getPhotoPath());
 //        this->PatientPhoto[cpt]->addItem(patientItem);
 //    }
+}
 
+//!----------------------------------------------------------------------------------------------------
+//!
+//! \brief PatientsWidget::setConnections
+//!
+void PatientsWidget::setConnections(){
+    this->connect(this->cdRomParseButton, SIGNAL(clicked()), this, SLOT(doParseCdRom()));
+}
+
+void PatientsWidget::doParseCdRom(){
+    this->algorithmTestPlatform->setSystemStatus("doParseCdRom");
+
+    //TODO
 }
 
 //!----------------------------------------------------------------------------------------------------
@@ -143,8 +157,24 @@ void PatientsWidget::constructIHM(){
     this->somethingelse->setStyleSheet("background-color:yellow");
 
     this->controlBar = new QWidget();
-    this->controlBar->setFixedHeight(this->appHeight*0.025);
-    this->controlBar->setStyleSheet("background-color:green");
+    this->controlBar->setFixedHeight(this->appHeight*0.030);
+
+    this->controlBarLayout = new QHBoxLayout(this->controlBar);
+
+    this->cdRomParseButton =  new QPushButton();
+    this->cdRomParseButton->setIcon(QIcon(":/images/close.png"));
+    this->cdRomParseButton->setIconSize(QSize(this->appWidth*0.020,this->appWidth*0.020));
+    this->cdRomParseButton->setStyleSheet("background-color:transparent");
+    this->cdRomParseButton->setFixedSize(this->appWidth*0.023, this->appWidth*0.023);
+
+    controlBarSpacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+    this->controlBarLayout->addWidget(this->cdRomParseButton);
+    this->controlBarLayout->addSpacerItem(controlBarSpacer);
+
+    this->controlBarLayout->setSpacing(0);
+    this->controlBarLayout->setMargin(0);
+
 
     //!--------------------------------------------------------------------------------------
     //!the total information of patient and doctors
