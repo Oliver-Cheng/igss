@@ -10,6 +10,7 @@
 #include <QTextEdit>
 #include <AlgorithmTestPlatform.h>
 #include <QPushButton>
+#include "DicomCDRomReader.h"
 
 class PatientsWidget : public QWidget
 {
@@ -62,6 +63,8 @@ private:
     AlgorithmTestPlatform *algorithmTestPlatform;
 
     QSpacerItem* controlBarSpacer;
+
+    DicomCDRomReader *dicomCDRomReader;
 
     int appWidth;
     int appHeight;

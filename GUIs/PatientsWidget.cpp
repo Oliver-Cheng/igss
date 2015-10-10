@@ -10,6 +10,8 @@ PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher,
     this->appWidth = appWidth;
     this->appHeight = appHeight;
 
+    dicomCDRomReader = new DicomCDRomReader();
+
     this->constructIHM();
     this->setConnections();
 }
@@ -36,10 +38,17 @@ void PatientsWidget::setConnections(){
     this->connect(this->cdRomParseButton, SIGNAL(clicked()), this, SLOT(doParseCdRom()));
 }
 
+//!----------------------------------------------------------------------------------------------------
+//!
+//! \brief PatientsWidget::doParseCdRom
+//!
 void PatientsWidget::doParseCdRom(){
     this->algorithmTestPlatform->setSystemStatus("doParseCdRom");
 
     //TODO
+    //dicomCDRomReader->doParseCDRom(.......);
+
+
 }
 
 //!----------------------------------------------------------------------------------------------------
