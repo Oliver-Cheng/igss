@@ -52,7 +52,8 @@ SOURCES +=  main.cpp\
             ImageProcessingMethods/ImageProcessingFactory.cpp \
             ImageProcessingMethods/ErrorMessage.cpp \
     GUIs/AlgorithmTestPlatform.cpp \
-    DiskImageReaderFactory/DicomCDRomReader.cpp
+    DiskImageReaderFactory/DicomCDRomReader.cpp \
+    GUIs/SurgeryPlanWindow.cpp
 
 HEADERS  += \
             Dispatchers/SystemDispatcher.h \
@@ -75,7 +76,8 @@ HEADERS  += \
             ImageProcessingMethods/ImageProcessingFactory.h \
             ImageProcessingMethods/ErrorMessage.h \
     GUIs/AlgorithmTestPlatform.h \
-    DiskImageReaderFactory/DicomCDRomReader.h
+    DiskImageReaderFactory/DicomCDRomReader.h \
+    GUIs/SurgeryPlanWindow.h
 
 win32:INCLUDEPATH += "C:\Program Files\VTK\include\vtk-6.2"
 unix:INCLUDEPATH += $$PWD/../../../../../usr/local/include/vtk-6.2

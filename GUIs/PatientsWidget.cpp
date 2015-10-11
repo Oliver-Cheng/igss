@@ -19,6 +19,7 @@ PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher,
 
 void PatientsWidget::initVariable(){
     this->dicomCDRomReader = new DicomCDRomReader();
+    this->surgeryPlanWindow = new SurgeryPlanWindow();
     this->labelStyleSheet = "border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background-color: transparent; color: AliceBlue";
 }
 
@@ -42,6 +43,15 @@ void PatientsWidget::findPatientExisted(){
 //!
 void PatientsWidget::setConnections(){
     this->connect(this->cdRomParseButton, SIGNAL(clicked()), this, SLOT(doParseCdRom()));
+    this->connect(this->surgeryLaunchButton, SIGNAL(clicked()), this, SLOT(launchSurgery()));
+}
+
+//!----------------------------------------------------------------------------------------------------
+//!
+//! \brief PatientsWidget::launchSurgery
+//!
+void PatientsWidget::launchSurgery(){
+    this->surgeryPlanWindow->display();
 }
 
 //!----------------------------------------------------------------------------------------------------
@@ -123,8 +133,8 @@ void PatientsWidget::constructIHM(){
     //!--------------------------------------------------------------------------------------
     //!the start button of surgery
     //!--------------------------------------------------------------------------------------
-    this->surgeryStartButton = new QPushButton("Start");
-    this->surgeryStartButton->setFixedHeight(this->appHeight*0.857*0.15*0.3);
+    this->surgeryLaunchButton = new QPushButton("Start");
+    this->surgeryLaunchButton->setFixedHeight(this->appHeight*0.857*0.15*0.3);
 
     //!--------------------------------------------------------------------------------------
     //!current patient widget
@@ -151,7 +161,7 @@ void PatientsWidget::constructIHM(){
     //this->currentPatient->setStyleSheet("background-color:blue");
     this->currentPatientLayout = new QVBoxLayout(currentPatient);
     this->currentPatientLayout->addWidget(pictureInfoArea);
-    this->currentPatientLayout->addWidget(surgeryStartButton);
+    this->currentPatientLayout->addWidget(surgeryLaunchButton);
     this->currentPatientLayout->setSpacing(0);
     this->currentPatientLayout->setMargin(0);
 

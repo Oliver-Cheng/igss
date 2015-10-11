@@ -13,6 +13,7 @@
 #include <QLabel>
 #include <QLineEdit>
 #include "DicomCDRomReader.h"
+#include "SurgeryPlanWindow.h"
 
 class PatientsWidget : public QWidget
 {
@@ -95,9 +96,11 @@ private:
     QPushButton* leftSelectButton;
     QPushButton* rightSelectButton;
     QPushButton* cdRomParseButton;
-    QPushButton* surgeryStartButton;
+    QPushButton* surgeryLaunchButton;
 
     AlgorithmTestPlatform *algorithmTestPlatform;
+
+    SurgeryPlanWindow* surgeryPlanWindow;
 
     QSpacerItem* controlBarSpacer;
     QSpacerItem* patientInfoContainerSpacer;
@@ -113,6 +116,7 @@ signals:
 
 public slots:
     void doParseCdRom();
+    void launchSurgery();
 
 };
 
