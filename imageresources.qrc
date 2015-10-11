@@ -29,5 +29,6 @@
 	<file>images/downarrow_combo.png</file>
 	<file>images/splitter_left.png</file>
 	<file>images/splitter_right.png</file>
+	<file>images/Disk.png</file>
     </qresource>
 </RCC>

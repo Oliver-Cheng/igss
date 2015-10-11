@@ -39,6 +39,8 @@ private:
     QHBoxLayout* patientsPhotoWidgetLayout;
     QVBoxLayout* waittingPatientsAndBlackAreaWindowLayout;
     QHBoxLayout* waittingPatientPhotoesLayout;
+    QVBoxLayout* currentPatientLayout;
+    QHBoxLayout* pictureInfoAreaLayout;
     QHBoxLayout* controlBarLayout;
     QHBoxLayout* personalInformationLayout;
     QGridLayout* patientInfoContainerLayout;  
@@ -52,6 +54,10 @@ private:
     QWidget* somethingelse;
     QWidget* totalInformation;
     QWidget* currentPatient;
+    QWidget* pictureInfoArea;
+    QWidget* currentPatientPicture;
+    QWidget* pictureLeftArea;
+    QWidget* pictureRightArea;
     QWidget* upBlackArea;
     QWidget* waittingPatientPhotoes;
     QWidget* downBlackArea;
@@ -89,6 +95,7 @@ private:
     QPushButton* leftSelectButton;
     QPushButton* rightSelectButton;
     QPushButton* cdRomParseButton;
+    QPushButton* surgeryStartButton;
 
     AlgorithmTestPlatform *algorithmTestPlatform;
 
