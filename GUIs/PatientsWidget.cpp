@@ -119,12 +119,41 @@ void PatientsWidget::constructIHM(){
     this->leftSelectButton->setFixedSize(this->appWidth*0.021,this->appHeight*0.093);
     this->leftSelectButton->setIcon(QIcon(":/images/splitter_left.png"));
     this->leftSelectButton->setStyleSheet("background-color:transparent");
+
+    //!--------------------------------------------------------------------------------------
+    //!the start button of surgery
+    //!--------------------------------------------------------------------------------------
+    this->surgeryStartButton = new QPushButton("Start");
+    this->surgeryStartButton->setFixedHeight(this->appHeight*0.857*0.15*0.3);
+
     //!--------------------------------------------------------------------------------------
     //!current patient widget
     //!--------------------------------------------------------------------------------------
+
+    this->pictureLeftArea = new QWidget();
+
+    this->currentPatientPicture = new QWidget();
+    this->currentPatientPicture->setFixedWidth(this->appWidth*0.857*0.15*0.6);
+    this->currentPatientPicture->setStyleSheet("background-color:skyblue");
+
+    this->pictureRightArea = new QWidget();
+
+    this->pictureInfoArea = new QWidget();
+    this->pictureInfoAreaLayout = new QHBoxLayout(pictureInfoArea);
+    this->pictureInfoAreaLayout->addWidget(pictureLeftArea);
+    this->pictureInfoAreaLayout->addWidget(currentPatientPicture);
+    this->pictureInfoAreaLayout->addWidget(pictureRightArea);
+    this->pictureInfoAreaLayout->setSpacing(0);
+    this->pictureInfoAreaLayout->setMargin(0);
+
     this->currentPatient = new QWidget();
     this->currentPatient->setFixedWidth(this->appWidth*0.857*0.15);
     //this->currentPatient->setStyleSheet("background-color:blue");
+    this->currentPatientLayout = new QVBoxLayout(currentPatient);
+    this->currentPatientLayout->addWidget(pictureInfoArea);
+    this->currentPatientLayout->addWidget(surgeryStartButton);
+    this->currentPatientLayout->setSpacing(0);
+    this->currentPatientLayout->setMargin(0);
 
     //!--------------------------------------------------------------------------------------
     //!the right select button
@@ -266,10 +295,10 @@ void PatientsWidget::constructIHM(){
     this->controlBarLayout = new QHBoxLayout(this->controlBar);
 
     this->cdRomParseButton =  new QPushButton();
-    this->cdRomParseButton->setIcon(QIcon(":/images/close.png"));
+    this->cdRomParseButton->setIcon(QIcon(":/images/Disk.png"));
     this->cdRomParseButton->setIconSize(QSize(this->appWidth*0.015,this->appWidth*0.015));
     this->cdRomParseButton->setStyleSheet("background-color:transparent");
-    this->cdRomParseButton->setFixedSize(this->appWidth*0.023, this->appWidth*0.023);
+    this->cdRomParseButton->setFixedSize(this->appWidth*0.020, this->appWidth*0.020);
 
     controlBarSpacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
