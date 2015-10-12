@@ -19,7 +19,7 @@ PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher,
 
 void PatientsWidget::initVariable(){
     this->dicomCDRomReader = new DicomCDRomReader();
-    this->surgeryPlanWindow = new SurgeryPlanWindow();
+    this->surgeryPlanWindow = new SurgeryPlanWindow( this->appWidth, this->appHeight);
     this->labelStyleSheet = "border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background-color: transparent; color: AliceBlue";
 }
 
@@ -28,13 +28,24 @@ void PatientsWidget::initVariable(){
 //! \brief PatientsWidget::findPatientExisted
 //!
 void PatientsWidget::findPatientExisted(){
-//    int numberOfPatient = this->dispatcher->findPatientExisted();
-//    algorithmTestPlatform->setSystemStatus(QString::number(numberOfPatient));
-//    for(int cpt = 0; cpt < numberOfPatient; cpt++){
-//        addPatientToWidget(this->dispatcher->getPatientById(cpt)->getName(),
-//                            skyblue   this->dispatcher->getPatientById(cpt)->getPhotoPath());
-//        this->PatientPhoto[cpt]->addItem(patientItem);
-//    }
+    int numberOfPatient = this->dispatcher->findPatientExisted();
+    algorithmTestPlatform->setSystemStatus(QString::number(numberOfPatient));
+
+    QList<QLabel*> L;
+    L.append(firstPatientPhoto);
+    L.append(secondPatientPhoto);
+    L.append(thirdPatientPhoto);
+    L.append(fourthPatientPhoto);
+    L.append(fifthPatientPhoto);
+
+    for(int cpt = 0; cpt < 5; cpt++){
+       L.at(cpt)->setPixmap(QPixmap(this->dispatcher->getPatientById(cpt)->getPhotoPath()));
+       L.at(cpt)->setAutoFillBackground(true);
+       L.at(cpt)->setScaledContents(false);
+       L.at(cpt)->update();
+        //addPatientToWidget(this->dispatcher->getPatientById(cpt)->getPhotoPath());
+        //this->PatientPhoto[cpt]->addItem(patientItem);
+    }
 }
 
 //!----------------------------------------------------------------------------------------------------
@@ -86,19 +97,19 @@ void PatientsWidget::constructIHM(){
     this->downBlackArea->setFixedHeight(this->appHeight*0.185*0.2);
 
     this->leftBlackArea = new QWidget();
-    this->leftBlackArea->setFixedWidth(this->appHeight*0.34*0.05);
+    this->leftBlackArea->setFixedWidth(this->appWidth*0.34*0.05);
     this->leftBlackArea->setStyleSheet("background-color:transparent");
 
-    this->firstPatientPhoto = new QWidget();
-    this->firstPatientPhoto->setStyleSheet("background-color:skyblue");
-    this->secondPatientPhoto = new QWidget();
-    this->secondPatientPhoto->setStyleSheet("background-color:skyblue");
-    this->thirdPatientPhoto = new QWidget();
-    this->thirdPatientPhoto->setStyleSheet("background-color:skyblue");
-    this->fourthPatientPhoto = new QWidget();
-    this->fourthPatientPhoto->setStyleSheet("background-color:skyblue");
-    this->fifthPatientPhoto = new QWidget();
-    this->fifthPatientPhoto->setStyleSheet("background-color:skyblue");
+    this->firstPatientPhoto = new QLabel();
+    this->firstPatientPhoto->setFixedWidth(this->appWidth*0.857*0.08);
+    this->secondPatientPhoto = new QLabel();
+    this->secondPatientPhoto->setFixedWidth(this->appWidth*0.857*0.08);
+    this->thirdPatientPhoto = new QLabel();
+    this->secondPatientPhoto->setFixedWidth(this->appWidth*0.857*0.08);
+    this->fourthPatientPhoto = new QLabel();
+    this->fourthPatientPhoto->setFixedWidth(this->appWidth*0.857*0.08);
+    this->fifthPatientPhoto = new QLabel();
+    this->fifthPatientPhoto->setFixedWidth(this->appWidth*0.857*0.08);
 
     this->rightBlackArea = new QWidget();
     this->rightBlackArea->setFixedWidth(this->appHeight*0.34*0.01);
@@ -353,13 +364,10 @@ void PatientsWidget::constructIHM(){
 //! \brief PatientsWidget::addPatientToListWidget
 //! \param patients
 //!
-void PatientsWidget::addPatientToWidget(QString name, QString path){
+//void PatientsWidget::addPatientToWidget(QString path){
 
-    QListWidgetItem *patientItem = new QListWidgetItem();
-    qDebug()<<path;
-    patientItem->setIcon(QIcon(path));
+//    QListWidgetItem *patientItem = new QListWidgetItem();
+//    qDebug()<<path;
+//    patientItem->setIcon(QIcon(path));
 
-    patientItem->setText(name);
-    patientItem->setTextAlignment(Qt::AlignBottom);
-
-}
+//}

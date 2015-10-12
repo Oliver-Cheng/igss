@@ -1,7 +1,9 @@
 #include "SurgeryPlanWindow.h"
 
-SurgeryPlanWindow::SurgeryPlanWindow(QWidget *parent) : QWidget(parent)
+SurgeryPlanWindow::SurgeryPlanWindow(int appWidth, int appHeight) : QWidget()
 {
+    this->appWidth = appWidth;
+    this->appHeight = appHeight;
 
     this->constructPatientInformationWidget();
     this->constructDoctorInformationWidget();
@@ -9,10 +11,27 @@ SurgeryPlanWindow::SurgeryPlanWindow(QWidget *parent) : QWidget(parent)
 
     this->initialisation();
     this->setConnections();
+
+    this->drawBackground();
 }
 
 void SurgeryPlanWindow::displayWindow(){
     this->showFullScreen();
+}
+
+void SurgeryPlanWindow::displaySize(){
+    this->show();
+    this->resize(appWidth, appHeight);
+}
+
+void SurgeryPlanWindow::drawBackground(){
+    pixmap = new QPixmap(":/images/images_1_1.png");
+    QPalette p =  this->palette();
+
+    p.setBrush(QPalette::Background, QBrush(pixmap->scaled(QSize(appWidth, appHeight), Qt::IgnoreAspectRatio, Qt::SmoothTransformation)));
+
+    this->setPalette(p);
+    this->setMask(pixmap->mask());
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
