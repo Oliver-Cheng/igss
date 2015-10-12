@@ -866,9 +866,10 @@ void SurgeryPlanWindow::constructPatientInformationWidget(){
 
     patientImageInformationWidgetSpace = new QSpacerItem(0,10, QSizePolicy::Expanding, QSizePolicy::Expanding);
     sugeryEndnessButton = new QPushButton("X");
+    sugeryEndnessButton->setFixedWidth(25);
 
     patientImageInformationWidget = new QWidget();
-    patientImageInformationWidget->setStyleSheet("background-color: BLUE");
+    //patientImageInformationWidget->setStyleSheet("background-color: BLUE");
     patientImageInformationWidget->setFixedHeight(40);
     patientImageInformationWidgetLayout = new QHBoxLayout(patientImageInformationWidget);
     patientImageInformationWidgetLayout->addWidget(sugeryEndnessButton);

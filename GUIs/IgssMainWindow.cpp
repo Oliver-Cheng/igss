@@ -102,7 +102,7 @@ void IgssMainWindow::findPatientExisted(){
 //! \brief AnalyserMainWindow::drawBackground
 //!
 void IgssMainWindow::drawBackground(){
-    pixmap = new QPixmap(":/images/background.png");
+    pixmap = new QPixmap(":/images/background_lightBlack.png");
     QPalette p =  this->palette();
 
     p.setBrush(QPalette::Background, QBrush(pixmap->scaled(QSize(this->primary_screen_width, this->primary_screen_height), Qt::IgnoreAspectRatio, Qt::SmoothTransformation)));
