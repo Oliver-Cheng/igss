@@ -51,7 +51,7 @@ void PatientsWidget::setConnections(){
 //! \brief PatientsWidget::launchSurgery
 //!
 void PatientsWidget::launchSurgery(){
-    this->surgeryPlanWindow->display();
+    this->surgeryPlanWindow->displayWindow();
 }
 
 //!----------------------------------------------------------------------------------------------------
