@@ -770,33 +770,33 @@ void SurgeryPlanWindow::regroupAllComponents(){
 //! \brief SurgeryPlanWindow::initialisation
 //!
 void SurgeryPlanWindow::initialisation(){
-    /*volumeMapper = vtkVolumeRayCastMapper::New();
-    compositeFunction = vtkVolumeRayCastCompositeFunction::New();
-    volume = vtkVolume::New();
-    renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
-    renderer = vtkSmartPointer<vtkRenderer>::New();
+//    volumeMapper = vtkVolumeRayCastMapper::New();
+//    compositeFunction = vtkVolumeRayCastCompositeFunction::New();
+//    volume = vtkVolume::New();
+//    renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
+//    renderer = vtkSmartPointer<vtkRenderer>::New();
 
-    opacityTransferFunction=vtkPiecewiseFunction::New();
-    gradientTransferFunction = vtkPiecewiseFunction::New();
-    colorTransferFunction = vtkColorTransferFunction::New();
+//    opacityTransferFunction=vtkPiecewiseFunction::New();
+//    gradientTransferFunction = vtkPiecewiseFunction::New();
+//    colorTransferFunction = vtkColorTransferFunction::New();
 
-    volumeProperty=vtkVolumeProperty::New();
+//    volumeProperty=vtkVolumeProperty::New();
 
-    imageOptionStates.originalOptionState = false;
-    imageOptionStates.transparentBrainOptionState = false;
-    imageOptionStates.greyMatterOptionState = false;
-    imageOptionStates.whiteMatterOptionState = false;
-    imageOptionStates.vesselOptionState = false;
-    imageOptionStates.interventionalRouteOptionState = false;
+//    imageOptionStates.originalOptionState = false;
+//    imageOptionStates.transparentBrainOptionState = false;
+//    imageOptionStates.greyMatterOptionState = false;
+//    imageOptionStates.whiteMatterOptionState = false;
+//    imageOptionStates.vesselOptionState = false;
+//    imageOptionStates.interventionalRouteOptionState = false;
 
-    transformationPlottingBoard_Clicked = false;
-    lockingTransformationPointIndex = -1;
+//    transformationPlottingBoard_Clicked = false;
+//    lockingTransformationPointIndex = -1;
 
-    this->transformationPlottingBoard_AbscissaValue = 0.0;
-    this->transformationPlottingBoard_OrdinateValue = 0.0;
+//    this->transformationPlottingBoard_AbscissaValue = 0.0;
+//    this->transformationPlottingBoard_OrdinateValue = 0.0;
 
-    SurgeryPlanWindowConfigurationBoard = new SurgeryPlanWindowConfigurationBoard(this->patientHandling, this->medicalImageHandler);
-    this->colorChooseWindow = new ColorChooseWindow();*/
+//    SurgeryPlanWindowConfigurationBoard = new SurgeryPlanWindowConfigurationBoard(this->patientHandling, this->medicalImageHandler);
+//    this->colorChooseWindow = new ColorChooseWindow();
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -807,81 +807,7 @@ void SurgeryPlanWindow::initialisation(){
 //!
 void SurgeryPlanWindow::constructPatientInformationWidget(){
     patientInformationWidget = new QFrame();
-    //patientInformationWidget->setStyleSheet("background-color: AliceBlue");
     patientInformationLayout = new QVBoxLayout(patientInformationWidget);
-
-    patientTitleBar = new QFrame();
-    patientTitleBar->setFixedSize(640, 100);
-
-    briefWidget = new QWidget();
-
-    briefWidget->setFixedSize(150, 100);
-    patientTitleLabel = new QLabel("Patient's Information");
-    patientTitleLabel->setStyleSheet("color: AliceBlue");
-    patientTitleLabel->setFont(QFont("Segoe UI", 11, QFont::DemiBold, true));
-    patientTitleLabel->setFixedSize(250, 100);
-
-    photoWidget = new QLabel();
-    photoWidget->setFixedSize(75, 100);
-    spacer_1 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-    spacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-    patientTitleBarLayout = new QHBoxLayout(patientTitleBar);
-    patientTitleBarLayout->addWidget(briefWidget);
-    patientTitleBarLayout->addItem(spacer_1);
-    patientTitleBarLayout->addWidget(patientTitleLabel);
-    patientTitleBarLayout->addItem(spacer_2);
-    patientTitleBarLayout->addWidget(photoWidget);
-    patientTitleBarLayout->setSpacing(0);
-    patientTitleBarLayout->setMargin(2);
-    // TODO,.......
-
-    patientPersonelInformationBar = new QFrame();
-    patientPersonelInformationBar->setFixedHeight(30);
-    patientPersonelInformationBarLayout = new QHBoxLayout(patientPersonelInformationBar);
-    nameLabel =  new QLabel("Name: ");
-    birthLabel = new QLabel("Birth: ");
-    sexualLabel = new QLabel("Sex: ");
-    medicalDateLabel =  new QLabel("Medical Date: ");
-    nameLineEdit =  new QLineEdit();
-    birthLineEdit =  new QLineEdit();
-    sexualLineEdit =  new QLineEdit();
-    medicalDateLineEdit = new QLineEdit();
-
-    nameLabel->setFont(QFont("Segoe UI", 8, QFont::AnyStyle, false));
-    birthLabel->setFont(QFont("Segoe UI", 8, QFont::AnyStyle, false));
-    sexualLabel->setFont(QFont("Segoe UI", 8, QFont::AnyStyle, false));
-    medicalDateLabel->setFont(QFont("Segoe UI", 8, QFont::AnyStyle, false));
-    nameLineEdit->setFont(QFont("Segoe UI", 8, QFont::AnyStyle, true));
-    birthLineEdit->setFont(QFont("Segoe UI", 8, QFont::AnyStyle, true));
-    sexualLineEdit->setFont(QFont("Segoe UI", 8, QFont::AnyStyle, true));
-    medicalDateLineEdit->setFont(QFont("Segoe UI", 8, QFont::AnyStyle, true));
-
-    nameLabel->setStyleSheet("color: AliceBlue");
-    birthLabel->setStyleSheet("color: AliceBlue");
-    sexualLabel->setStyleSheet("color: AliceBlue");
-    medicalDateLabel->setStyleSheet("color: AliceBlue");
-
-    nameLineEdit->setStyleSheet("QLineEdit {background-color:transparent; color:AliceBlue; border: 1px solid Gray;border-radius: 0px;padding: 0 8px; selection-background-color: darkAliceBlue; }");
-    birthLineEdit->setStyleSheet("QLineEdit {background-color:transparent; color:AliceBlue; border: 1px solid Gray;border-radius: 0px;padding: 0 8px;selection-background-color: darkAliceBlue; }");
-    sexualLineEdit->setStyleSheet("QLineEdit {background-color:transparent; color:AliceBlue; border: 1px solid Gray;border-radius: 0px;padding: 0 8px; selection-background-color: darkAliceBlue; }");
-    medicalDateLineEdit->setStyleSheet("QLineEdit {background-color:transparent; color:AliceBlue; border: 1px solid Gray;border-radius: 0px;padding: 0 8px; selection-background-color: darkAliceBlue; }");
-
-    nameLineEdit->setReadOnly(true);
-    birthLineEdit->setReadOnly(true);
-    sexualLineEdit->setReadOnly(true);
-    medicalDateLineEdit->setReadOnly(true);
-
-    patientPersonelInformationBarLayout->addWidget(nameLabel);
-    patientPersonelInformationBarLayout->addWidget(nameLineEdit);
-    patientPersonelInformationBarLayout->addWidget(birthLabel);
-    patientPersonelInformationBarLayout->addWidget(birthLineEdit);
-    patientPersonelInformationBarLayout->addWidget(sexualLabel);
-    patientPersonelInformationBarLayout->addWidget(sexualLineEdit);
-    patientPersonelInformationBarLayout->addWidget(medicalDateLabel);
-    patientPersonelInformationBarLayout->addWidget(medicalDateLineEdit);
-    patientPersonelInformationBarLayout->setSpacing(5);
-    patientPersonelInformationBarLayout->setMargin(2);
 
     patientClinicalWidgetsContainer = new QFrame();
     patientClinicalWidgetsContainerLayout = new QHBoxLayout(patientClinicalWidgetsContainer);
@@ -896,7 +822,6 @@ void SurgeryPlanWindow::constructPatientInformationWidget(){
     sugeryEndnessButton->setFixedWidth(25);
 
     patientImageInformationWidget = new QWidget();
-    //patientImageInformationWidget->setStyleSheet("background-color: BLUE");
     patientImageInformationWidget->setFixedHeight(40);
     patientImageInformationWidgetLayout = new QHBoxLayout(patientImageInformationWidget);
     patientImageInformationWidgetLayout->addWidget(sugeryEndnessButton);
@@ -1153,13 +1078,6 @@ void SurgeryPlanWindow::constructPatientInformationWidget(){
     patientMRAImageOption->setFixedHeight(40);
 
     patientMRAImageWidget = new QWidget();
-    patientMRAImageWidgetLayout = new QHBoxLayout(patientMRAImageWidget);
-    patientMRAImage = new QVTKWidget();
-
-    //patientMRAImageManipulation = new QWidget();
-    patientMRAImageWidgetLayout->addWidget(patientMRAImage);
-    patientMRAImageWidgetLayout->setSpacing(0);
-    patientMRAImageWidgetLayout->setMargin(0);
 
     patientMRAImageConfigurationWidgetLayout->addWidget(patientMRAImageOption);
     patientMRAImageConfigurationWidgetLayout->addWidget(patientMRAImageWidget);
@@ -1171,8 +1089,8 @@ void SurgeryPlanWindow::constructPatientInformationWidget(){
     patientClinicalWidgetsContainerLayout->setSpacing(2);
     patientClinicalWidgetsContainerLayout->setMargin(2);
 
-    //patientInformationLayout->addWidget(patientTitleBar);
-    //patientInformationLayout->addWidget(patientPersonelInformationBar);
+//    patientInformationLayout->addWidget(patientTitleBar);
+//    patientInformationLayout->addWidget(patientPersonelInformationBar);
     patientInformationLayout->addWidget(patientClinicalWidgetsContainer);
     patientInformationLayout->setSpacing(0);
     patientInformationLayout->setMargin(0);
