@@ -319,10 +319,12 @@ public slots:
 
     void displayConfigurationBoard();
     void getVesselEnhancedImage();
+    void stopSurgery();
 
 signals:
 
 public slots:
+
 };
 
 #endif // SURGERYPLANWINDOW_H

@@ -16,7 +16,7 @@ SurgeryPlanWindow::SurgeryPlanWindow(int appWidth, int appHeight) : QWidget()
 }
 
 void SurgeryPlanWindow::displayWindow(){
-    this->showFullScreen();
+    this->showMaximized();
 }
 
 void SurgeryPlanWindow::displaySize(){
@@ -86,10 +86,18 @@ void SurgeryPlanWindow::setConnections(){
 
     this->connect(this->imageConfigurationButton, SIGNAL(mouseLeftButtonClicked()), this, SLOT(displayConfigurationBoard()));
 
-    this->connect(this->sugeryEndnessButton, SIGNAL(clicked()), this, SLOT(close()));
+    this->connect(this->sugeryEndnessButton, SIGNAL(clicked()), this, SLOT(stopSurgery()));
 }
 
-//--------------------------------------------------------------------------------------------------------------------------------
+//!--------------------------------------------------------------------------------------------------------------------------------
+//!
+//! \brief SurgeryPlanWindow::stopSurgery
+//!
+void SurgeryPlanWindow::stopSurgery(){
+    this->close();
+}
+
+//!--------------------------------------------------------------------------------------------------------------------------------
 //!
 //! \brief SurgeryPlanWindow::updateCoords
 //! \param obj
