@@ -58,6 +58,7 @@ VTK_MODULE_INIT(vtkRenderingVolumeOpenGL)
 #include <ColorChooseWindow.h>
 #include <vtkEventQtSlotConnect.h>
 
+#include "CurveReformationWindow.h"
 
 struct TransferOptionStates{
     bool opacityTransferOptionChoosen = false;
@@ -117,6 +118,9 @@ private:
 
     CPushButton *imageConfigurationButton;
     CPushButton *imageUpdateButton;
+    CPushButton *curveReformationButton;
+
+    CurveReformationWindow* curveReformationWindow;
 
     CPushButton *beginTherapyButton;
     QSpacerItem *spacer_controlbar;
@@ -220,6 +224,8 @@ private:
 
     QWidget *patientMRAImageManipulation;
 
+
+
     vtkVolumeRayCastMapper *volumeMapper;
     vtkVolumeRayCastCompositeFunction  *compositeFunction;
     vtkVolume *volume;
@@ -320,6 +326,8 @@ public slots:
     void displayConfigurationBoard();
     void getVesselEnhancedImage();
     void stopSurgery();
+
+    void displayCurveReformatwionWindow();
 
 signals:
 
