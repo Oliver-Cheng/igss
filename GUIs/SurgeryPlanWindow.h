@@ -84,11 +84,15 @@ class SurgeryPlanWindow : public QWidget
 {
     Q_OBJECT
 public:
-    explicit SurgeryPlanWindow(QWidget *parent = 0);
+    explicit SurgeryPlanWindow(int appWidth, int appHeight);
     void displayWindow();
 
     void createRandomVtkImageData();
     void display(vtkImageData *imgToBeDisplayed);
+    void displaySize();
+
+    int appWidth;
+    int appHeight;
 
 protected:
     vtkEventQtSlotConnect* MraConnections;
@@ -247,6 +251,8 @@ private:
     void initialisation();
     void regroupAllComponents();
     void setConnections();
+    void drawBackground();
+    void initVariable();
 
     void updatePatientPersonelInformation();
     void updatePatientPersonelPhoto();

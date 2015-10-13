@@ -30,5 +30,7 @@
 	  <file>images/splitter_right.png</file>
 	  <file>images/Disk.png</file>
 	  <file>images/background_lightBlack.png</file>
+	  <file>images/background_blackblue.png</file>
+	  <file>images/images_1_1.png</file>
     </qresource>
 </RCC>

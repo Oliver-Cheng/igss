@@ -29,7 +29,7 @@ public:
     void constructIHM();
     void findPatientExisted();
     void setConnections();
-    void addPatientToWidget(QString name, QString path);
+    void addPatientToWidget(QString path);
 
 private:
     SystemDispatcher* dispatcher;
@@ -64,11 +64,11 @@ private:
     QWidget* downBlackArea;
     QWidget* leftBlackArea;
     QWidget* rightBlackArea;
-    QWidget* firstPatientPhoto;
-    QWidget* secondPatientPhoto;
-    QWidget* thirdPatientPhoto;
-    QWidget* fourthPatientPhoto;
-    QWidget* fifthPatientPhoto;
+    QLabel* firstPatientPhoto;
+    QLabel* secondPatientPhoto;
+    QLabel* thirdPatientPhoto;
+    QLabel* fourthPatientPhoto;
+    QLabel* fifthPatientPhoto;
     QWidget* patientInfoContainer;
     QWidget* doctorComment;
     QWidget* doctorInfoContainer;
