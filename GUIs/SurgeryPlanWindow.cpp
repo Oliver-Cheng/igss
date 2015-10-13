@@ -13,6 +13,8 @@ SurgeryPlanWindow::SurgeryPlanWindow(int appWidth, int appHeight) : QWidget()
     this->setConnections();
 
     this->drawBackground();
+
+    this->curveReformationWindow = new CurveReformationWindow();
 }
 
 void SurgeryPlanWindow::displayWindow(){
@@ -87,6 +89,7 @@ void SurgeryPlanWindow::setConnections(){
     this->connect(this->imageConfigurationButton, SIGNAL(mouseLeftButtonClicked()), this, SLOT(displayConfigurationBoard()));
 
     this->connect(this->sugeryEndnessButton, SIGNAL(clicked()), this, SLOT(stopSurgery()));
+    this->connect(this->curveReformationButton,SIGNAL(mouseLeftButtonClicked()),this,SLOT(displayCurveReformatwionWindow()));
 }
 
 //!--------------------------------------------------------------------------------------------------------------------------------
@@ -722,6 +725,12 @@ void SurgeryPlanWindow::constructControlBar(){
     imageUpdateButton->setIconSize(QSize(23, 23));
     imageUpdateButton->setFlat(true);
 
+    curveReformationButton = new CPushButton();
+    curveReformationButton->setIcon(QIcon(":/images/lala.png"));
+    curveReformationButton->setFixedSize(QSize(25,25));
+    curveReformationButton->setIconSize(QSize(23,23));
+    curveReformationButton->setFlat(true);
+
     beginTherapyButton = new CPushButton();
     beginTherapyButton->move(0, 5);
     beginTherapyButton->setIcon(QIcon(":/images/begin_therapy.png"));
@@ -732,6 +741,7 @@ void SurgeryPlanWindow::constructControlBar(){
 
     controlBarLayout->addWidget(imageConfigurationButton);
     controlBarLayout->addWidget(imageUpdateButton);
+    controlBarLayout->addWidget(curveReformationButton);
     controlBarLayout->addItem(spacer_controlbar);
     controlBarLayout->addWidget(beginTherapyButton);
     controlBarLayout->setSpacing(0);
@@ -797,6 +807,7 @@ void SurgeryPlanWindow::initialisation(){
 
 //    SurgeryPlanWindowConfigurationBoard = new SurgeryPlanWindowConfigurationBoard(this->patientHandling, this->medicalImageHandler);
 //    this->colorChooseWindow = new ColorChooseWindow();
+
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -1487,3 +1498,8 @@ void SurgeryPlanWindow::interventionalRouteOptionLeaved(){
 void SurgeryPlanWindow::displayConfigurationBoard(){
     this->patientWidgetConfigurationBoard->display(QCursor::pos());
 }
+
+void SurgeryPlanWindow::displayCurveReformatwionWindow(){
+    this->curveReformationWindow->show();
+}
+

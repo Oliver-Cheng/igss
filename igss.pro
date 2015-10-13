@@ -62,7 +62,8 @@ SOURCES +=  main.cpp\
     GUIs/qcustomplot.cpp \
     GUIs/TransferPoint.cpp \
     GUIs/PatientWidgetConfigurationBoard.cpp \
-    GUIs/ColorChooseWindow.cpp
+    GUIs/ColorChooseWindow.cpp \
+    GUIs/CurveReformationWindow.cpp
 
 HEADERS  += \
             Dispatchers/SystemDispatcher.h \
@@ -95,7 +96,8 @@ HEADERS  += \
     GUIs/qcustomplot.h \
     GUIs/TransferPoint.h \
     GUIs/PatientWidgetConfigurationBoard.h \
-    GUIs/ColorChooseWindow.h
+    GUIs/ColorChooseWindow.h \
+    GUIs/CurveReformationWindow.h
 
 win32:INCLUDEPATH += "C:\Program Files\VTK\include\vtk-6.2"
 unix:INCLUDEPATH += $$PWD/../../../../../usr/local/include/vtk-6.2
