@@ -17,6 +17,8 @@
 #include <QBrush>
 #include <QBitmap>
 #include <QApplication>
+#include <QDesktopWidget>
+#include <QRect>
 
 #include <MRAFileReader.h>
 #include <IgssImage.h>
@@ -25,22 +27,29 @@
 #include <PatientsWidget.h>
 #include <ReplaysWidget.h>
 #include <SurgerySystemWidget.h>
+#include <SurgeryPlanWindow.h>
+#include <GuidewareTrackingWindow.h>
 #include <AlgorithmTestPlatform.h>
 
-#include <vtkSmartPointer.h>
-#include <vtkImageData.h>
-#include <vtkVolume.h>
-#include <vtkVolumeRayCastCompositeFunction.h>
-#include <vtkVolumeRayCastMapper.h>
-#include <vtkRenderWindow.h>
-#include <vtkRenderer.h>
+//#include <vtkSmartPointer.h>
+//#include <vtkImageData.h>
+//#include <vtkVolume.h>
+//#include <vtkVolumeRayCastCompositeFunction.h>
+//#include <vtkVolumeRayCastMapper.h>
+//#include <vtkRenderWindow.h>
+//#include <vtkRenderer.h>
 
+
+typedef struct{
+    int screenIndex;
+    QRect rect;
+}Screen;
 
 class IgssMainWindow : public QWidget{
     Q_OBJECT
 
 public:
-    IgssMainWindow(SystemDispatcher *dispatcher);
+    IgssMainWindow(SystemDispatcher *systemDispatcher);
 #ifdef win32
     ~Widget();
 #endif
@@ -51,17 +60,19 @@ public:
     void setConnections();
     void display();
     void displayMraImage(vtkImageData* input);
-    void setSystemDispatecher(SystemDispatcher* dispatcher);
+    void setSystemDispatecher(SystemDispatcher* systemDispatcher);
     void readImageFileFrom(QString path);
     void readImageFromVtkConvert();
     void setSystemStatus(QString status);
     void drawBackground();
 
 private:
+    QDesktopWidget *desktop;
+    Screen *screen;
+
     QFont *englishCaracterStyle;
 
     QPixmap *pixmap;
-    QDesktopWidget *desktop;
 
     QVBoxLayout* igssMainWindowLayout;
     QVBoxLayout *controlBoardLayout;
@@ -97,7 +108,7 @@ private:
     vtkSmartPointer<vtkRenderer> renderer;
 
 
-    SystemDispatcher* dispatcher;
+    SystemDispatcher* systemDispatcher;
     QString mhdImagePath;
     IgssImage* mraImage;
     IgssImage* igssImage;
@@ -105,9 +116,14 @@ private:
     vtkSmartPointer<vtkImageData>vtkImage;
     IgssVtkImageConverter* igssVtkImageConverter;
 
+    SurgeryPlanWindow* surgeryPlanWindow;
+    GuidewareTrackingWindow* guidewareTrackingWindow;
+
     int flag;
     int primary_screen_width;
     int primary_screen_height;
+    int screen_count;
+    int primary_screen;
 
 private slots:
     void closeSystem();

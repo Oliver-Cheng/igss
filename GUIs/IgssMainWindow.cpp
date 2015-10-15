@@ -4,8 +4,7 @@
 
 IgssMainWindow::IgssMainWindow(SystemDispatcher* dispatcher): QWidget(){
 
-    this->dispatcher = dispatcher;
-    this->setWindowState(Qt::WindowFullScreen);
+    this->systemDispatcher = dispatcher;
 
     this->initVariable();
     this->constructIHM();
@@ -18,7 +17,7 @@ void IgssMainWindow::constructIHM(){
     //!----------------------------------------------------------------------------------------------------
     //! status bar area
     //!----------------------------------------------------------------------------------------------------
-    algorithmTestPlatform = new AlgorithmTestPlatform(this->dispatcher,
+    algorithmTestPlatform = new AlgorithmTestPlatform(this->systemDispatcher,
                                                       this->englishCaracterStyle,
                                                       this->primary_screen_width,
                                                       this->primary_screen_height);
@@ -33,8 +32,10 @@ void IgssMainWindow::constructIHM(){
     //! system information board: a place where all information about pa    //qDebug()<<patient->MraImageReadComplete;tient, doctor and replays
     //! in the system will be displayed here
     //!------------------------------------------------------------------------------------------
-    patientsWidget = new PatientsWidget(this->dispatcher,
+    patientsWidget = new PatientsWidget(this->systemDispatcher,
                                         this->algorithmTestPlatform,
+                                        this->surgeryPlanWindow,
+                                        this->guidewareTrackingWindow,
                                         this->englishCaracterStyle,
                                         this->primary_screen_width,
                                         this->primary_screen_height);
@@ -118,10 +119,22 @@ void IgssMainWindow::drawBackground(){
 void IgssMainWindow::initVariable(){
 
     desktop = QApplication::desktop();
-    primary_screen_width = desktop->screen(0)->width();
-    primary_screen_height = desktop->screen(0)->height();
+    screen_count = desktop->screenCount();
+    primary_screen = desktop->primaryScreen();
+    screen = new Screen[screen_count];
 
+    for(unsigned char i = 0; i < screen_count; i++){
+        screen[i].screenIndex = primary_screen + i;
+        screen[i].rect = desktop->screenGeometry(primary_screen + i);
+    }
+
+    primary_screen_width = screen[0].rect.width();
+    primary_screen_height = screen[0].rect.height();
+    this->resize(primary_screen_width,primary_screen_height);
+    this->move(0,0);
+    this->showMaximized();
     flag = 0;
+
     this->systemInformationBoardStyleSheet =
                        "QTabWidget::pane {border: 0.5px solid AliceBlue;}" \
                        "QTabWidget::tab-bar {left: 0px; /* move to the right by 0px */}  " \
@@ -134,6 +147,16 @@ void IgssMainWindow::initVariable(){
                        "QTabBar::close-button:hover {border-image: url(:/images/close-hover.png)}";
 
     this->englishCaracterStyle = new QFont("Times",8,QFont::AnyStyle, false);
+
+    this->surgeryPlanWindow = new SurgeryPlanWindow(this->primary_screen_width, this->primary_screen_height);
+    this->guidewareTrackingWindow = new GuidewareTrackingWindow(screen[0].rect.width(), 0, screen[1].rect.width(), screen[1].rect.height(), this->systemDispatcher);
+
+//int x,
+//int y,
+//int width,
+//int height,
+//Patient* patientHandling,
+//SystemDispatcher* systemDispatcher
 }
 
 //!----------------------------------------------------------------------------------------
@@ -172,7 +195,7 @@ void IgssMainWindow::display(){
 //! \param dispatcher
 //!
 void IgssMainWindow::setSystemDispatecher(SystemDispatcher* dispatcher){
-    this->dispatcher = dispatcher;
+    this->systemDispatcher = dispatcher;
 }
 
 //!----------------------------------------------------------------------------------------

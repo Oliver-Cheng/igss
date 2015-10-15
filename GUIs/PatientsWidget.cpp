@@ -2,12 +2,16 @@
 
 PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher,
                                AlgorithmTestPlatform *algorithmTestPlatform,
+                               SurgeryPlanWindow* surgeryPlanWindow,
+                               GuidewareTrackingWindow* guidewareTrackingWindow,
                                QFont *caracterStyle,
                                int appWidth,
                                int appHeight) : QWidget(){
 
     this->dispatcher = dispatcher;
     this->algorithmTestPlatform = algorithmTestPlatform;
+    this->surgeryPlanWindow = surgeryPlanWindow;
+    this->guidewareTrackingWindow = guidewareTrackingWindow;
     this->caracterStyle = caracterStyle;
     this->appWidth = appWidth;
     this->appHeight = appHeight;
@@ -19,7 +23,6 @@ PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher,
 
 void PatientsWidget::initVariable(){
     this->dicomCDRomReader = new DicomCDRomReader();
-    this->surgeryPlanWindow = new SurgeryPlanWindow( this->appWidth, this->appHeight);
     this->labelStyleSheet = "border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background-color: transparent; color: AliceBlue";
 }
 
@@ -63,6 +66,7 @@ void PatientsWidget::setConnections(){
 //!
 void PatientsWidget::launchSurgery(){
     this->surgeryPlanWindow->displayWindow();
+    this->guidewareTrackingWindow->displayWindow();
 }
 
 //!----------------------------------------------------------------------------------------------------

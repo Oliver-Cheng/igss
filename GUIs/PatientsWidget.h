@@ -14,6 +14,7 @@
 #include <QLineEdit>
 #include "DicomCDRomReader.h"
 #include "SurgeryPlanWindow.h"
+#include "GuidewareTrackingWindow.h"
 
 class PatientsWidget : public QWidget
 {
@@ -21,6 +22,8 @@ class PatientsWidget : public QWidget
 public:
     PatientsWidget(SystemDispatcher* dispatcher,
                    AlgorithmTestPlatform *algorithmTestPlatform,
+                   SurgeryPlanWindow* surgeryPlanWindow,
+                   GuidewareTrackingWindow* guidewareTrackingWindow,
                    QFont *caracterStyle,
                    int appWidth,
                    int appHeight);
@@ -101,6 +104,7 @@ private:
     AlgorithmTestPlatform *algorithmTestPlatform;
 
     SurgeryPlanWindow* surgeryPlanWindow;
+    GuidewareTrackingWindow* guidewareTrackingWindow;
 
     QSpacerItem* controlBarSpacer;
     QSpacerItem* patientInfoContainerSpacer;
