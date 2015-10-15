@@ -63,7 +63,8 @@ SOURCES +=  main.cpp\
     GUIs/TransferPoint.cpp \
     GUIs/PatientWidgetConfigurationBoard.cpp \
     GUIs/ColorChooseWindow.cpp \
-    GUIs/CurveReformationWindow.cpp
+    GUIs/CurveReformationWindow.cpp \
+    GUIs/GuidewareTrackingWindow.cpp
 
 HEADERS  += \
             Dispatchers/SystemDispatcher.h \
@@ -97,7 +98,8 @@ HEADERS  += \
     GUIs/TransferPoint.h \
     GUIs/PatientWidgetConfigurationBoard.h \
     GUIs/ColorChooseWindow.h \
-    GUIs/CurveReformationWindow.h
+    GUIs/CurveReformationWindow.h \
+    GUIs/GuidewareTrackingWindow.h
 
 win32:INCLUDEPATH += "C:\Program Files\VTK\include\vtk-6.2"
 unix:INCLUDEPATH += $$PWD/../../../../../usr/local/include/vtk-6.2
