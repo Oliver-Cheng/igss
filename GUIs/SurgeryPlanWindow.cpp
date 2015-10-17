@@ -14,7 +14,7 @@ SurgeryPlanWindow::SurgeryPlanWindow(int appWidth, int appHeight) : QWidget()
 
     this->drawBackground();
 
-    this->curveReformationWindow = new CurveReformationWindow();
+
 }
 
 void SurgeryPlanWindow::displayWindow(){
@@ -169,6 +169,7 @@ void SurgeryPlanWindow::initialRendering(){
     this->generateNewGradientPoint(min + 0.6*interval, 0.9);
     this->generateNewGradientPoint(min + 0.8*interval, 0.73);
     this->generateNewGradientPoint(max, 0.1);*/
+
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -807,6 +808,8 @@ void SurgeryPlanWindow::initialisation(){
 
 //    SurgeryPlanWindowConfigurationBoard = new SurgeryPlanWindowConfigurationBoard(this->patientHandling, this->medicalImageHandler);
 //    this->colorChooseWindow = new ColorChooseWindow();
+
+    this->curveReformationWindow = new CurveReformationWindow();
 
 }
 
@@ -1499,6 +1502,10 @@ void SurgeryPlanWindow::displayConfigurationBoard(){
     this->patientWidgetConfigurationBoard->display(QCursor::pos());
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------
+//!
+//! \brief SurgeryPlanWindow::displayCurveReformatwionWindow
+//!
 void SurgeryPlanWindow::displayCurveReformatwionWindow(){
     this->curveReformationWindow->show();
 }
