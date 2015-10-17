@@ -3,12 +3,12 @@
 #include "SystemDataBase.h"
 #include <QApplication>
 
-extern "C" void tesmain(void);
+//extern "C" void tesmain(void);
 
 int main(int argc, char *argv[]){    
 
     QApplication analyser(argc, argv);
-    tesmain();
+//    tesmain();
     analyser.setOrganizationName("CAS - SIAT");
     analyser.setApplicationName("igss");
     analyser.setWindowIcon(QIcon(":/images/icon.png"));
