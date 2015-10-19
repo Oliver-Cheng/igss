@@ -51,6 +51,10 @@ private:
     QGridLayout*  doctorInfoContainerLayout;
     QVBoxLayout* doctorCommentLayout;
     QVBoxLayout* currentPatientBreifInformationWidgetLayout;
+    QVBoxLayout* firstPatientPhotoWidgetLayout;
+    QVBoxLayout* secondPatientPhotoWidgetLayout;
+    QVBoxLayout* thirdPatientPhotoWidgetLayout;
+    QVBoxLayout* fourthPatientPhotoWidgetLayout;
 
     QWidget* controlBar;
     QWidget* patientsIntroduction;
@@ -71,12 +75,21 @@ private:
     QWidget* patientInfoContainer;
     QWidget* doctorComment;
     QWidget* doctorInfoContainer;
+    QWidget* firstPatientPhotoWidget;
+    QWidget* secondPatientPhotoWidget;
+    QWidget* thirdPatientPhotoWidget;
+    QWidget* fourthPatientPhotoWidget;
 
     QLabel* firstPatientPhoto;
     QLabel* secondPatientPhoto;
     QLabel* thirdPatientPhoto;
     QLabel* fourthPatientPhoto;
     QLabel* fifthPatientPhoto;
+
+    QLabel* firstPatientInfo;
+    QLabel* secondPatientInfo;
+    QLabel* thirdPatientInfo;
+    QLabel* fourthPatientInfo;
 
     QLabel*currentPatientPhoto;
     QLabel*currentPatientInfo;
