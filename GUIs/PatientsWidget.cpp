@@ -35,11 +35,22 @@ void PatientsWidget::findPatientExisted(){
     waitingPatientsQueue.append(thirdPatientPhoto);
     waitingPatientsQueue.append(fourthPatientPhoto);
 
+    QList<QLabel*> waitingPatientsInfoQueue;
+    waitingPatientsInfoQueue.append(firstPatientInfo);
+    waitingPatientsInfoQueue.append(secondPatientInfo);
+    waitingPatientsInfoQueue.append(thirdPatientInfo);
+    waitingPatientsInfoQueue.append(fourthPatientInfo);
+
     for(int cpt = 0; cpt < 4; cpt++){
        waitingPatientsQueue.at(cpt)->setPixmap(QPixmap(this->dispatcher->getPatientById(cpt)->getPhotoPath()));
        waitingPatientsQueue.at(cpt)->setAutoFillBackground(true);
        waitingPatientsQueue.at(cpt)->setScaledContents(true);
        waitingPatientsQueue.at(cpt)->update();
+
+       waitingPatientsInfoQueue.at(cpt)->setText(this->dispatcher->getPatientById(cpt)->getName());
+       waitingPatientsInfoQueue.at(cpt)->setAutoFillBackground(true);
+       waitingPatientsInfoQueue.at(cpt)->setScaledContents(true);
+       waitingPatientsInfoQueue.at(cpt)->update();
         //addPatientToWidget(this->dispatcher->getPatientById(cpt)->getPhotoPath());
         //this->PatientPhoto[cpt]->addItem(patientItem);
     }
@@ -107,7 +118,7 @@ void PatientsWidget::constructIHM(){
     this->firstPatientPhotoWidget = new QWidget();
     this->firstPatientPhotoWidget->setFixedSize(this->appWidth*0.075,this->appHeight*0.21);
     this->firstPatientPhotoWidgetLayout = new QVBoxLayout(firstPatientPhotoWidget);
-    this->firstPatientInfo = new QLabel("DCC");
+    this->firstPatientInfo = new QLabel();
     this->firstPatientInfo->setFont(*this->caracterStyle);
     this->firstPatientInfo->setStyleSheet(this->labelStyleSheet);
     this->firstPatientInfo->setFixedHeight(this->appHeight*0.028);
@@ -122,7 +133,7 @@ void PatientsWidget::constructIHM(){
     this->secondPatientPhotoWidget = new QWidget();
     this->secondPatientPhotoWidget->setFixedSize(this->appWidth*0.075,this->appHeight*0.21);
     this->secondPatientPhotoWidgetLayout = new QVBoxLayout(secondPatientPhotoWidget);
-    this->secondPatientInfo = new QLabel("Li Shuai");
+    this->secondPatientInfo = new QLabel();
     this->secondPatientInfo->setFont(*this->caracterStyle);
     this->secondPatientInfo->setStyleSheet(this->labelStyleSheet);
     this->secondPatientInfo->setFixedHeight(this->appHeight*0.028);
@@ -137,7 +148,7 @@ void PatientsWidget::constructIHM(){
     this->thirdPatientPhotoWidget = new QWidget();
     this->thirdPatientPhotoWidget->setFixedSize(this->appWidth*0.075,this->appHeight*0.21);
     this->thirdPatientPhotoWidgetLayout = new QVBoxLayout(thirdPatientPhotoWidget);
-    this->thirdPatientInfo = new QLabel("Q Q");
+    this->thirdPatientInfo = new QLabel();
     this->thirdPatientInfo->setFont(*this->caracterStyle);
     this->thirdPatientInfo->setStyleSheet(this->labelStyleSheet);
     this->thirdPatientInfo->setFixedHeight(this->appHeight*0.028);
@@ -153,7 +164,7 @@ void PatientsWidget::constructIHM(){
     this->fourthPatientPhotoWidget->setFixedSize(this->appWidth*0.075,this->appHeight*0.21);
 
     this->fourthPatientPhotoWidgetLayout = new QVBoxLayout(fourthPatientPhotoWidget);
-    this->fourthPatientInfo = new QLabel("Du Yue");
+    this->fourthPatientInfo = new QLabel();
     this->fourthPatientInfo->setFont(*this->caracterStyle);
     this->fourthPatientInfo->setStyleSheet(this->labelStyleSheet);
     this->fourthPatientInfo->setFixedHeight(this->appHeight*0.028);
