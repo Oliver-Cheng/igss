@@ -10,6 +10,7 @@ IgssMainWindow::IgssMainWindow(SystemDispatcher* dispatcher): QWidget(){
     this->constructIHM();
     this->setConnections();
     this->drawBackground();
+
 }
 
 void IgssMainWindow::constructIHM(){
@@ -18,9 +19,9 @@ void IgssMainWindow::constructIHM(){
     //! status bar area
     //!----------------------------------------------------------------------------------------------------
     algorithmTestPlatform = new AlgorithmTestPlatform(this->systemDispatcher,
-                                                      this->englishCaracterStyle,
-                                                      this->primary_screen_width,
-                                                      this->primary_screen_height);
+                                                                                                this->englishCaracterStyle,
+                                                                                                this->primary_screen_width,
+                                                                                                this->primary_screen_height);
 
     //!------------------------------------------------------------------------------------------
     //! configurationBoard:
@@ -33,12 +34,12 @@ void IgssMainWindow::constructIHM(){
     //! in the system will be displayed here
     //!------------------------------------------------------------------------------------------
     patientsWidget = new PatientsWidget(this->systemDispatcher,
-                                        this->algorithmTestPlatform,
-                                        this->surgeryPlanWindow,
-                                        this->guidewareTrackingWindow,
-                                        this->englishCaracterStyle,
-                                        this->primary_screen_width,
-                                        this->primary_screen_height);
+                                                                       this->algorithmTestPlatform,
+                                                                       this->surgeryPlanWindow,
+                                                                       this->guidewareTrackingWindow,
+                                                                       this->englishCaracterStyle,
+                                                                       this->primary_screen_width,
+                                                                       this->primary_screen_height);
 
     replaysWidget = new ReplaysWidget();
     surgerySystemWidget = new SurgerySystemWidget();
@@ -118,6 +119,11 @@ void IgssMainWindow::drawBackground(){
 //!
 void IgssMainWindow::initVariable(){
 
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint);// | Qt::WindowStaysOnTopHint);
+    this->setWindowOpacity(1);
+    this->setMouseTracking(true);
+    this->setAutoFillBackground(true);
+
     desktop = QApplication::desktop();
     screen_count = desktop->screenCount();
     primary_screen = desktop->primaryScreen();
@@ -126,13 +132,15 @@ void IgssMainWindow::initVariable(){
     for(unsigned char i = 0; i < screen_count; i++){
         screen[i].screenIndex = primary_screen + i;
         screen[i].rect = desktop->screenGeometry(primary_screen + i);
+        qDebug()<<i<<screen[i].rect .width()<<screen[i].rect .height();
     }
 
     primary_screen_width = screen[0].rect.width();
     primary_screen_height = screen[0].rect.height();
     this->resize(primary_screen_width,primary_screen_height);
-    this->move(0,0);
-    this->showMaximized();
+
+
+
     flag = 0;
 
     this->systemInformationBoardStyleSheet =
@@ -148,15 +156,10 @@ void IgssMainWindow::initVariable(){
 
     this->englishCaracterStyle = new QFont("Times",8,QFont::AnyStyle, false);
 
-    this->surgeryPlanWindow = new SurgeryPlanWindow(this->primary_screen_width, this->primary_screen_height);
-    this->guidewareTrackingWindow = new GuidewareTrackingWindow(screen[0].rect.width(), 0, screen[1].rect.width(), screen[1].rect.height(), this->systemDispatcher);
+    this->surgeryPlanWindow = new SurgeryPlanWindow(-screen[2].rect.width(), 50, screen[2].rect.width(), screen[2].rect.height(), this->systemDispatcher);
 
-//int x,
-//int y,
-//int width,
-//int height,
-//Patient* patientHandling,
-//SystemDispatcher* systemDispatcher
+    this->guidewareTrackingWindow = new GuidewareTrackingWindow(screen[0].rect.width(), 50, screen[1].rect.width(), screen[1].rect.height(), this->systemDispatcher);
+
 }
 
 //!----------------------------------------------------------------------------------------
@@ -184,9 +187,8 @@ void IgssMainWindow::initVisualizationComponents(){
 //! \brief IgssMainWindow::display
 //!
 void IgssMainWindow::display(){
-    this->show();
-    this->resize(this->primary_screen_width,
-                 this->primary_screen_height);
+    this->showMaximized();
+    this->showFullScreen();
 }
 
 //!----------------------------------------------------------------------------------------

@@ -57,6 +57,7 @@ VTK_MODULE_INIT(vtkRenderingVolumeOpenGL)
 #include <PatientWidgetConfigurationBoard.h>
 #include <ColorChooseWindow.h>
 #include <vtkEventQtSlotConnect.h>
+#include <SystemDispatcher.h>
 
 #include "CurveReformationWindow.h"
 
@@ -85,15 +86,16 @@ class SurgeryPlanWindow : public QWidget
 {
     Q_OBJECT
 public:
-    explicit SurgeryPlanWindow(int appWidth, int appHeight);
+    explicit SurgeryPlanWindow (int x,
+                                                       int y,
+                                                       int appWidth,
+                                                       int appHeight,
+                                                       SystemDispatcher* systemDispatcher);
     void displayWindow();
 
     void createRandomVtkImageData();
     void display(vtkImageData *imgToBeDisplayed);
     void displaySize();
-
-    int appWidth;
-    int appHeight;
 
 protected:
     vtkEventQtSlotConnect* MraConnections;
@@ -250,6 +252,12 @@ private:
     QPushButton* sugeryEndnessButton;
 
     vtkImageData *enhancedImage = NULL;
+
+    int x;
+    int y;
+    int appWidth;
+    int appHeight;
+     SystemDispatcher* systemDispatcher;
 
     void constructPatientInformationWidget();
     void constructDoctorInformationWidget();

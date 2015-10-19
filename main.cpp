@@ -8,7 +8,6 @@
 int main(int argc, char *argv[]){    
 
     QApplication analyser(argc, argv);
-//    tesmain();
     analyser.setOrganizationName("CAS - SIAT");
     analyser.setApplicationName("igss");
     analyser.setWindowIcon(QIcon(":/images/icon.png"));

@@ -1,9 +1,21 @@
 #include "SurgeryPlanWindow.h"
 
-SurgeryPlanWindow::SurgeryPlanWindow(int appWidth, int appHeight) : QWidget()
+SurgeryPlanWindow::SurgeryPlanWindow(int x,
+                                     int y,
+                                     int appWidth,
+                                     int appHeight,
+                                     SystemDispatcher* systemDispatcher) : QWidget()
 {
+    this->x = x;
+    this->y = y;
     this->appWidth = appWidth;
     this->appHeight = appHeight;
+    this->systemDispatcher = systemDispatcher;
+
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint);// | Qt::WindowStaysOnTopHint);
+    this->setWindowOpacity(1);
+    this->setMouseTracking(true);
+    this->setAutoFillBackground(true);
 
     this->constructPatientInformationWidget();
     this->constructDoctorInformationWidget();
@@ -18,7 +30,10 @@ SurgeryPlanWindow::SurgeryPlanWindow(int appWidth, int appHeight) : QWidget()
 }
 
 void SurgeryPlanWindow::displayWindow(){
-    this->showMaximized();
+    this->resize(this->appWidth, this->appHeight);
+    this->move(this->x, this->y);
+    this->show();
+    qDebug()<<this->appWidth<<this->appHeight;
 }
 
 void SurgeryPlanWindow::displaySize(){

@@ -43,13 +43,14 @@ private:
     QHBoxLayout* patientsPhotoWidgetLayout;
     QVBoxLayout* waittingPatientsAndBlackAreaWindowLayout;
     QHBoxLayout* waittingPatientPhotoesLayout;
-    QVBoxLayout* currentPatientLayout;
+    QVBoxLayout* patientHandlingWidgetLayout;
     QHBoxLayout* pictureInfoAreaLayout;
     QHBoxLayout* controlBarLayout;
     QHBoxLayout* personalInformationLayout;
-    QGridLayout* patientInfoContainerLayout;  
-    QGridLayout* doctorInfoContainerLayout;
+    QGridLayout*  patientInfoContainerLayout;
+    QGridLayout*  doctorInfoContainerLayout;
     QVBoxLayout* doctorCommentLayout;
+    QVBoxLayout* currentPatientBreifInformationWidgetLayout;
 
     QWidget* controlBar;
     QWidget* patientsIntroduction;
@@ -57,9 +58,9 @@ private:
     QWidget* patientsPhotoWidget;
     QWidget* somethingelse;
     QWidget* totalInformation;
-    QWidget* currentPatient;
+    QWidget* patientHandlingWidget;
     QWidget* pictureInfoArea;
-    QWidget* currentPatientPicture;
+    QWidget* currentPatientBreifInformationWidget;
     QWidget* pictureLeftArea;
     QWidget* pictureRightArea;
     QWidget* upBlackArea;
@@ -67,14 +68,19 @@ private:
     QWidget* downBlackArea;
     QWidget* leftBlackArea;
     QWidget* rightBlackArea;
+    QWidget* patientInfoContainer;
+    QWidget* doctorComment;
+    QWidget* doctorInfoContainer;
+
     QLabel* firstPatientPhoto;
     QLabel* secondPatientPhoto;
     QLabel* thirdPatientPhoto;
     QLabel* fourthPatientPhoto;
     QLabel* fifthPatientPhoto;
-    QWidget* patientInfoContainer;
-    QWidget* doctorComment;
-    QWidget* doctorInfoContainer;
+
+    QLabel*currentPatientPhoto;
+    QLabel*currentPatientInfo;
+
 
     QTextEdit* commentTextEdit;
 

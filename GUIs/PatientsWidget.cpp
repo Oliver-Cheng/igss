@@ -21,11 +21,6 @@ PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher,
     this->setConnections();
 }
 
-void PatientsWidget::initVariable(){
-    this->dicomCDRomReader = new DicomCDRomReader();
-    this->labelStyleSheet = "border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background-color: transparent; color: AliceBlue";
-}
-
 //!----------------------------------------------------------------------------------------------------
 //!
 //! \brief PatientsWidget::findPatientExisted
@@ -34,21 +29,29 @@ void PatientsWidget::findPatientExisted(){
     int numberOfPatient = this->dispatcher->findPatientExisted();
     algorithmTestPlatform->setSystemStatus(QString::number(numberOfPatient));
 
-    QList<QLabel*> L;
-    L.append(firstPatientPhoto);
-    L.append(secondPatientPhoto);
-    L.append(thirdPatientPhoto);
-    L.append(fourthPatientPhoto);
-    L.append(fifthPatientPhoto);
+    QList<QLabel*> waitingPatientsQueue;
+    waitingPatientsQueue.append(firstPatientPhoto);
+    waitingPatientsQueue.append(secondPatientPhoto);
+    waitingPatientsQueue.append(thirdPatientPhoto);
+    waitingPatientsQueue.append(fourthPatientPhoto);
 
-    for(int cpt = 0; cpt < 5; cpt++){
-       L.at(cpt)->setPixmap(QPixmap(this->dispatcher->getPatientById(cpt)->getPhotoPath()));
-       L.at(cpt)->setAutoFillBackground(true);
-       L.at(cpt)->setScaledContents(false);
-       L.at(cpt)->update();
+    for(int cpt = 0; cpt < 4; cpt++){
+       waitingPatientsQueue.at(cpt)->setPixmap(QPixmap(this->dispatcher->getPatientById(cpt)->getPhotoPath()));
+       waitingPatientsQueue.at(cpt)->setAutoFillBackground(true);
+       waitingPatientsQueue.at(cpt)->setScaledContents(true);
+       waitingPatientsQueue.at(cpt)->update();
         //addPatientToWidget(this->dispatcher->getPatientById(cpt)->getPhotoPath());
         //this->PatientPhoto[cpt]->addItem(patientItem);
     }
+}
+
+//!----------------------------------------------------------------------------------------------------
+//!
+//! \brief PatientsWidget::initVariable
+//!
+void PatientsWidget::initVariable(){
+    this->dicomCDRomReader = new DicomCDRomReader();
+    this->labelStyleSheet = "border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background-color: transparent; color: AliceBlue";
 }
 
 //!----------------------------------------------------------------------------------------------------
@@ -87,33 +90,28 @@ void PatientsWidget::doParseCdRom(){
 //! \brief PatientsWidget::constructIHM
 //!
 void PatientsWidget::constructIHM(){
-
-    this->patientsIntroduction = new QWidget();
-
     this->waittingPatientsAndBlackAreaWindow = new QWidget();
 
     this->upBlackArea = new QWidget();
-    this->upBlackArea->setFixedHeight(this->appHeight*0.185*0.2);
+    this->upBlackArea->setFixedHeight(this->appHeight*0.185*0.1);
     this->upBlackArea->setStyleSheet("background-color:transparent");
 
     this->waittingPatientPhotoes = new QWidget();
     this->downBlackArea = new QWidget();
-    this->downBlackArea->setFixedHeight(this->appHeight*0.185*0.2);
+    this->downBlackArea->setFixedHeight(this->appHeight*0.185*0.1);
 
     this->leftBlackArea = new QWidget();
     this->leftBlackArea->setFixedWidth(this->appWidth*0.34*0.05);
     this->leftBlackArea->setStyleSheet("background-color:transparent");
 
     this->firstPatientPhoto = new QLabel();
-    this->firstPatientPhoto->setFixedWidth(this->appWidth*0.857*0.08);
+    this->firstPatientPhoto->setFixedSize(this->appWidth*0.075,this->appHeight*0.21);
     this->secondPatientPhoto = new QLabel();
-    this->secondPatientPhoto->setFixedWidth(this->appWidth*0.857*0.08);
+    this->secondPatientPhoto->setFixedSize(this->appWidth*0.075,this->appHeight*0.21);
     this->thirdPatientPhoto = new QLabel();
-    this->secondPatientPhoto->setFixedWidth(this->appWidth*0.857*0.08);
+    this->thirdPatientPhoto->setFixedSize(this->appWidth*0.075,this->appHeight*0.21);
     this->fourthPatientPhoto = new QLabel();
-    this->fourthPatientPhoto->setFixedWidth(this->appWidth*0.857*0.08);
-    this->fifthPatientPhoto = new QLabel();
-    this->fifthPatientPhoto->setFixedWidth(this->appWidth*0.857*0.08);
+    this->fourthPatientPhoto->setFixedSize(this->appWidth*0.075,this->appHeight*0.21);
 
     this->rightBlackArea = new QWidget();
     this->rightBlackArea->setFixedWidth(this->appHeight*0.34*0.01);
@@ -125,9 +123,8 @@ void PatientsWidget::constructIHM(){
     this->waittingPatientPhotoesLayout->addWidget(secondPatientPhoto);
     this->waittingPatientPhotoesLayout->addWidget(thirdPatientPhoto);
     this->waittingPatientPhotoesLayout->addWidget(fourthPatientPhoto);
-    this->waittingPatientPhotoesLayout->addWidget(fifthPatientPhoto);
     this->waittingPatientPhotoesLayout->addWidget(rightBlackArea);
-    this->waittingPatientPhotoesLayout->setSpacing(2);
+    this->waittingPatientPhotoesLayout->setSpacing(10);
     this->waittingPatientPhotoesLayout->setMargin(0);
 
     this->waittingPatientsAndBlackAreaWindowLayout = new QVBoxLayout(waittingPatientsAndBlackAreaWindow);
@@ -157,28 +154,39 @@ void PatientsWidget::constructIHM(){
 
     this->pictureLeftArea = new QWidget();
 
-    this->currentPatientPicture = new QWidget();
-    this->currentPatientPicture->setFixedWidth(this->appWidth*0.857*0.15*0.6);
-    this->currentPatientPicture->setStyleSheet("background-color:skyblue");
+    this->currentPatientBreifInformationWidget = new QWidget();
+    this->currentPatientBreifInformationWidget->setFixedWidth(this->appWidth*0.857*0.15*0.6);
+    this->currentPatientBreifInformationWidgetLayout = new QVBoxLayout(this->currentPatientBreifInformationWidget);
+    this->currentPatientInfo = new QLabel("Du Yue");
+    this->currentPatientInfo->setFont(*this->caracterStyle);
+    this->currentPatientInfo->setStyleSheet(this->labelStyleSheet);
+    this->currentPatientInfo->setFixedHeight(30);
+    this->currentPatientInfo->setAlignment(Qt::AlignCenter);
+
+    this->currentPatientPhoto = new QLabel();
+    this->currentPatientPhoto->setStyleSheet(this->labelStyleSheet);
+
+    this->currentPatientBreifInformationWidgetLayout->addWidget(this->currentPatientPhoto);
+    this->currentPatientBreifInformationWidgetLayout->addWidget(this->currentPatientInfo);
+
 
     this->pictureRightArea = new QWidget();
 
     this->pictureInfoArea = new QWidget();
     this->pictureInfoAreaLayout = new QHBoxLayout(pictureInfoArea);
     this->pictureInfoAreaLayout->addWidget(pictureLeftArea);
-    this->pictureInfoAreaLayout->addWidget(currentPatientPicture);
+    this->pictureInfoAreaLayout->addWidget(currentPatientBreifInformationWidget);
     this->pictureInfoAreaLayout->addWidget(pictureRightArea);
     this->pictureInfoAreaLayout->setSpacing(0);
     this->pictureInfoAreaLayout->setMargin(0);
 
-    this->currentPatient = new QWidget();
-    this->currentPatient->setFixedWidth(this->appWidth*0.857*0.15);
-    //this->currentPatient->setStyleSheet("background-color:blue");
-    this->currentPatientLayout = new QVBoxLayout(currentPatient);
-    this->currentPatientLayout->addWidget(pictureInfoArea);
-    this->currentPatientLayout->addWidget(surgeryLaunchButton);
-    this->currentPatientLayout->setSpacing(0);
-    this->currentPatientLayout->setMargin(0);
+    this->patientHandlingWidget = new QWidget();
+    this->patientHandlingWidget->setFixedWidth(this->appWidth*0.857*0.15);
+    this->patientHandlingWidgetLayout = new QVBoxLayout(patientHandlingWidget);
+    this->patientHandlingWidgetLayout->addWidget(pictureInfoArea);
+    this->patientHandlingWidgetLayout->addWidget(surgeryLaunchButton);
+    this->patientHandlingWidgetLayout->setSpacing(0);
+    this->patientHandlingWidgetLayout->setMargin(0);
 
     //!--------------------------------------------------------------------------------------
     //!the right select button
@@ -195,7 +203,7 @@ void PatientsWidget::constructIHM(){
     this->patientsPhotoWidgetLayout = new QHBoxLayout(this->patientsPhotoWidget);
     this->patientsPhotoWidgetLayout->addWidget(waittingPatientsAndBlackAreaWindow);
     this->patientsPhotoWidgetLayout->addWidget(leftSelectButton);
-    this->patientsPhotoWidgetLayout->addWidget(currentPatient);
+    this->patientsPhotoWidgetLayout->addWidget(patientHandlingWidget);
     this->patientsPhotoWidgetLayout->addWidget(rightSelectButton);
     this->patientsPhotoWidgetLayout->setSpacing(0);
     this->patientsPhotoWidgetLayout->setMargin(0);
@@ -302,6 +310,7 @@ void PatientsWidget::constructIHM(){
     //!--------------------------------------------------------------------------------------
     //!the interface of the introduction about patients
     //!--------------------------------------------------------------------------------------
+    this->patientsIntroduction = new QWidget();
     this->patientsIntroductionLayout = new QHBoxLayout(this->patientsIntroduction);
     this->patientsIntroductionLayout->addWidget(patientsPhotoWidget);
     this->patientsIntroductionLayout->addWidget(personalInformation);
@@ -312,7 +321,7 @@ void PatientsWidget::constructIHM(){
     //!this area will put something else
     //!--------------------------------------------------------------------------------------
     this->somethingelse = new QWidget();
-    this->somethingelse->setFixedHeight(this->appHeight*0.509);
+    this->somethingelse->setFixedHeight(this->appHeight*0.52);
 
     this->controlBar = new QWidget();
     this->controlBar->setFixedHeight(this->appHeight*0.030);

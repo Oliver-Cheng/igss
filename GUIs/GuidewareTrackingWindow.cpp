@@ -10,9 +10,10 @@ GuidewareTrackingWindow::GuidewareTrackingWindow(int x,
     this->width = width;
     this->height = height;
     this->systemDispatcher = systemDispatcher;
-
-    this->resize(this->width, this->height);
-    this->move(this->x, this->y);
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint);// | Qt::WindowStaysOnTopHint);
+    this->setWindowOpacity(1);
+    this->setMouseTracking(true);
+    this->setAutoFillBackground(true);
 }
 
 //!----------------------------------------------------------------------------------------------------

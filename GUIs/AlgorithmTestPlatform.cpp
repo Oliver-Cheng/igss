@@ -21,7 +21,6 @@ void AlgorithmTestPlatform::initVariable(){
 
 void AlgorithmTestPlatform::constructIHM(){
 
-
     unknownArea = new QWidget();
     unknownArea->setFixedWidth(this->appWidth*0.13);
 
