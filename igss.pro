@@ -83,7 +83,8 @@ SOURCES +=  main.cpp\
             GUIs/SurgeryPlanWindow/PatientWidgetConfigurationBoard.cpp \
             GUIs/GuiComponentLib/ColorChooseWindow.cpp \
             GUIs/CurveReformationWindow/CurveReformationWindow.cpp \
-            GUIs/GuidewareTrackingWindow/GuidewareTrackingWindow.cpp
+            GUIs/GuidewareTrackingWindow/GuidewareTrackingWindow.cpp \
+    SystemDataWare/CTBidimensionnelFrame.cpp
 
 HEADERS  += \
             Dispatchers/SystemDispatcher.h \
@@ -118,7 +119,8 @@ HEADERS  += \
             GUIs/SurgeryPlanWindow/PatientWidgetConfigurationBoard.h \
             GUIs/GuiComponentLib/ColorChooseWindow.h \
             GUIs/CurveReformationWindow/CurveReformationWindow.h \
-            GUIs/GuidewareTrackingWindow/GuidewareTrackingWindow.h
+            GUIs/GuidewareTrackingWindow/GuidewareTrackingWindow.h \
+    SystemDataWare/CTBidimensionnelFrame.h
 
 win32:INCLUDEPATH += "C:\Program Files\VTK\include\vtk-6.2"
 unix:INCLUDEPATH += $$PWD/../../../../../usr/local/include/vtk-6.2
