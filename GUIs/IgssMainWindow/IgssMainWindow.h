@@ -1,4 +1,4 @@
-#ifndef WIDGET_H
+#ifndef  WIDGET_H
 #define WIDGET_H
 
 #define vtkRenderingCore_AUTOINIT 4(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingFreeTypeOpenGL,vtkRenderingOpenGL)

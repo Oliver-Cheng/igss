@@ -4,6 +4,7 @@
 #include "IgssImage.h"
 #include "Derivation.h"
 
+
 class Convolution
 {
 public:

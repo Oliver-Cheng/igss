@@ -26,6 +26,16 @@ INCLUDEPATH += SystemDataWare
 
 INCLUDEPATH += GUIs
 
+INCLUDEPATH += GUIs/CurveReformationWindow
+
+INCLUDEPATH += GUIs/GuiComponentLib
+
+INCLUDEPATH += GUIs/GuidewareTrackingWindow
+
+INCLUDEPATH += GUIs/SurgeryPlanWindow
+
+INCLUDEPATH += GUIs/IgssMainWindow
+
 INCLUDEPATH += Dispatchers
 
 INCLUDEPATH += DiskImageReaderFactory
@@ -46,7 +56,7 @@ SOURCES +=  main.cpp\
             SystemDataWare/IgssImage.cpp \
             ImageProcessingMethods/igssGeneralLib/IgssVtkImageConverter.cpp \
             SystemDataWare/CenterLinePoint.cpp \
-            GUIs/IgssMainWindow.cpp \
+            GUIs/IgssMainWindow/IgssMainWindow.cpp \
             SystemDataWare/Patients.cpp \
             SystemDataWare/SystemMetaData.cpp \
             SystemDataWare/Patient.cpp \
@@ -55,25 +65,25 @@ SOURCES +=  main.cpp\
             ImageProcessingMethods/igssSegmentationLib/VesselEnhancementFilter.cpp \
             ImageProcessingMethods/igssSegmentationLib/Options.cpp \
             DiskImageReaderFactory/MRAFileReader.cpp \
-            GUIs/PatientsWidget.cpp \
-            GUIs/SurgerySystemWidget.cpp \
-            GUIs/ReplaysWidget.cpp \
+            GUIs/IgssMainWindow/PatientsWidget.cpp \
+            GUIs/IgssMainWindow/SurgerySystemWidget.cpp \
+            GUIs/IgssMainWindow/ReplaysWidget.cpp \
             ImageProcessingMethods/ImageProcessingFactory.cpp \
             ImageProcessingMethods/ErrorMessage.cpp \
-    GUIs/AlgorithmTestPlatform.cpp \
-    DiskImageReaderFactory/DicomCDRomReader.cpp \
-    GUIs/SurgeryPlanWindow.cpp \
-    GUIs/CPushButton.cpp \
-    GUIs/PlottingBoard.cpp \
-    GUIs/ColorPoint.cpp \
-    GUIs/HistogramPoint.cpp \
-    GUIs/PlotPoint.cpp \
-    GUIs/qcustomplot.cpp \
-    GUIs/TransferPoint.cpp \
-    GUIs/PatientWidgetConfigurationBoard.cpp \
-    GUIs/ColorChooseWindow.cpp \
-    GUIs/CurveReformationWindow.cpp \
-    GUIs/GuidewareTrackingWindow.cpp
+            GUIs/IgssMainWindow/AlgorithmTestPlatform.cpp \
+            DiskImageReaderFactory/DicomCDRomReader.cpp \
+            GUIs/SurgeryPlanWindow/SurgeryPlanWindow.cpp \
+            GUIs/GuiComponentLib/CPushButton.cpp \
+            GUIs/GuiComponentLib/PlottingBoard.cpp \
+            GUIs/GuiComponentLib/ColorPoint.cpp \
+            GUIs/GuiComponentLib/HistogramPoint.cpp \
+            GUIs/GuiComponentLib/PlotPoint.cpp \
+            GUIs/GuiComponentLib/qcustomplot.cpp \
+            GUIs/GuiComponentLib/TransferPoint.cpp \
+            GUIs/SurgeryPlanWindow/PatientWidgetConfigurationBoard.cpp \
+            GUIs/GuiComponentLib/ColorChooseWindow.cpp \
+            GUIs/CurveReformationWindow/CurveReformationWindow.cpp \
+            GUIs/GuidewareTrackingWindow/GuidewareTrackingWindow.cpp
 
 HEADERS  += \
             Dispatchers/SystemDispatcher.h \
@@ -81,7 +91,7 @@ HEADERS  += \
             SystemDataWare/IgssImage.h \
             ImageProcessingMethods/igssGeneralLib/IgssVtkImageConverter.h \
             SystemDataWare/CenterLinePoint.h \
-            GUIs/IgssMainWindow.h \
+            GUIs/IgssMainWindow/IgssMainWindow.h \
             SystemDataWare/Patients.h \
             SystemDataWare/SystemMetaData.h \
             SystemDataWare/Patient.h \
@@ -90,25 +100,25 @@ HEADERS  += \
             ImageProcessingMethods/igssSegmentationLib/VesselEnhancementFilter.h \
             ImageProcessingMethods/igssSegmentationLib/Options.h \
             DiskImageReaderFactory/MRAFileReader.h \
-            GUIs/PatientsWidget.h \
-            GUIs/SurgerySystemWidget.h \
-            GUIs/ReplaysWidget.h \
+            GUIs/IgssMainWindow/PatientsWidget.h \
+            GUIs/IgssMainWindow/SurgerySystemWidget.h \
+            GUIs/IgssMainWindow/ReplaysWidget.h \
             ImageProcessingMethods/ImageProcessingFactory.h \
             ImageProcessingMethods/ErrorMessage.h \
-    GUIs/AlgorithmTestPlatform.h \
-    DiskImageReaderFactory/DicomCDRomReader.h \
-    GUIs/SurgeryPlanWindow.h \
-    GUIs/CPushButton.h \
-    GUIs/PlottingBoard.h \
-    GUIs/ColorPoint.h \
-    GUIs/HistogramPoint.h \
-    GUIs/PlotPoint.h \
-    GUIs/qcustomplot.h \
-    GUIs/TransferPoint.h \
-    GUIs/PatientWidgetConfigurationBoard.h \
-    GUIs/ColorChooseWindow.h \
-    GUIs/CurveReformationWindow.h \
-    GUIs/GuidewareTrackingWindow.h
+            GUIs/IgssMainWindow/AlgorithmTestPlatform.h \
+            DiskImageReaderFactory/DicomCDRomReader.h \
+            GUIs/SurgeryPlanWindow/SurgeryPlanWindow.h \
+            GUIs/GuiComponentLib/CPushButton.h \
+            GUIs/GuiComponentLib/PlottingBoard.h \
+            GUIs/GuiComponentLib/ColorPoint.h \
+            GUIs/GuiComponentLib/HistogramPoint.h \
+            GUIs/GuiComponentLib/PlotPoint.h \
+            GUIs/GuiComponentLib/qcustomplot.h \
+            GUIs/GuiComponentLib/TransferPoint.h \
+            GUIs/SurgeryPlanWindow/PatientWidgetConfigurationBoard.h \
+            GUIs/GuiComponentLib/ColorChooseWindow.h \
+            GUIs/CurveReformationWindow/CurveReformationWindow.h \
+            GUIs/GuidewareTrackingWindow/GuidewareTrackingWindow.h
 
 win32:INCLUDEPATH += "C:\Program Files\VTK\include\vtk-6.2"
 unix:INCLUDEPATH += $$PWD/../../../../../usr/local/include/vtk-6.2
