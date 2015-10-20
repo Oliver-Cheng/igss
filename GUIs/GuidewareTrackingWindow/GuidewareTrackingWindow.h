@@ -18,8 +18,10 @@ public:
                                      int y,
                                      int width,
                                      int height,
+                                     QFont *caracterStyle,
                                      SystemDispatcher* systemDispatcher);
     ~GuidewareTrackingWindow();
+    void initVariable();
     void displayWindow();
     void constructionIHM();
 
@@ -31,6 +33,9 @@ private:
     int height;
     Patient* patientHandling;
     SystemDispatcher* systemDispatcher;
+
+    QFont *caracterStyle;
+    QString labelStyleSheet;
 
     QGridLayout* guidewareTrackingLayout;
     QHBoxLayout* vtkDisplayBoardLayout;

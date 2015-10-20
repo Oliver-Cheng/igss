@@ -158,7 +158,7 @@ void IgssMainWindow::initVariable(){
 
     this->surgeryPlanWindow = new SurgeryPlanWindow(-screen[2].rect.width(), 50, screen[2].rect.width(), screen[2].rect.height(), this->systemDispatcher);
 
-    this->guidewareTrackingWindow = new GuidewareTrackingWindow(screen[0].rect.width(), 50, screen[1].rect.width(), screen[1].rect.height(), this->systemDispatcher);
+    this->guidewareTrackingWindow = new GuidewareTrackingWindow(screen[0].rect.width(), 50, screen[1].rect.width(), screen[1].rect.height(), this->englishCaracterStyle, this->systemDispatcher);
 
 }
 
@@ -178,7 +178,8 @@ void IgssMainWindow::initVisualizationComponents(){
     volumeMapper = vtkVolumeRayCastMapper::New();
     compositeFunction = vtkVolumeRayCastCompositeFunction::New();
     volume = vtkVolume::New();
-    renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
+    renderWindow = vtkSmartPointer<vtkRenderWindow>
+            ::New();
     renderer = vtkSmartPointer<vtkRenderer>::New();
 }
 
