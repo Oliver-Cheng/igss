@@ -17,7 +17,7 @@
 #include <QBrush>
 #include <QBitmap>
 #include <QApplication>
-#include <QDesktopWidget>
+
 #include <QRect>
 
 #include <MRAFileReader.h>

@@ -3,6 +3,12 @@
 
 #include <Patient.h>
 #include <SystemDispatcher.h>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QPushButton>
+#include <QLabel>
+#include <QWidget>
 
 class GuidewareTrackingWindow : public QWidget
 {
@@ -15,6 +21,8 @@ public:
                                      SystemDispatcher* systemDispatcher);
     ~GuidewareTrackingWindow();
     void displayWindow();
+    void constructionIHM();
+
 
 private:
     int x;
@@ -23,6 +31,25 @@ private:
     int height;
     Patient* patientHandling;
     SystemDispatcher* systemDispatcher;
+
+    QGridLayout* guidewareTrackingLayout;
+    QHBoxLayout* vtkDisplayBoardLayout;
+    QVBoxLayout* guideControlBoardLayout;
+    QVBoxLayout* surgeryInformationLayout;
+
+    QWidget* nameBar;
+    QWidget* vtkDisplayBar;
+    QWidget* guideControlBoard;
+    QWidget* vtkDisplayBoard;
+    QWidget* primaryDisplay;
+    QWidget* guidewareTrackingDisplay;
+    QWidget* surgeryInformation;
+    QWidget* controlButtonArea;
+    QWidget* unknownArea;
+
+    QLabel* surgeryID;
+    QLabel* patientName;
+    QLabel* surgeryDate;
 };
 
 #endif // GUIDEWARETRACKINGWINDOW_H
