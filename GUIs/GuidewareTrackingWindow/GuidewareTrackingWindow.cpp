@@ -4,19 +4,20 @@ GuidewareTrackingWindow::GuidewareTrackingWindow(int x,
                                                  int y,
                                                  int width,
                                                  int height,
-                                                 QFont *caracterStyle,
                                                  SystemDispatcher* systemDispatcher) : QWidget(){
     this->x = x;
     this->y = y;
     this->width = width;
     this->height = height;
-    this->caracterStyle = caracterStyle;
     this->systemDispatcher = systemDispatcher;
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint);// | Qt::WindowStaysOnTopHint);
     this->setWindowOpacity(1);
     this->setMouseTracking(true);
     this->setAutoFillBackground(true);
+    this->initVariable();
     this->constructionIHM();
+    this->drawBackground();
+
 
 }
 
@@ -42,7 +43,8 @@ void GuidewareTrackingWindow::displayWindow(){
 //! \brief GuidewareTrackingWindow::initVariable
 //!
 void GuidewareTrackingWindow::initVariable(){
-    this->labelStyleSheet = "border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background-color: transparent; color: AliceBlue";
+    this->caracterStyle = new QFont("Times",12,QFont::AnyStyle, false);
+    this->windowStyleSheet = "border: 1px solid aliceBlue;border-radius: 0px;padding: 2 2px;background-color: transparent; color: AliceBlue";
 }
 
 //!
@@ -53,14 +55,14 @@ void GuidewareTrackingWindow::constructionIHM(){
     //! name bar:display name of this window
     //!----------------------------------------------------------------------------------------------------
     this->nameBar = new QWidget();
-    this->nameBar->setStyleSheet("background-color:red");
     this->nameBar->setFixedSize(width*0.20,height*0.04);
+    this->nameBar->setStyleSheet(this->windowStyleSheet);
 
     //!----------------------------------------------------------------------------------------------------
     //! vtk display bar:display name of VTKImage
     //!----------------------------------------------------------------------------------------------------
     this->vtkDisplayBar = new QWidget();
-    this->vtkDisplayBar->setStyleSheet("background-color:green");
+    this->vtkDisplayBar->setStyleSheet(this->windowStyleSheet);
 
     //!----------------------------------------------------------------------------------------------------
     //! surgery information:including surgerID,patientName,surgeryDate
@@ -68,21 +70,50 @@ void GuidewareTrackingWindow::constructionIHM(){
     this->surgeryID = new QLabel();
     this->surgeryID = new QLabel("surgeryID:");
     this->surgeryID->setFont(*this->caracterStyle);
-    this->surgeryID->setStyleSheet(this->labelStyleSheet);
+    this->surgeryID->setStyleSheet("border: 0px solid aliceBlue;border-radius: 0px;padding: 2 2px;background-color: transparent; color: AliceBlue");
 
     this->patientName = new QLabel();
+    this->patientName = new QLabel("patientName:");
+    this->patientName->setFont(*this->caracterStyle);
+    this->patientName->setStyleSheet("border: 0px solid aliceBlue;border-radius: 0px;padding: 2 2px;background-color: transparent; color: AliceBlue");
     this->surgeryDate = new QLabel();
+    this->surgeryDate = new QLabel("surgeryDate:");
+    this->surgeryDate->setFont(*this->caracterStyle);
+    this->surgeryDate->setStyleSheet("border: 0px solid aliceBlue;border-radius: 0px;padding: 2 2px;background-color: transparent; color: AliceBlue");
 
     this->surgeryInformation = new QWidget();
+    this->surgeryInformation->setFixedHeight(height*0.16);
+    this->surgeryInformation->setStyleSheet(this->windowStyleSheet);
     this->surgeryInformationLayout = new QVBoxLayout(this->surgeryInformation);
     this->surgeryInformationLayout->addWidget(surgeryID);
     this->surgeryInformationLayout->addWidget(patientName);
     this->surgeryInformationLayout->addWidget(surgeryDate);
+    this->surgeryInformationLayout->setMargin(0);
+    this->surgeryInformationLayout->setSpacing(0);
 
     //!----------------------------------------------------------------------------------------------------
     //! control button area
     //!----------------------------------------------------------------------------------------------------
+    this->untitledButton1 = new QPushButton("^");
+    this->untitledButton1->setFixedSize(width*0.2*0.2, width*0.2*0.2);
+    this->untitledButton2 = new QPushButton("-");
+    this->untitledButton2->setFixedSize(width*0.2*0.2, width*0.2*0.2);
+    this->untitledButton3 = new QPushButton("-");
+    this->untitledButton3->setFixedSize(width*0.2*0.2, width*0.2*0.2);
+    this->untitledButton4 = new QPushButton("^");
+    this->untitledButton4->setFixedSize(width*0.2*0.2, width*0.2*0.2);
     this->controlButtonArea = new QWidget();
+    this->controlButtonArea->setFixedHeight(height*0.4);
+    this->controlButtonAreaLayout = new QGridLayout(this->controlButtonArea);
+    this->controlButtonAreaLayout->addWidget(this->untitledButton1, 0, 0);
+    this->controlButtonAreaLayout->addWidget(this->untitledButton2, 0, 1);
+    this->controlButtonAreaLayout->addWidget(this->untitledButton3, 0, 3);
+    this->controlButtonAreaLayout->addWidget(this->untitledButton4, 0, 4);
+    this->controlButtonAreaLayout->setMargin(0);
+    this->controlButtonAreaLayout->setSpacing(0);
+
+
+
 
     //!----------------------------------------------------------------------------------------------------
     //! unknown area
@@ -94,11 +125,13 @@ void GuidewareTrackingWindow::constructionIHM(){
     //!guideControlBoard:including guideControlBoard,controlButtonArea,unknownArea
     //!----------------------------------------------------------------------------------------------------
     this->guideControlBoard = new QWidget();
-    this->guideControlBoard->setStyleSheet("background-color:blue");
+    this->guideControlBoard->setStyleSheet(this->windowStyleSheet);
     this->guideControlBoardLayout = new QVBoxLayout(this->guideControlBoard);
     this->guideControlBoardLayout->addWidget(this->surgeryInformation);
     this->guideControlBoardLayout->addWidget(this->controlButtonArea);
     this->guideControlBoardLayout->addWidget(this->unknownArea);
+    this->guideControlBoardLayout->setMargin(0);
+    this->guideControlBoardLayout->setSpacing(0);
 
 
     //!----------------------------------------------------------------------------------------------------
@@ -115,9 +148,12 @@ void GuidewareTrackingWindow::constructionIHM(){
     //!vtkDisplayBoard:including primaryDisplay,guidewareTrackingDisplay
     //!----------------------------------------------------------------------------------------------------
     this->vtkDisplayBoard = new QWidget();
+    this->vtkDisplayBoard->setStyleSheet(this->windowStyleSheet);
     this->vtkDisplayBoardLayout = new QHBoxLayout(this->vtkDisplayBoard);
     this->vtkDisplayBoardLayout->addWidget(primaryDisplay);
     this->vtkDisplayBoardLayout->addWidget(guidewareTrackingDisplay);
+    this->vtkDisplayBoardLayout->setMargin(0);
+    this->vtkDisplayBoardLayout->setSpacing(0);
 
     //!----------------------------------------------------------------------------------------------------
     //!main window
@@ -128,6 +164,18 @@ void GuidewareTrackingWindow::constructionIHM(){
     this->guidewareTrackingLayout->addWidget(this->guideControlBoard, 1, 0);
     this->guidewareTrackingLayout->addWidget(this->vtkDisplayBoard, 1, 1);
 
+}
 
+//!--------------------------------------------------------------------------------------------------------------------------------
+//!
+//! \brief GuidewareTrackingWindow::drawBackground
+//!
+void GuidewareTrackingWindow::drawBackground(){
+    pixmap = new QPixmap(":/images/images_1_1.png");
+    QPalette p =  this->palette();
 
+    p.setBrush(QPalette::Background, QBrush(pixmap->scaled(QSize(this->width, this->height), Qt::IgnoreAspectRatio, Qt::SmoothTransformation)));
+
+    this->setPalette(p);
+    this->setMask(pixmap->mask());
 }

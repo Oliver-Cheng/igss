@@ -9,6 +9,12 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QWidget>
+#include <QPixmap>
+#include <QPalette>
+#include <QBrush>
+#include <QBitmap>
+#include <QVTKWidget.h>
+
 
 class GuidewareTrackingWindow : public QWidget
 {
@@ -18,12 +24,12 @@ public:
                                      int y,
                                      int width,
                                      int height,
-                                     QFont *caracterStyle,
                                      SystemDispatcher* systemDispatcher);
     ~GuidewareTrackingWindow();
     void initVariable();
     void displayWindow();
     void constructionIHM();
+    void drawBackground();
 
 
 private:
@@ -35,12 +41,20 @@ private:
     SystemDispatcher* systemDispatcher;
 
     QFont *caracterStyle;
-    QString labelStyleSheet;
+    QString windowStyleSheet;
+
+    QPixmap *pixmap;
 
     QGridLayout* guidewareTrackingLayout;
     QHBoxLayout* vtkDisplayBoardLayout;
     QVBoxLayout* guideControlBoardLayout;
     QVBoxLayout* surgeryInformationLayout;
+    QGridLayout* controlButtonAreaLayout;
+
+    QPushButton* untitledButton1;
+    QPushButton* untitledButton2;
+    QPushButton* untitledButton3;
+    QPushButton* untitledButton4;
 
     QWidget* nameBar;
     QWidget* vtkDisplayBar;
