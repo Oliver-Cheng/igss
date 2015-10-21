@@ -36,6 +36,7 @@ void IgssMainWindow::constructIHM(){
     patientsWidget = new PatientsWidget(this->systemDispatcher,
                                                                        this->algorithmTestPlatform,
                                                                        this->surgeryPlanWindow,
+                                                                       this->patientInformationWidget,
                                                                        this->guidewareTrackingWindow,
                                                                        this->englishCaracterStyle,
                                                                        this->primary_screen_width,
@@ -156,6 +157,8 @@ void IgssMainWindow::initVariable(){
 
     this->englishCaracterStyle = new QFont("Times",8,QFont::AnyStyle, false);
 
+    this->patientInformationWidget = new PatientInformationWidget();
+
     this->surgeryPlanWindow = new SurgeryPlanWindow(-screen[2].rect.width(), 50, screen[2].rect.width(), screen[2].rect.height(), this->systemDispatcher);
 
     this->guidewareTrackingWindow = new GuidewareTrackingWindow(screen[0].rect.width(), 50, screen[1].rect.width(), screen[1].rect.height(), this->englishCaracterStyle, this->systemDispatcher);
@@ -178,8 +181,7 @@ void IgssMainWindow::initVisualizationComponents(){
     volumeMapper = vtkVolumeRayCastMapper::New();
     compositeFunction = vtkVolumeRayCastCompositeFunction::New();
     volume = vtkVolume::New();
-    renderWindow = vtkSmartPointer<vtkRenderWindow>
-            ::New();
+    renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
     renderer = vtkSmartPointer<vtkRenderer>::New();
 }
 

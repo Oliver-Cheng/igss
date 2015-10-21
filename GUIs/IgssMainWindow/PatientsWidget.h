@@ -15,6 +15,7 @@
 #include "DicomCDRomReader.h"
 #include "SurgeryPlanWindow.h"
 #include "GuidewareTrackingWindow.h"
+#include "PatientInformationWidget.h"
 
 class PatientsWidget : public QWidget
 {
@@ -23,6 +24,7 @@ public:
     PatientsWidget(SystemDispatcher* dispatcher,
                    AlgorithmTestPlatform *algorithmTestPlatform,
                    SurgeryPlanWindow* surgeryPlanWindow,
+                   PatientInformationWidget* patientInformationWidget,
                    GuidewareTrackingWindow* guidewareTrackingWindow,
                    QFont *caracterStyle,
                    int appWidth,
@@ -118,12 +120,14 @@ private:
     QPushButton* leftSelectButton;
     QPushButton* rightSelectButton;
     QPushButton* cdRomParseButton;
+    QPushButton* addPatientButton;
     QPushButton* surgeryLaunchButton;
 
     AlgorithmTestPlatform *algorithmTestPlatform;
 
     SurgeryPlanWindow* surgeryPlanWindow;
     GuidewareTrackingWindow* guidewareTrackingWindow;
+    PatientInformationWidget* patientInformationWidget;
 
     QSpacerItem* controlBarSpacer;
     QSpacerItem* patientInfoContainerSpacer;
@@ -140,6 +144,7 @@ signals:
 public slots:
     void doParseCdRom();
     void launchSurgery();
+    void addPatient();
 
 };
 

@@ -117,6 +117,7 @@ private:
     IgssVtkImageConverter* igssVtkImageConverter;
 
     SurgeryPlanWindow* surgeryPlanWindow;
+    PatientInformationWidget* patientInformationWidget;
     GuidewareTrackingWindow* guidewareTrackingWindow;
 
     int flag;

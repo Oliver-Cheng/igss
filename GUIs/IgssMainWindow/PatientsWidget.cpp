@@ -3,6 +3,7 @@
 PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher,
                                AlgorithmTestPlatform *algorithmTestPlatform,
                                SurgeryPlanWindow* surgeryPlanWindow,
+                               PatientInformationWidget* patientInformationWidget,
                                GuidewareTrackingWindow* guidewareTrackingWindow,
                                QFont *caracterStyle,
                                int appWidth,
@@ -11,6 +12,7 @@ PatientsWidget::PatientsWidget(SystemDispatcher* dispatcher,
     this->dispatcher = dispatcher;
     this->algorithmTestPlatform = algorithmTestPlatform;
     this->surgeryPlanWindow = surgeryPlanWindow;
+    this->patientInformationWidget = patientInformationWidget;
     this->guidewareTrackingWindow = guidewareTrackingWindow;
     this->caracterStyle = caracterStyle;
     this->appWidth = appWidth;
@@ -72,6 +74,7 @@ void PatientsWidget::initVariable(){
 void PatientsWidget::setConnections(){
     this->connect(this->cdRomParseButton, SIGNAL(clicked()), this, SLOT(doParseCdRom()));
     this->connect(this->surgeryLaunchButton, SIGNAL(clicked()), this, SLOT(launchSurgery()));
+    this->connect(this->addPatientButton, SIGNAL(clicked()), this, SLOT(addPatient()));
 }
 
 //!----------------------------------------------------------------------------------------------------
@@ -94,6 +97,9 @@ void PatientsWidget::doParseCdRom(){
     //dicomCDRomReader->doParseCDRom(.......);
 
 
+}
+void PatientsWidget::addPatient(){
+    this->patientInformationWidget->display(QCursor::pos());
 }
 
 //!----------------------------------------------------------------------------------------------------
@@ -397,10 +403,17 @@ void PatientsWidget::constructIHM(){
     this->cdRomParseButton->setStyleSheet("background-color:transparent");
     this->cdRomParseButton->setFixedSize(this->appWidth*0.020, this->appWidth*0.020);
 
+    this->addPatientButton =  new QPushButton();
+    this->addPatientButton->setIcon(QIcon(":/images/icon.png"));
+    this->addPatientButton->setIconSize(QSize(this->appWidth*0.015,this->appWidth*0.015));
+    this->addPatientButton->setStyleSheet("background-color:transparent");
+    this->addPatientButton->setFixedSize(this->appWidth*0.020, this->appWidth*0.020);
+
     controlBarSpacer = new QSpacerItem(20, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     this->controlBarLayout->addWidget(this->cdRomParseButton);
-    this->controlBarLayout->addSpacerItem(controlBarSpacer);
+    this->controlBarLayout->addWidget(this->addPatientButton);
+    this->controlBarLayout->addSpacerItem(this->controlBarSpacer);
 
     this->controlBarLayout->setSpacing(0);
     this->controlBarLayout->setMargin(0);
