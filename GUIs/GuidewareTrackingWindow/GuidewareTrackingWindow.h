@@ -29,6 +29,7 @@ public:
     void initVariable();
     void displayWindow();
     void constructionIHM();
+    void setConnections();
     void drawBackground();
 
 
@@ -69,6 +70,9 @@ private:
     QLabel* surgeryID;
     QLabel* patientName;
     QLabel* surgeryDate;
+
+private slots:
+    void closeSystem();
 };
 
 #endif // GUIDEWARETRACKINGWINDOW_H

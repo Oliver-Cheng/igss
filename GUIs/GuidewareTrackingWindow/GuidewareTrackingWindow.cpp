@@ -16,6 +16,7 @@ GuidewareTrackingWindow::GuidewareTrackingWindow(int x,
     this->setAutoFillBackground(true);
     this->initVariable();
     this->constructionIHM();
+    this->setConnections();
     this->drawBackground();
 
 
@@ -94,7 +95,7 @@ void GuidewareTrackingWindow::constructionIHM(){
     //!----------------------------------------------------------------------------------------------------
     //! control button area
     //!----------------------------------------------------------------------------------------------------
-    this->untitledButton1 = new QPushButton("^");
+    this->untitledButton1 = new QPushButton("X");
     this->untitledButton1->setFixedSize(width*0.2*0.2, width*0.2*0.2);
     this->untitledButton2 = new QPushButton("-");
     this->untitledButton2->setFixedSize(width*0.2*0.2, width*0.2*0.2);
@@ -166,6 +167,20 @@ void GuidewareTrackingWindow::constructionIHM(){
 
 }
 
+//!
+//! \brief GuidewareTrackingWindow::setConnections
+//!
+void GuidewareTrackingWindow::setConnections(){
+    this->connect(untitledButton1, SIGNAL(clicked()), this, SLOT(closeSystem()));
+}
+
+//!
+//! \brief GuidewareTrackingWindow::closeSystem
+//!
+void GuidewareTrackingWindow::closeSystem(){
+    this->close();
+}
+
 //!--------------------------------------------------------------------------------------------------------------------------------
 //!
 //! \brief GuidewareTrackingWindow::drawBackground
@@ -179,3 +194,5 @@ void GuidewareTrackingWindow::drawBackground(){
     this->setPalette(p);
     this->setMask(pixmap->mask());
 }
+
+
